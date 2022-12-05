@@ -31,7 +31,7 @@
                 <img class="profile-picture" src="img/profile.jpg" alt="">
                 <div class="profile-text-container">
                     <div class="dropdown">
-                        <a style="margin: 0%; padding: 0%;" class="dropbtn" class="movie-list-title">Profile</a>
+                        <a style="cursor: pointer; margin: 0%; padding: 0%;" class="dropbtn" class="movie-list-title">Profile</a>
                         <i style="padding-left: 0%; " class="fas fa-caret-down"></i>
                         <div class="dropdown-content">
                             <a id="name" href="#">Mehedi Hasan</a>
@@ -51,9 +51,9 @@
     <div class="sidebar">
         <div class="left-menu-icon fas fa-search" style="margin-top: 8px; " onclick="toggleClock()" id="SearchIcon"></div>
         <a style="margin-left: 20px;" href="/indexlogin.html"><i class="left-menu-icon fas fa-home"></i></a>
-        <i class="left-menu-icon fas fa-users"></i>
-        <i class="left-menu-icon fas fa-tv"></i>
-        <i class="left-menu-icon fas fa-grin-alt"></i>
+        <a style="margin-left: 20px;" href="/watchParty.html"> <i class="left-menu-icon fas fa-users"></i></a>
+        <a style="margin-left: 20px;" href="/indexlogin.html"><i class="left-menu-icon fas fa-tv"></i></a>
+        <a style="margin-left: 20px;" href="/meme.html"><i class="left-menu-icon fas fa-grin-alt"></i></a>
     </div>
 
     <div class="container">
