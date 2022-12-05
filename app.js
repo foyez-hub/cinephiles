@@ -68,10 +68,39 @@ function closeForm() {
 }
 
 
+function openForm2() {
+  document.getElementById("myForm2").style.display = "block";
+  document.getElementById("myForm").style.display = "none";
+}
+
+function closeForm2() {
+  document.getElementById("myForm2").style.display = "none";
+}
+function openForm3() {
+  document.getElementById("myForm3").style.display = "block";
+  document.getElementById("myForm2").style.display = "none";
+}
+
+function closeForm3() {
+  document.getElementById("myForm3").style.display = "none";
+}
+function openForm4() {
+  document.getElementById("myForm4").style.display = "block";
+  document.getElementById("myForm3").style.display = "none";
+}
+
+function closeForm4() {
+  document.getElementById("myForm4").style.display = "none";
+}
+
+
 
 function loginopenForm() {
   document.getElementById("loginmyForm").style.display = "block";
   document.getElementById("myForm").style.display = "none";
+  document.getElementById("myForm2").style.display = "none";
+  document.getElementById("myForm3").style.display = "none";
+  document.getElementById("myForm4").style.display = "none";
 }
 
 function logincloseForm() {
