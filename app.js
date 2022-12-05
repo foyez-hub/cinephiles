@@ -71,6 +71,7 @@ function closeForm() {
 
 function loginopenForm() {
   document.getElementById("loginmyForm").style.display = "block";
+  document.getElementById("myForm").style.display = "none";
 }
 
 function logincloseForm() {
@@ -81,6 +82,8 @@ function logincloseForm() {
 
 function signupopenForm() {
   document.getElementById("signupmyForm").style.display = "block";
+  document.getElementById("myForm").style.display = "none";
+  document.getElementById("loginmyForm").style.display = "none";
 }
 
 function signupcloseForm() {
