@@ -70,7 +70,7 @@
             <input id="searchbar" type="text" name="search" placeholder="Search Movie">
             <h1 class="featured-desc">Recommend Movies Based On One’s Mood & Interest</h1>
             <p class="featured-desc">Answer 6 questions and let us do the work!</p>
-            <button class="featured-button" onclick="openForm()">START</button>
+            <button class="featured-button" href="login.php">START</button>
 
             <div class="form-popup" id="myForm">
                 <form action="/action_page.php" class="form-container">
