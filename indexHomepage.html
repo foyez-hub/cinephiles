@@ -105,8 +105,6 @@
 
                     <button type='button' class="featured-button form-button">Next</button>
                     <button type="button" class="featured-button form-button" onclick="closeForm()"> Close </button>
-                     </div> 
-                    <!-- <a id='showanswer1'></a> -->
                 </form>
              </div>
 
@@ -130,7 +128,7 @@
                         <div class="btn-layer"></div>
                         <input style="margin-top:12px; margin-bottom:12px;width:150px;display: flex; justify-content: center;align-items: center" class="featured-button form-button" type="submit" value="Login">
                       </div>
-                      <div style="color:gray">Not a member? <a style="color:blue" href="">Signup now</a></div>
+                      <div style="cursor: pointer; color:gray">Not a member? <a style="color:blue" onclick="signupopenForm()">Signup now</a></div>
                     <hr />
                     <button style="margin-top:12px; margin-bottom:12px;width:150px;display: flex; justify-content: center;align-items: center" type="button" class="featured-button form-button" onclick="logincloseForm()"> Close </button>
                 </form>
@@ -139,11 +137,13 @@
         <!-- </div> -->
 
 
-        <!-- <div class="form-popup" id="myForm">
+        <div class="form-popup" id="signupmyForm">
             <form action="/action_page.php" class="form-container"> -->
-                <!-- <button class="close-btn panel-header-icon" aria-label="Close"></button> -->
-                <!-- <h2 style="color:gray; text-align: center;">Signup Form</h2>
+                 <h2 style="color:gray; text-align: center;">Signup Form</h2>
                 <hr>
+                <div class="field">
+                    <input class="input" type="text" placeholder="Name" required>
+                </div>
                 <div class="field">
                     <input class="input" type="text" placeholder="Email Address" required>
                   </div>
@@ -164,9 +164,9 @@
                     <input style="margin-top:12px; margin-bottom:12px;width:150px;display: flex; justify-content: center;align-items: center" class="featured-button form-button" type="submit" value="Signup">
                   </div>
                 <hr />
-                <button style="margin-top:12px; margin-bottom:12px;width:150px;display: flex; justify-content: center;align-items: center" type="button" class="featured-button form-button" onclick="closeForm()"> Close </button>
+                <button style="margin-top:12px; margin-bottom:12px;width:150px;display: flex; justify-content: center;align-items: center" type="button" class="featured-button form-button" onclick="signupcloseForm()"> Close </button>
             </form>
-        </div> -->
+        </div>
 
     </div>
 
