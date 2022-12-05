@@ -194,7 +194,7 @@
   }
   
   #searchbar{
-    width: 25vh;
+    width: 100vh;
     height: 4.5vh;
     float: left;
     font-size: 1.2em;
@@ -206,8 +206,6 @@
     top: 65px;
     display:none; 
   }
-
-
 
   
   .container {
