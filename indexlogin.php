@@ -1,3 +1,72 @@
+
+<?php 
+
+include 'config.php';
+
+  
+
+
+ if(isset($_POST['submit'])){
+    $movies=array();
+
+   
+    if(isset($_POST['option1'])){
+        // echo $_POST['option1'];
+        //Happy
+
+        $sql = "SELECT * FROM `movie_info` WHERE 1";
+        $result = mysqli_query($conn, $sql);
+        while ($row = mysqli_fetch_array($result) ) { 
+              
+              $var=$row['movie_name'];
+              array_push($movies,$var);
+
+
+        } 
+
+
+
+
+    }
+    else if(isset($_POST['option2'])){
+        // echo $_POST['option2'];
+        //Neutral
+
+
+    }
+
+    else if(isset($_POST['option3'])){
+        // echo $_POST['option3'];
+        //Sad
+
+
+        $sql = "SELECT * FROM `movie_info` WHERE `category`='LIGHT'";
+        $result1 = mysqli_query($conn, $sql);
+        while ($row = mysqli_fetch_array($result1) ) { 
+              
+              $var=$row['movie_name'];
+              array_push($movies,$var);
+
+
+        } 
+
+        // foreach ( $movies as $i) {
+        //     echo $i," | ";
+
+        // }
+
+
+
+    } 
+     
+   
+
+
+ }
+
+
+  ?>
+
 <html lang="en">
 
 <head>
@@ -16,14 +85,14 @@
     <div class="navbar">
         <div class="navbar-container">
             <div class="logo-container">
-                <a href="/index.html">
+                <a href="/indexHomepage.html">
                     <h1 class="logo">CINEPHILES</h1>
                 </a>
             </div>
             <div class="menu-container">
                 <ul class="menu-list">
-                    <li><a class="movie-list-title " href="/index.html">Home</a></li>
-                    <li><a class="movie-list-title " href="/index.html">Forum</a></li>
+                    <li><a class="movie-list-title " href="/indexHomepage.html">Home</a></li>
+                    <li><a class="movie-list-title " href="/indexHomepage.html">Forum</a></li>
 
                     <div class="dropdown">
                         <a class="dropbtn" class="movie-list-title">Activites</a>
@@ -33,22 +102,16 @@
                             <a href="#">Fan Club</a>
                         </div>
                     </div>
-                    <li><a class="movie-list-title " href="/index.html">More</a></li>
-                    <li><a class="movie-list-title " href="/index.html">About</a></li>
+                    <li><a class="movie-list-title " href="/indexHomepage.html">More</a></li>
+                    <li><a class="movie-list-title " href="/indexHomepage.html">About</a></li>
 
                 </ul>
             </div>
             <div class="profile-container">
-                <img class="profile-picture" src="img/profile.jpg" alt="">
                 <div class="profile-text-container">
                     <div class="dropdown">
-                        <a style="margin: 0%; padding: 0%;" class="dropbtn" class="movie-list-title">Profile</a>
-                        <i style="padding-left: 0%; " class="fas fa-caret-down"></i>
-                        <div class="dropdown-content">
-                            <a id="name" href="#">Mehedi Hasan</a>
-                            <a href="#">Setting & Srivacy</a>
-                            <a href="#">Logout</a>
-                        </div>
+                        <a style="cursor: pointer; margin: 0%; padding: 0%;" class="dropbtn"
+                            class="movie-list-title" onclick="loginopenForm()">SIGN IN</a>
                     </div>
                 </div>
                 <div class="toggle">
@@ -61,7 +124,7 @@
     </div>
     <div class="sidebar">
         <div class="left-menu-icon fas fa-search" style="margin-top: 8px; " id="SearchIcon"></div>
-        <a style="margin-left: 20px;" href="/index.html"><i class="left-menu-icon fas fa-home"></i></a>
+        <a style="margin-left: 20px;" href="/indexHomepage.html"><i class="left-menu-icon fas fa-home"></i></a>
         <i class="left-menu-icon fas fa-users"></i>
         <i class="left-menu-icon fas fa-bookmark"></i>
         <i class="left-menu-icon fas fa-tv"></i>
@@ -71,83 +134,67 @@
     <div class="container">
         <div class="content-container">
             <div class="featured-content"
-                style="background: linear-gradient(to bottom, rgba(0,0,0,0), #151515), url('img/f-1.jpg');">
-                <img class="featured-title" src="img/f-t-1.png" alt="">
-                <input id="searchbar" type="text" name="search" placeholder="Search Movie">
-                <h1 class="featured-desc">Recommend Movies Based On One’s Mood & Interest</h1>
-                <p class="featured-desc">Answer 6 questions and let us do the work!</p>
-                <button class="featured-button" onclick="openForm()">START</button>
-                <!-- <div class="form-popup" id="myForm">
-                    <form action="/action_page.php" class="form-container">
-                        <h2 style="color:gray">1. How are you today?</h2>
-                        <p style=" text-align: center; color: gray">Choose 1 answer</p>
-                        <hr />
+            style="background: linear-gradient(to bottom, rgba(0,0,0,0), #151515), url('img/f-1.jpg');">
+            <img class="featured-title" src="img/f-t-1.png" alt="">
+            <input id="searchbar" type="text" name="search" placeholder="Search Movie">
+            <h1 class="featured-desc">Recommend Movies Based On One’s Mood & Interest</h1>
+            <p class="featured-desc">Answer 6 questions and let us do the work!</p>
+            <button class="featured-button" onclick="openForm()">START</button>
 
 
-                        <div id='block-1' style='padding: 10px;'>
-                            <label for='option-1' style=' padding: 5px; font-size: 1.5rem;color:gray;'>
-                                <input type='radio' name='option' value='6/24' id='option-1'
-                                    style='color:black; transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;'>Happy</label>
 
-                        </div>
-                        <hr />
+ 
 
 
-                        <div id='block-2' style='padding: 10px;'>
-                            <label for='option-2' style=' padding: 5px; font-size: 1.5rem;color:gray;'>
-                                <input type='radio' name='option' value='6' id='option-2'
-                                    style='transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;'>Neutral</label>
-                        </div>
-                        <hr />
-
-                        <div id='block-3' style='padding: 10px;'>
-                            <label for='option-3' style=' padding: 5px; font-size: 1.5rem; color:gray;'>
-                                <input type='radio' name='option' value='1/3' id='option-3'
-                                    style='transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;'>Sad</label>
-                        </div>
-                        <hr />
 
 
-                        <button type='button' class="featured-button form-button">Next</button>
-                         </div> -->
-                        <!-- <a id='showanswer1'></a>
-                        <button type="button" class="featured-button form-button" onclick="closeForm()"> Close </button>
-                    </form>
-                 </div> --> 
 
 
-                <!-- <div class="form-popup" id="myForm">
-                    <form action="/action_page.php" class="form-container">
-                        <h2 style="color:gray; text-align: center;">Login Form</h2>
-                        <hr>
-                        <div class="field">
-                            <input class="input" type="text" placeholder="Email Address" required>
-                          </div>
-                          <div class="field">
-                            <input id="showPass" class="input" type="password" placeholder="Password" required>
-                          </div>
-                          <div>
-                            <input  type="checkbox" onclick="showPassword()"><span style="color: grey">Show Password</span> 
-
-                            <a style="margin:auto;color: blue" href="#">Forgot password?</a>
-                        </div>
-                          <div class="field btn">
-                            <div class="btn-layer"></div>
-                            <input style="margin-top:12px; margin-bottom:12px;width:150px;display: flex; justify-content: center;align-items: center" class="featured-button form-button" type="submit" value="Login">
-                          </div>
-                          <div style="color:gray">Not a member? <a style="color:blue" href="">Signup now</a></div>
-                        <hr />
-                        <button style="margin-top:12px; margin-bottom:12px;width:150px;display: flex; justify-content: center;align-items: center" type="button" class="featured-button form-button" onclick="closeForm()"> Close </button>
-                    </form>
-                </div>
-
-            </div> -->
 
 
-            <div class="form-popup" id="myForm">
+           <!-- question 1 -->
+
+            <div class="form-popup" id="myForm" >
+                <form action="" class="form-container" method="POST">
+                    <h2 style="color:gray">1. How are you today?</h2>
+                    <p style=" text-align: center; color: gray">Choose 1 answer</p>
+                    <hr/>
+
+
+                    <div id='block-1' style='padding: 10px;'>
+                        <label for='option-1' style=' padding: 5px; font-size: 1.5rem;color:gray;'>
+                            <input type='radio' name='option1' value='1' id='option-1'
+                                style='color:black; transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;'>Happy</label>
+
+                    </div>
+                    <hr />
+
+
+                    <div id='block-2' style='padding: 10px;'>
+                        <label for='option-2' style=' padding: 5px; font-size: 1.5rem;color:gray;'>
+                            <input type='radio' name='option2' value='2' id='option-2'
+                                style='transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;'>Neutral</label>
+                    </div>
+                    <hr />
+
+                    <div id='block-3' style='padding: 10px;'>
+                        <label for='option-3' style=' padding: 5px; font-size: 1.5rem; color:gray;'>
+                            <input type='radio' name='option3' value='3' id='option-3'
+                                style='transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;'>Sad</label>
+                    </div>
+                    <hr />
+
+                    <input type="submit" name="submit" value="Submit" class="featured-button form-button">
+
+                    <!-- <button type='button' class="featured-button form-button" name="nextbtn" >Next</button> -->
+                    <button type="button" class="featured-button form-button" onclick="closeForm()"> Close </button>
+                </form>
+             </div>
+
+
+            <div class="form-popup" id="loginmyForm">
                 <form action="/action_page.php" class="form-container">
-                    <!-- <button class="close-btn panel-header-icon" aria-label="Close"></button> -->
-                    <h2 style="color:gray; text-align: center;">Signup Form</h2>
+                    <h2 style="color:gray; text-align: center;">Login Form</h2>
                     <hr>
                     <div class="field">
                         <input class="input" type="text" placeholder="Email Address" required>
@@ -157,23 +204,55 @@
                       </div>
                       <div>
                         <input  type="checkbox" onclick="showPassword()"><span style="color: grey">Show Password</span> 
-                    </div>
-                    <div class="field">
-                        <input id="showConfirmPass" class="input" type="password" placeholder="Confirm Password" required>
-                      </div>
-                      <div>
-                        <input  type="checkbox" onclick="showConfirmPassword()"><span style="color: grey">Show Password</span> 
+
+                        <a style="margin:auto;color: blue" href="#">Forgot password?</a>
                     </div>
                       <div class="field btn">
                         <div class="btn-layer"></div>
-                        <input style="margin-top:12px; margin-bottom:12px;width:150px;display: flex; justify-content: center;align-items: center" class="featured-button form-button" type="submit" value="Signup">
+                        <input style="margin-top:12px; margin-bottom:12px;width:150px;display: flex; justify-content: center;align-items: center" class="featured-button form-button" type="submit" value="Login">
                       </div>
+                      <div style="cursor: pointer; color:gray">Not a member? <a style="color:blue" onclick="signupopenForm()">Signup now</a></div>
                     <hr />
-                    <button style="margin-top:12px; margin-bottom:12px;width:150px;display: flex; justify-content: center;align-items: center" type="button" class="featured-button form-button" onclick="closeForm()"> Close </button>
+                    <button style="margin-top:12px; margin-bottom:12px;width:150px;display: flex; justify-content: center;align-items: center" type="button" class="featured-button form-button" onclick="logincloseForm()"> Close </button>
                 </form>
             </div>
 
+        <!-- </div> -->
+
+
+        <div class="form-popup" id="signupmyForm">
+            <form action="/action_page.php" class="form-container"> -->
+                 <h2 style="color:gray; text-align: center;">Signup Form</h2>
+                <hr>
+                <div class="field">
+                    <input class="input" type="text" placeholder="Name" required>
+                </div>
+                <div class="field">
+                    <input class="input" type="text" placeholder="Email Address" required>
+                  </div>
+                  <div class="field">
+                    <input id="showPass" class="input" type="password" placeholder="Password" required>
+                  </div>
+                  <div>
+                    <input  type="checkbox" onclick="showPassword()"><span style="color: grey">Show Password</span> 
+                </div>
+                <div class="field">
+                    <input id="showConfirmPass" class="input" type="password" placeholder="Confirm Password" required>
+                  </div>
+                  <div>
+                    <input  type="checkbox" onclick="showConfirmPassword()"><span style="color: grey">Show Password</span> 
+                </div>
+                  <div class="field btn">
+                    <div class="btn-layer"></div>
+                    <input style="margin-top:12px; margin-bottom:12px;width:150px;display: flex; justify-content: center;align-items: center" class="featured-button form-button" type="submit" value="Signup">
+                  </div>
+                <hr />
+                <button style="margin-top:12px; margin-bottom:12px;width:150px;display: flex; justify-content: center;align-items: center" type="button" class="featured-button form-button" onclick="signupcloseForm()"> Close </button>
+            </form>
         </div>
+
+    </div>
+
 
 
             <div class="movie-list-container">
@@ -414,7 +493,60 @@
             </div>
         </div>
     </div>
+   
+
+
+    <!-- <div class="wrapper">
+        <div class="title-text">
+          <div class="title login">Login Form</div>
+          <div class="title signup">Signup Form</div>
+        </div>
+        <div class="logform-container">
+          <div class="slide-controls">
+            <input type="radio" name="slide" id="login" checked>
+            <input type="radio" name="slide" id="signup">
+            <label for="login" class="slide login">Login</label>
+            <label for="signup" class="slide signup">Signup</label>
+            <div class="slider-tab"></div>
+          </div>
+          <div class="form-inner">
+            <form action="#" class="login">
+              <div class="field">
+                <input type="text" placeholder="Email Address" required>
+              </div>
+              <div class="field">
+                <input type="password" placeholder="Password" required>
+              </div>
+              <div class="pass-link"><a href="#">Forgot password?</a></div>
+              <div class="field btn">
+                <div class="btn-layer"></div>
+                <input type="submit" value="Login">
+              </div>
+              <div class="signup-link">Not a member? <a href="">Signup now</a></div>
+            </form>
+            <form action="#" class="signup">
+              <div class="field">
+                <input type="text" placeholder="Email Address" required>
+              </div>
+              <div class="field">
+                <input type="password" placeholder="Password" required>
+              </div>
+              <div class="field">
+                <input type="password" placeholder="Confirm password" required>
+              </div>
+              <div class="field btn">
+                <div class="btn-layer"></div>
+                <input type="submit" value="Signup">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+   -->
+
+
+
+
     <script src="app.js"></script>
 </body>
 
-</html>
