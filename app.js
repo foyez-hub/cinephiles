@@ -33,28 +33,45 @@ ball.addEventListener("click", () => {
 });
 
 
-var divA = document.getElementById('SearchIcon');
-var divB = document.getElementById('searchbar');
 
-divA.addEventListener("mouseenter", function(event) {
-  divB.style.display = 'block';
+function toggleClock() {
+  var my = document.getElementById('searchbar');
+  var displaySetting = my.style.display;
+  var Button = document.getElementById('SearchIcon');
+  if (displaySetting == 'block') {
+    my.style.display = 'none';
+  }
+  else {
+    my.style.display = 'block';
+  }
+}
+
+
+
+
+
+// var divA = document.getElementById('SearchIcon');
+// var divB = document.getElementById('searchbar');
+
+// divA.addEventListener("mouseenter", function(event) {
+//   divB.style.display = 'block';
 
  
-});
+// });
 
 
 
-divB.addEventListener("mouseenter", function(event) {
-  divB.style.display = 'block';
+// divB.addEventListener("mouseenter", function(event) {
+//   divB.style.display = 'block';
  
-});
+// });
 
-divB.addEventListener("mouseout", function(event) {
+// divB.addEventListener("mouseout", function(event) {
       
-  setTimeout(function() {
-    divB.style.display = 'none';
- }, 5000);
-});
+//   setTimeout(function() {
+//     divB.style.display = 'none';
+//  }, 5000);
+// });
 
 
 
@@ -112,7 +129,7 @@ function logincloseForm() {
 function signupopenForm() {
   document.getElementById("signupmyForm").style.display = "block";
   document.getElementById("myForm").style.display = "none";
-  document.getElementById("loginmyForm").style.display = "none";
+  document.getElementById("loginmyForm").style.display ="none";
 }
 
 function signupcloseForm() {
@@ -143,5 +160,4 @@ function showConfirmPassword() {
     x.type = "password";
   }
 }
-
 
