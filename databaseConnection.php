@@ -1,17 +1,14 @@
-<?php
+<?php 
 
+$server = "localhost";
+$user = "root";
+$pass = "";
+$database = "cinephilesdb";
 
+$conn = mysqli_connect($server, $user, $pass, $database);
 
-$con=mysqli_connect("localhost","root","","cinephilesdb") or die("Connection was not established");
-
-
-
-
-
-
-
-
-
-
+if (!$conn) {
+    die("<script>alert('Connection Failed.')</script>");
+}
 
 ?>
