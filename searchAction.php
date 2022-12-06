@@ -5,11 +5,14 @@ include 'config.php';
   
 
 
- if(isset($_POST['search'])){
-    echo "hello";
+ if(isset($_POST['searchbar'])){
+    echo "helloooo";
 
 
  }
+
+   
+   
     /*$movies=array();
 
    

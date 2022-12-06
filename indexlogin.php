@@ -1,3 +1,176 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- //jamis code -->
+<?php 
+    
+
+    include 'config.php';
+
+if(isset($_POST['q']))
+{   
+
+    $s= $_POST['q'];
+    $sql = "SELECT * FROM `movie_info` WHERE 1 ";
+        $result = mysqli_query($conn, $sql);
+
+        while ($row = mysqli_fetch_array($result) ) { 
+              
+            $var=$row['movie_name'];
+            $z= strtolower($var);
+            $s = strtolower($s);
+            $size=strlen($z);
+            $cnt=0;
+            $ans=0;
+            
+            //abc_def
+            //abc
+            $temp;
+            for($j=0;$j<strlen($z);$j++)
+            {
+                
+                for($i=0;$i<strlen($s);$i++)
+                {
+                     if($z[$j]==$s[$i])
+                     {
+                        $cnt++;
+                        $j++;
+                        if($j>=strlen($z))
+                        {
+                            break;
+                        }
+                     }
+                     else
+                     {
+                        continue;
+                     }
+                }
+                $ans= max($cnt,$ans);
+                $cnt=0;
+
+            }
+            if($ans==strlen($s))
+            {
+                echo "                             .............".$var;
+            }
+              /*
+              array_push($movies,$var);*/
+
+
+        } 
+}
+
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <html lang="en">
 
 <head>
@@ -16,14 +189,14 @@
     <div class="navbar">
         <div class="navbar-container">
             <div class="logo-container">
-                <a href="/indexlogin.html">
+                <a href="/indexlogin.php">
                     <h1 class="logo">CINEPHILES</h1>
                 </a>
             </div>
             <div class="menu-container">
                 <ul class="menu-list">
-                    <li><a class="movie-list-title " href="/indexlogin.html">Home</a></li>
-                    <li><a class="movie-list-title " href="/indexlogin.html">About</a></li>
+                    <li><a class="movie-list-title " href="/indexlogin.php">Home</a></li>
+                    <li><a class="movie-list-title " href="/indexlogin.php">About</a></li>
 
                 </ul>
             </div>
@@ -50,9 +223,9 @@
     </div>
     <div class="sidebar">
         <div class="left-menu-icon fas fa-search" style="margin-top: 8px; " onclick="toggleClock()" id="SearchIcon"></div>
-        <a style="margin-left: 20px;" href="/indexlogin.html"><i class="left-menu-icon fas fa-home"></i></a>
+        <a style="margin-left: 20px;" href="/indexlogin.php"><i class="left-menu-icon fas fa-home"></i></a>
         <a style="margin-left: 20px;" href="/watchParty.html"> <i class="left-menu-icon fas fa-users"></i></a>
-        <a style="margin-left: 20px;" href="/indexlogin.html"><i class="left-menu-icon fas fa-tv"></i></a>
+        <a style="margin-left: 20px;" href="/indexlogin.php"><i class="left-menu-icon fas fa-tv"></i></a>
         <a style="margin-left: 20px;" href="/meme.html"><i class="left-menu-icon fas fa-grin-alt"></i></a>
     </div>
 
@@ -61,7 +234,61 @@
             <div class="featured-content"
             style="background: linear-gradient(to bottom, rgba(0,0,0,0), #151515), url('img/f-1.jpg');">
             <img class="featured-title" src="img/f-t-1.png" alt="">
+
+            <!--  <form action="" class="form-container" method ="POST">
+ -->
+       <!--      <a href="page2.php?varname=<?php echo $var_value ?>">Page2</a>
+
             <input id="searchbar" type="text" name="search" placeholder="Search Movie">
+ -->
+
+
+
+
+
+
+
+
+<!-- jamis code -->
+
+            <form id="form" action=""  method ="POST" > 
+
+  <input type="search" id="query" name="q" placeholder="Search...">
+  <button>Search</button>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- </form> -->
+
             <h1 class="featured-desc">Recommend Movies Based On One’s Mood & Interest</h1>
             <p class="featured-desc">Answer 4 questions and let us do the work!</p>
             <button class="featured-button" onclick="openForm()">START</button>
