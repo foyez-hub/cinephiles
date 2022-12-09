@@ -1,6 +1,22 @@
    
    <?php
+   $reimag="img/1.jpg";
+   
         include_once("topnav.php");
+        if (isset($_POST['submit'])) {
+
+            if (isset($_POST['myfile'])){
+                $reimag=$_POST['myfile'];
+                echo "                                            ".$reimag;
+               
+
+            }
+            
+
+        }
+        echo "                                            ".$reimag;
+
+
     ?> 
     
 <html lang="en">
@@ -275,11 +291,8 @@
 
   <div class="con" >
       <div class="left-sidebar">
-        <img style="width: 100% ;height:100%;" src="img/1.jpeg" alt="">
-        <div>
-           <!-- <a href="img/10.jpg"> <button class="btn" style="width:100%"><i class="fa fa-download"></i>Download</button></a> -->
-           <a href="img/10.jpg"><button>Download</button></a>
-        </div>
+      <p>Click on the image to download it:</p> 
+        <a href="img/1.jpeg" download><img style=" width: 80%;height: 80%;" src="img/1.jpeg" alt=""></a>
         
       </div>
 
@@ -297,11 +310,11 @@
             <div class="post-input-container">
                 <p>Post your Meme</p>
                 <div class="add-post-links">
-                    <form action="/action_page.php">
+                    <form action="" method="POST">
                         <a href="#"> <img src="img/photo.png" >
                             <input style="border-radius:5px" type="file" id="myfile" name="myfile">
                         </a><br>
-                        <input style=" border-radius: 5px; cursor: pointer; margin-left:70px; background-color: rgb(131, 108, 193); "type="submit">
+                        <input name="submit" style=" border-radius: 5px; cursor: pointer; margin-left:70px; background-color: rgb(131, 108, 193); "type="submit">
                       </form>
                 </div>
             </div>
@@ -310,18 +323,25 @@
             <div class="user-profile">
                 <img src="img/1.jpeg">
                 <div>
-                    <p>Mehedi Hasan</p>
+
+                    <p><?php echo $reimag?></p>
                     <span >June 24 2021,13:40 pm </span>
     
                 </div>
     
             </div>
-            <img src="img/5.jpg" class="post-img">
+
+
+            <img src="img/<?php echo $reimag;?>"  class="post-img" >
+
             <div class="post-row">
 
                 <div class="like-icon">
                     <div>
-                        <img src="img/like-blue.png"><span>120</span>
+
+                        <i class="fa fa-thumbs-up" style="font-size:36px"></i>
+
+
                     </div>
                 </div>
 
@@ -352,7 +372,9 @@
             
             <div class="peopleProfile">
                <div class="winner">
+
                 <img src="img/2.jpeg">
+
                </div>
                <h5 style="cursor:pointer;">Mehedi Hasan</h5>
             </div>
