@@ -5,17 +5,16 @@ session_start();
 $name;
 $email;
 $password;
+//signup
 if (isset($_POST['submit'])) {
     
     if (isset($_POST['name'])) {
            $name=$_POST['name'];
-        //    echo $name;
 
 
     }
      if(isset($_POST['email'])){
         $email=$_POST['email'];
-        // echo $email;
 
 
     }
@@ -29,9 +28,7 @@ if (isset($_POST['submit'])) {
 $sql = "SELECT * FROM `user` WHERE `email`='$email'";
 $result = mysqli_query($conn, $sql);
 if ($result->num_rows > 0) {
-
-
-
+    header("Location:index.php");
 }
 else{
     
@@ -54,14 +51,12 @@ if (isset($_POST['submitLogin'])) {
  
      if(isset($_POST['email_login'])){
         $email_login=$_POST['email_login'];
-        // echo $email_login;
-
+          
 
 
     }
      if(isset($_POST['password_login'])){
         $password_login=$_POST['password_login'];
-        // echo $password_login;
 
     }
 
@@ -78,7 +73,6 @@ if (isset($_POST['submitLogin'])) {
 
     }
     else{
-        // echo "22222222222222222222222";
 
 
     }
