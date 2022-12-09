@@ -1,24 +1,27 @@
 
 <?php 
+class Fruit {
+    public $moviename;
+    public $movieimg;
+    public 
+  
+    function set_name($name) {
+      $this->name = $name;
+    }
+    function get_name() {
+      return $this->name;
+    }
 
+  }
 include 'config.php';
-session_start();
-$email;
-$name="EMAM HASAN";
-if (isset($_SESSION['globalemail'])) {
-    $email=$_SESSION['globalemail'];
 
-}
-if (isset($_SESSION['Glousername'])) {
-    $name=$_SESSION['Glousername'];
-
-}
 
 $movies=array();
+
 if (isset($_POST['sub'])) {
+    
 
     if(isset($_POST["dark"])){
-        // echo $_POST["dark" ];
 
             $sql = "SELECT * FROM `movie_info` WHERE `category`='DARK'";
            $result1 = mysqli_query($conn, $sql);
@@ -33,7 +36,6 @@ if (isset($_POST['sub'])) {
     }
     else if(isset($_POST["light"])){
 
-        // echo $_POST["light"];
 
         $sql = "SELECT * FROM `movie_info` WHERE `category`='LIGHT'";
         $result1 = mysqli_query($conn, $sql);
@@ -47,9 +49,7 @@ if (isset($_POST['sub'])) {
 
     }
 
-        $randomNumber = rand(0,5);
-
-
+      $randomNumber = rand(0,5);
       $_SESSION['valpass']=$movies[$randomNumber];
 
     header("Location:recomendation.php");
@@ -60,6 +60,7 @@ if (isset($_POST['sub'])) {
 
 
 }
+
 
 
 
@@ -94,53 +95,17 @@ if (isset($_POST['sub'])) {
 </head>
 
 <body>
-    <div class="navbar">
-        <div class="navbar-container">
-            <div class="logo-container">
-                <a href="/indexlogin.php">
-                    <h1 class="logo">CINEPHILES</h1>
-                </a>
-            </div>
-            <div class="menu-container">
-                <ul class="menu-list">
-                    <li><a class="movie-list-title " href="indexlogin.php">Home</a></li>
-                    <li><a class="movie-list-title " href="indexlogin.php">About</a></li>
 
-                </ul>
-            </div>
-            <div class="profile-container">
-                <img class="profile-picture" src="img/profile.jpg" alt="">
-                <div class="profile-text-container">
-                    <div class="dropdown">
-                        <a style="cursor: pointer; margin: 0%; padding: 0%;" class="dropbtn" class="movie-list-title"> <?php
-                                  if(isset($name)) echo $name; 
-                                           ?> </a>
-                        <i style="padding-left: 0%; " class="fas fa-caret-down"></i>
-                        <div class="dropdown-content">
-                            <!-- <a id="name" href="#"> <?php
-                                  if(isset($name)) echo $name; 
-                                           ?> 
-                              </a -->
-                            <!-- <a href="#">Setting & Srivacy</a> -->
-                            <a href="index.php">Logout</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="toggle">
-                    <i class="fas fa-moon toggle-icon"></i>
-                    <i class="fas fa-sun toggle-icon"></i>
-                    <div class="toggle-ball"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="sidebar">
-        <div class="left-menu-icon fas fa-search" style="margin-top: 8px; " onclick="toggleClock()" id="SearchIcon"></div>
-        <a style="margin-left: 20px;" href="indexlogin.php"><i class="left-menu-icon fas fa-home"></i></a>
-        <a style="margin-left: 20px;" href="watchParty.html"> <i class="left-menu-icon fas fa-users"></i></a>
-        <a style="margin-left: 20px;" href="streaming.html"><i class="left-menu-icon fas fa-tv"></i></a>
-        <a style="margin-left: 20px;" href="meme.html"><i class="left-menu-icon fas fa-grin-alt"></i></a>
-    </div>
+    <?php
+        include_once("topnav.php");
+    ?> 
+    
+    <?php
+      include_once("sidenav.php");
+    ?>
+
+
+    
 
     <div class="container">
         <div class="content-container">
@@ -174,12 +139,12 @@ if (isset($_POST['sub'])) {
 
 
         <legend>3.Choose your preferred genre?</legend>
-        <input type="radio" name="3.1" value="Drama"><p>Drama</p><br>
-        <input type="radio" name="3.2" value="Romance">Romance<br>
-        <input type="radio" name="3.3" value="Thriller">Thriller<br>
-        <input type="radio" name="3.4" value="Science fiction">Science fiction<br>
-        <input type="radio" name="3.5" value="Horror">Horror<br>
-        <input type="radio" name="3.5" value="Fantasy">Fantasy<br>
+        <input type="radio" name="Drama" value="Drama"><p>Drama</p><br>
+        <input type="radio" name="Romance" value="Romance">Romance<br>
+        <input type="radio" name="Thriller" value="Thriller">Thriller<br>
+        <input type="radio" name="Science fiction" value="Science fiction">Science fiction<br>
+        <input type="radio" name="Horror" value="Horror">Horror<br>
+        <input type="radio" name="Fantasy" value="Fantasy">Fantasy<br>
         <br>
 
         <legend>4.From which time period do you want to watch movie?</legend>
@@ -193,153 +158,19 @@ if (isset($_POST['sub'])) {
 
     </fieldset>
 </form>
-    <!-- <div class="featured">Test</div>
-    <div class="vertical-text"><span>VERTICAL</span></div> -->
+
   
   </div>
 
 
-             <!-- <div class="form-popup" id="myForm2">
-                <form action="" class="form-container" >
-                    <h2 style="color:gray">2. What comes closest to your occasion?</h2>
-                    <p style=" text-align: center; color: gray">Choose 1 Option</p>
-                    <hr />
-
-
-                    <div id='block-1' style='padding: 10px;'>
-                        <label for='option-1' style=' padding: 5px; font-size: 1.5rem;color:gray;'>
-                            <input type='radio' name='option' value='6/24' id='option-1'
-                                style='color:black; transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;'>Watching alone</label>
-
-                    </div>
-                    <hr />
-
-
-                    <div id='block-2' style='padding: 10px;'>
-                        <label for='option-2' style=' padding: 5px; font-size: 1.5rem;color:gray;'>
-                            <input type='radio' name='option' value='6' id='option-2'
-                                style='transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;'>Watching with your favorite person</label>
-                    </div>
-                    <hr />
-
-                    <div id='block-3' style='padding: 10px;'>
-                        <label for='option-3' style=' padding: 5px; font-size: 1.5rem; color:gray;'>
-                            <input type='radio' name='option' value='1/3' id='option-3'
-                                style='transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;'>movie party
-                            </label>
-                    </div>
-                    <hr />
-
-
-                    
-                </form>
-                </form>
-             </div>
-
-             <div class="form-popup" id="myForm3">
-                <form action="/action_page.php" class="form-container">
-                    <h2 style="color:gray">3. Choose your preferred genre? </h2>
-                    <p style=" text-align: center; color: gray">Choose 1 option</p>
-                    <hr />
-
-
-                    <div id='block-1' style='padding: 10px;'>
-                        <label for='option-1' style=' padding: 5px; font-size: 1.5rem;color:gray;'>
-                            <input type='radio' name='option' value='6/24' id='option-1'
-                                style='color:black; transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;'>Drama</label>
-
-                    </div>
-                    <hr />
-
-
-                    <div id='block-2' style='padding: 10px;'>
-                        <label for='option-2' style=' padding: 5px; font-size: 1.5rem;color:gray;'>
-                            <input type='radio' name='option' value='6' id='option-2'
-                                style='transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;'>Romance</label>
-                    </div>
-                    <hr />
-
-                    <div id='block-3' style='padding: 10px;'>
-                        <label for='option-3' style=' padding: 5px; font-size: 1.5rem; color:gray;'>
-                            <input type='radio' name='option' value='1/3' id='option-3'
-                                style='transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;'>Thriller</label>
-                    </div>
-                    <hr />
-                    <div id='block-3' style='padding: 10px;'>
-                        <label for='option-3' style=' padding: 5px; font-size: 1.5rem; color:gray;'>
-                            <input type='radio' name='option' value='1/3' id='option-3'
-                                style='transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;'>Science fiction</label>
-                    </div>
-                    <hr />
-
-                    <div id='block-3' style='padding: 10px;'>
-                        <label for='option-3' style=' padding: 5px; font-size: 1.5rem; color:gray;'>
-                            <input type='radio' name='option' value='1/3' id='option-3'
-                                style='transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;'>Horror</label>
-                    </div>
-                    <hr />
-                    <div id='block-3' style='padding: 10px;'>
-                        <label for='option-3' style=' padding: 5px; font-size: 1.5rem; color:gray;'>
-                            <input type='radio' name='option' value='1/3' id='option-3'
-                                style='transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;'>Fantasy</label>
-                    </div>
-                    <hr />
-
-                    <div id='block-3' style='padding: 10px;'>
-                        <label for='option-3' style=' padding: 5px; font-size: 1.5rem; color:gray;'>
-                            <input type='radio' name='option' value='1/3' id='option-3'
-                                style='transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;'>Doesn’t matter </label>
-                    </div>
-                    <hr />
-
-
-                    <button type='button' class="featured-button form-button" onclick="openForm4()" >Next</button>
-                    <button type="button" class="featured-button form-button" onclick="closeForm3()"> Close </button>
-                </form>
-                </form>
-             </div>
-
-             <div class="form-popup" id="myForm4">
-                <form action="/action_page.php" class="form-container">
-                    <h2 style="color:gray">4. how old would you like the movie to be?</h2>
-                    <p style=" text-align: center; color: gray">Choose 1 option</p>
-                    <hr />
-
-
-                    <div id='block-1' style='padding: 10px;'>
-                        <label for='option-1' style=' padding: 5px; font-size: 1.5rem;color:gray;'>
-                            <input type='radio' name='option' value='6/24' id='option-1'
-                                style='color:black; transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;'>Doesn’t matter</label>
-
-                    </div>
-                    <hr />
-
-
-                    <div id='block-2' style='padding: 10px;'>
-                        <label for='option-2' style=' padding: 5px; font-size: 1.5rem;color:gray;'>
-                            <input type='radio' name='option' value='6' id='option-2'
-                                style='transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;'>10 years</label>
-                    </div>
-                    <hr />
-
-                    <div id='block-3' style='padding: 10px;'>
-                        <label for='option-3' style=' padding: 5px; font-size: 1.5rem; color:gray;'>
-                            <input type='radio' name='option' value='1/3' id='option-3'
-                                style='transform: scale(1.6); margin-right: 10px; vertical-align: middle; margin-top: -2px;'>20 years</label>
-                    </div>
-                    <hr />
-
-
-                    <button type='button' class="featured-button form-button">Submit</button>
-                    <button type="button" class="featured-button form-button" onclick="closeForm4()"> Close </button>
-                </form>
-                </form>
-             </div> -->
+           
 
             <div class="movie-list-container">
                 <h1 style="margin-top:15px; text-align:center" class="movie-list-title ">NEW RELEASES</h1>
                 <div class="movie-list-wrapper">
+
                     <div class="movie-list">
+
                         <div class="movie-list-item">
                             <img class="movie-list-item-img" src="img/1.jpeg" alt="">
                             <span class="movie-list-item-title">Her</span>
@@ -347,6 +178,7 @@ if (isset($_POST['sub'])) {
                                 hic fugit similique accusantium.</p>
                             <button class="movie-list-item-button">Watch</button>
                         </div>
+
                         <div class="movie-list-item">
                             <img class="movie-list-item-img" src="img/2.jpeg" alt="">
                             <span class="movie-list-item-title">Star Wars</span>
@@ -382,6 +214,7 @@ if (isset($_POST['sub'])) {
                                 hic fugit similique accusantium.</p>
                             <button class="movie-list-item-button">Watch</button>
                         </div>
+
                         <div class="movie-list-item">
                             <img class="movie-list-item-img" src="img/7.jpg" alt="">
                             <span class="movie-list-item-title">Her</span>
@@ -389,10 +222,15 @@ if (isset($_POST['sub'])) {
                                 hic fugit similique accusantium.</p>
                             <button class="movie-list-item-button">Watch</button>
                         </div>
+
                     </div>
+
                     <i class="fas fa-chevron-right arrow"></i>
+
                 </div>
             </div>
+
+
             <div class="movie-list-container">
                 <h1 style="text-align:center" class="movie-list-title">UPCOMMING</h1>
                 <div class="movie-list-wrapper">
