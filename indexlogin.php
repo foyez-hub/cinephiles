@@ -5,7 +5,7 @@ class Movie {
     public $moviename;
     public $movieimg;
 
-  
+
     function set_name($name) {
       $this->name = $name;
     }
@@ -21,14 +21,14 @@ include 'config.php';
 $movies=array();
 
 if (isset($_POST['sub'])) {
-    
+
 
     if(isset($_POST["dark"])){
 
             $sql = "SELECT * FROM `movie_info` WHERE `category`='DARK'";
            $result1 = mysqli_query($conn, $sql);
           while ($row = mysqli_fetch_array($result1) ) { 
-              
+
               $var=$row['movie_name'];
               array_push($movies,$var);
 
@@ -42,7 +42,7 @@ if (isset($_POST['sub'])) {
         $sql = "SELECT * FROM `movie_info` WHERE `category`='LIGHT'";
         $result1 = mysqli_query($conn, $sql);
        while ($row = mysqli_fetch_array($result1) ) { 
-           
+
            $var=$row['movie_name'];
            array_push($movies,$var);
 
@@ -56,8 +56,8 @@ if (isset($_POST['sub'])) {
 
     header("Location:recomendation.php");
 
-    
-    
+
+
 
 
 
@@ -67,7 +67,21 @@ if (isset($_POST['sub'])) {
 
 
 
+
+
+
+
+
+
+
+
   ?>
+
+
+
+
+
+
 
 
 
@@ -92,25 +106,20 @@ if (isset($_POST['sub'])) {
     <?php
         include_once("topnav.php");
     ?> 
-    
+
     <?php
       include_once("sidenav.php");
     ?>
 
 
-    
+
 
     <div class="container">
         <div class="content-container">
             <div class="featured-content"
             style="background: linear-gradient(to bottom, rgba(0,0,0,0), #151515), url('img/f-1.jpg');">
             <img class="featured-title" src="img/f-t-1.png" alt="">
-           <input id="searchbar" type="text" name="search" placeholder="Search Movie">
-
-           <!-- jamis code -->
-           
-      <!-- jamis code  end-->
-
+            <input id="searchbar" type="text" name="search" placeholder="Search Movie">
             <h1 class="featured-desc">Recommend Movies Based On One’s Mood & Interest</h1>
             <p class="featured-desc">Answer 4 questions and let us do the work!</p>
             <button class="featured-button" onclick="openForm()">START</button>
@@ -157,103 +166,40 @@ if (isset($_POST['sub'])) {
     </fieldset>
 </form>
 
-  
+
   </div>
 
 
-           
+
 
             <div class="movie-list-container">
                 <h1 style="margin-top:15px; text-align:center" class="movie-list-title ">NEW RELEASES</h1>
                 <div class="movie-list-wrapper">
                     <div class="movie-list">
-                        <!-- <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/1.jpeg" alt="">
-                            <span class="movie-list-item-title">Her</span>
-                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-                                hic fugit similique accusantium.</p>
-                            <input name="Her" type="submit" value="Watch" class="movie-list-item-button">
-                        </div>
 
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/2.jpeg" alt="">
-                            <span class="movie-list-item-title">Star Wars</span>
-                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-                                hic fugit similique accusantium.</p>
-                            <button class="movie-list-item-button">Watch</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/3.jpg" alt="">
-                            <span class="movie-list-item-title">Storm</span>
-                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-                                hic fugit similique accusantium.</p>
-                            <button class="movie-list-item-button">Watch</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/4.jpg" alt="">
-                            <span class="movie-list-item-title">1917</span>
-                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-                                hic fugit similique accusantium.</p>
-                            <button class="movie-list-item-button">Watch</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/5.jpg" alt="">
-                            <span class="movie-list-item-title">Avengers</span>
-                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-                                hic fugit similique accusantium.</p>
-                            <button class="movie-list-item-button">Watch</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/6.jpg" alt="">
-                            <span class="movie-list-item-title">Her</span>
-                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-                                hic fugit similique accusantium.</p>
-                            <button class="movie-list-item-button">Watch</button>
-                        </div>
-
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/7.jpg" alt="">
-                            <span class="movie-list-item-title">Her</span>
-                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-                                hic fugit similique accusantium.</p>
-                            <button class="movie-list-item-button">Watch</button>
-                        </div> -->
 
 
 
                         <?php
-
-
-
-
-                        foreach ($ar as $key => $value) {
-        
-                        $sql = "SELECT * FROM `movie_info` WHERE `movie_name`='$value'";
+                        $sql="SELECT * FROM `movie_info` WHERE`release_year`>=2000";
                         $result1 = mysqli_query($conn, $sql);
-                        while ($row = mysqli_fetch_array($result1) ) { 
-                            $synopsis=$row['synopsis'];
+                        while ($row = mysqli_fetch_array($result1) ) 
+                        {   
+                            $var= $row['movie_name'];
+
+                             $synopsis=$row['synopsis'];
                             $img=$row['image'];
 
-                            // echo $synopsis."\n";
 
                              echo '<div class="movie-list-item">
                             <img class="movie-list-item-img" src="img/'.$img.'" alt="">
-                            <span class="movie-list-item-title">'.$value.'</span>
+                            <span class="movie-list-item-title">'.$var.'</span>
                             <p class="movie-list-item-desc">
                                 '.$synopsis.'</p>
                             <button class="movie-list-item-button">Watch</button>
                         </div>';
 
-                    
-                
-                    
                         }
-
-                    }
-                         
-                      
-
-                       
 
                     ?>
 
@@ -266,59 +212,37 @@ if (isset($_POST['sub'])) {
 
 
             <div class="movie-list-container">
-                <h1 style="text-align:center" class="movie-list-title">UPCOMMING</h1>
+                <h1 style="text-align:center" class="movie-list-title">OLD MOVIES</h1>
                 <div class="movie-list-wrapper">
-                    <div class="movie-list">
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/8.jpg" alt="">
-                            <span class="movie-list-item-title">Her</span>
-                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-                                hic fugit similique accusantium.</p>
-                            <button class="movie-list-item-button">Watch</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/9.jpg" alt="">
-                            <span class="movie-list-item-title">Her</span>
-                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-                                hic fugit similique accusantium.</p>
-                            <button class="movie-list-item-button">Watch</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/10.jpg" alt="">
-                            <span class="movie-list-item-title">Her</span>
-                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-                                hic fugit similique accusantium.</p>
-                            <button class="movie-list-item-button">Watch</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/15.jpg" alt="">
-                            <span class="movie-list-item-title">Her</span>
-                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-                                hic fugit similique accusantium.</p>
-                            <button class="movie-list-item-button">Watch</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/3.jpg" alt="">
-                            <span class="movie-list-item-title">Her</span>
-                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-                                hic fugit similique accusantium.</p>
-                            <button class="movie-list-item-button">Watch</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/5.jpg" alt="">
-                            <span class="movie-list-item-title">Her</span>
-                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-                                hic fugit similique accusantium.</p>
-                            <button class="movie-list-item-button">Watch</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/4.jpg" alt="">
-                            <span class="movie-list-item-title">Her</span>
-                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-                                hic fugit similique accusantium.</p>
-                            <button class="movie-list-item-button">Watch</button>
-                        </div>
-                    </div>
+                <div class="movie-list">
+
+
+
+
+                       <?php
+                       $sql="SELECT * FROM `movie_info` WHERE`release_year`<2000";
+                       $result1 = mysqli_query($conn, $sql);
+                       while ($row = mysqli_fetch_array($result1) ) 
+                       {   
+                           $var= $row['movie_name'];
+
+                            $synopsis=$row['synopsis'];
+                           $img=$row['image'];
+
+
+                            echo '<div class="movie-list-item">
+                           <img class="movie-list-item-img" src="img/'.$img.'" alt="">
+                           <span class="movie-list-item-title">'.$var.'</span>
+                           <p class="movie-list-item-desc">
+                               '.$synopsis.'</p>
+                           <button class="movie-list-item-button">Watch</button>
+                       </div>';
+
+                       }
+
+                   ?>
+
+                   </div>
                     <i class="fas fa-chevron-right arrow"></i>
                 </div>
             </div>
@@ -446,7 +370,7 @@ if (isset($_POST['sub'])) {
             </div>
         </div>
     </div>
-    
+
     <script src="app.js"></script>
 </body>
 
