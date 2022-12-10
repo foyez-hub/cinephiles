@@ -1,9 +1,10 @@
 
 <?php 
-class Fruit {
+
+class Movie {
     public $moviename;
     public $movieimg;
-    public 
+
   
     function set_name($name) {
       $this->name = $name;
@@ -12,7 +13,8 @@ class Fruit {
       return $this->name;
     }
 
-  }
+}
+
 include 'config.php';
 
 
