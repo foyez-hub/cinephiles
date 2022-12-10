@@ -4,11 +4,24 @@
     include_once("sidenav.php");
     $ar=$_SESSION['search_result'];
 
-    // foreach ($ar as $key => $value) {
-    //      echo $value;
-    // }   
 
 
+
+
+
+                    //        foreach ($ar as $key => $value) {
+        
+                    //     $sql = "SELECT * FROM `movie_info` WHERE `movie_name`='$value'";
+                    //     $result1 = mysqli_query($conn, $sql);
+                    //     while ($row = mysqli_fetch_array($result1) ) { 
+                    //         $synopsis=$row['synopsis'];
+                    //         $img=$row['image'];
+
+                    //         echo $synopsis."\n";
+                    
+                    //     }
+
+                    // }
 
 
 
@@ -54,29 +67,38 @@
 
 
                         <?php
-                         
-                         foreach ($ar as $key => $value)
-                         {
-                            // echo $value;
-                            $sql = "SELECT * FROM `movie_info` WHERE 'movie_name'='$value'";
-                            $result = mysqli_query($conn, $sql);
 
-                            while ($row = mysqli_fetch_array($result) ) { 
-                            echo $row['movie_name'];
-                            $var=$row['movie_name'];
-                            $var2=$row['image'];
-                            $var3=$row['synopsis'];
 
-                        echo '<div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/$var2" alt="">
-                            <span class="movie-list-item-title">'.$var.'</span>
+
+
+                        foreach ($ar as $key => $value) {
+        
+                        $sql = "SELECT * FROM `movie_info` WHERE `movie_name`='$value'";
+                        $result1 = mysqli_query($conn, $sql);
+                        while ($row = mysqli_fetch_array($result1) ) { 
+                            $synopsis=$row['synopsis'];
+                            $img=$row['image'];
+
+                            // echo $synopsis."\n";
+
+                             echo '<div class="movie-list-item">
+                            <img class="movie-list-item-img" src="img/'.$img.'" alt="">
+                            <span class="movie-list-item-title">'.$value.'</span>
                             <p class="movie-list-item-desc">
-                                "$var3"</p>
+                                '.$synopsis.'</p>
                             <button class="movie-list-item-button">Watch</button>
                         </div>';
 
+                    
+                
+                    
+                        }
+
                     }
-                }
+                         
+                      
+
+                       
 
                     ?>
 
