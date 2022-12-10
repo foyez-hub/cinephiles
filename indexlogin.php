@@ -65,16 +65,7 @@ if (isset($_POST['sub'])) {
 
 
 
-
-    
-
-
-
-
-
-
   ?>
-
 
 
 
@@ -112,7 +103,12 @@ if (isset($_POST['sub'])) {
             <div class="featured-content"
             style="background: linear-gradient(to bottom, rgba(0,0,0,0), #151515), url('img/f-1.jpg');">
             <img class="featured-title" src="img/f-t-1.png" alt="">
-            <input id="searchbar" type="text" name="search" placeholder="Search Movie">
+           <input id="searchbar" type="text" name="search" placeholder="Search Movie">
+
+           <!-- jamis code -->
+           
+      <!-- jamis code  end-->
+
             <h1 class="featured-desc">Recommend Movies Based On One’s Mood & Interest</h1>
             <p class="featured-desc">Answer 4 questions and let us do the work!</p>
             <button class="featured-button" onclick="openForm()">START</button>
