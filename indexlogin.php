@@ -73,6 +73,15 @@ if (isset($_POST['sub'])) {
 
 
 
+<<<<<<< Updated upstream
+=======
+
+
+
+
+
+
+>>>>>>> Stashed changes
 <html lang="en">
 
 <head>
@@ -166,15 +175,13 @@ if (isset($_POST['sub'])) {
             <div class="movie-list-container">
                 <h1 style="margin-top:15px; text-align:center" class="movie-list-title ">NEW RELEASES</h1>
                 <div class="movie-list-wrapper">
-
                     <div class="movie-list">
-
-                        <div class="movie-list-item">
+                        <!-- <div class="movie-list-item">
                             <img class="movie-list-item-img" src="img/1.jpeg" alt="">
                             <span class="movie-list-item-title">Her</span>
                             <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
                                 hic fugit similique accusantium.</p>
-                            <button class="movie-list-item-button">Watch</button>
+                            <input name="Her" type="submit" value="Watch" class="movie-list-item-button">
                         </div>
 
                         <div class="movie-list-item">
@@ -219,7 +226,45 @@ if (isset($_POST['sub'])) {
                             <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
                                 hic fugit similique accusantium.</p>
                             <button class="movie-list-item-button">Watch</button>
-                        </div>
+                        </div> -->
+
+
+
+                        <?php
+
+
+
+
+                        foreach ($ar as $key => $value) {
+        
+                        $sql = "SELECT * FROM `movie_info` WHERE `movie_name`='$value'";
+                        $result1 = mysqli_query($conn, $sql);
+                        while ($row = mysqli_fetch_array($result1) ) { 
+                            $synopsis=$row['synopsis'];
+                            $img=$row['image'];
+
+                            // echo $synopsis."\n";
+
+                             echo '<div class="movie-list-item">
+                            <img class="movie-list-item-img" src="img/'.$img.'" alt="">
+                            <span class="movie-list-item-title">'.$value.'</span>
+                            <p class="movie-list-item-desc">
+                                '.$synopsis.'</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>';
+
+                    
+                
+                    
+                        }
+
+                    }
+                         
+                      
+
+                       
+
+                    ?>
 
                     </div>
 
