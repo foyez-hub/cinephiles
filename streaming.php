@@ -5,6 +5,67 @@
   include_once("sidenav.php");
 ?>
 
+<?php 
+include 'config.php';
+
+if (isset($_POST['sub'])) {
+    
+
+    if(isset($_POST["dark"])){
+
+            $sql = "SELECT * FROM `movie_info` WHERE `category`='DARK'";
+           $result1 = mysqli_query($conn, $sql);
+          while ($row = mysqli_fetch_array($result1) ) { 
+              
+              $var=$row['movie_name'];
+              array_push($movies,$var);
+
+        }
+
+
+    }
+    else if(isset($_POST["light"])){
+
+
+        $sql = "SELECT * FROM `movie_info` WHERE `category`='LIGHT'";
+        $result1 = mysqli_query($conn, $sql);
+       while ($row = mysqli_fetch_array($result1) ) { 
+           
+           $var=$row['movie_name'];
+           array_push($movies,$var);
+
+     }
+
+
+    }
+
+
+    
+    
+
+
+
+}
+
+
+
+
+
+
+    
+
+
+
+
+
+
+  ?>
+
+
+
+
+
+
 <html lang="en">
 
 <head>
