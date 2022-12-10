@@ -73,15 +73,6 @@ if (isset($_POST['sub'])) {
 
 
 
-<<<<<<< Updated upstream
-=======
-
-
-
-
-
-
->>>>>>> Stashed changes
 <html lang="en">
 
 <head>
