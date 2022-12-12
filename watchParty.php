@@ -155,7 +155,6 @@
     min-height: 400px;
     max-height: 400px;
     overflow-y: auto;
-    /*    justify-content: flex-end;*/
 }
 
 .cgl-live-chat .chat-wrapper .chat-item {
@@ -321,13 +320,20 @@
 
         </div>
        </div>
-            <section class="main-wrapper">
+
+   
+
+<section class="main-wrapper">
+
                 <div class="cgl-live-chat">
                     <div class="chat-wrapper">
                         <div class="chat-title">
                             Live Chat
                         </div>
                         <div class="chat-view">
+
+
+
                             <div class="chat-item">
                                 <div class="d-flex">
                                     <img src="https://image.freepik.com/free-vector/gamer-logo_43901-59.jpg" alt="">
@@ -341,7 +347,6 @@
                                                 <i class="fas fa-ellipsis-v"></i>
                                             </button>
                                             <div class="dropdown-menu">
-                                                <!-- Dropdown menu links -->
                                                 <a class="dropdown-item" href="#">Report</a>
                                                 <a class="dropdown-item" href="#">Block</a>
                                             </div>
@@ -352,351 +357,11 @@
                                     </div>
                                 </div>
                             </div>
-        <!--                   ----------------------------------------------------------------------------                        -->
-        <!--                    Add this class "admin-tag" in sender name to highlight the admin message                           -->
-        <!--                   ----------------------------------------------------------------------------                        -->
-                            <div class="chat-item">
-                                <div class="d-flex">
-                                    <img src="https://image.freepik.com/free-vector/gamer-logo_43901-59.jpg" alt="">
-                                    <div class="p-1">
-                                        <div class="d-flex align-items-end">
-                                            <div class="sender-name admin-tag"><a href="#">#Admin name</a></div>
-                                            <div class="chat-time">09:54 24/05/21 <i class="fas fa-thumbtack"></i></div>
-                                        </div>
-                                        <div class="float-right">
-                                            <button type="button" class="dropdown-btn btn-tr p-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-v"></i>
-                                            </button>
-                                            <div class="dropdown-menu">
-                                                <!-- Dropdown menu links -->
-                                                <a class="dropdown-item" href="#">Report</a>
-                                                <a class="dropdown-item" href="#">Block</a>
-                                            </div>
-                                        </div>
-                                        <div class="chat-text">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean orci libero, aliquam ut feugiat id, condimentum a nisi. Mauris non.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="chat-item">
-                                <div class="d-flex">
-                                    <img src="https://image.freepik.com/free-vector/gamer-logo_43901-59.jpg" alt="">
-                                    <div class="p-1">
-                                        <div class="d-flex align-items-end">
-                                            <div class="sender-name"><a href="#">#Mehedi Hasan</a></div>
-                                            <div class="chat-time">09:54 24/05/21 <i class="fas fa-thumbtack"></i></div>
-                                        </div>
-                                        <div class="float-right">
-                                            <button type="button" class="dropdown-btn btn-tr p-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-v"></i>
-                                            </button>
-                                            <div class="dropdown-menu">
-                                                <!-- Dropdown menu links -->
-                                                <a class="dropdown-item" href="#">Report</a>
-                                                <a class="dropdown-item" href="#">Block</a>
-                                            </div>
-                                        </div>
-                                        <div class="chat-text">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ornare.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="chat-item">
-                                <div class="d-flex">
-                                    <img src="https://image.freepik.com/free-vector/gamer-logo_43901-59.jpg" alt="">
-                                    <div class="p-1">
-                                        <div class="d-flex align-items-end">
-                                            <div class="sender-name"><a href="#">#Mehedi Hasan</a></div>
-                                            <div class="chat-time">09:54 24/05/21 <i class="fas fa-thumbtack"></i></div>
-                                        </div>
-                                        <div class="float-right">
-                                            <button type="button" class="dropdown-btn btn-tr p-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-v"></i>
-                                            </button>
-                                            <div class="dropdown-menu">
-                                                <!-- Dropdown menu links -->
-                                                <a class="dropdown-item" href="#">Report</a>
-                                                <a class="dropdown-item" href="#">Block</a>
-                                            </div>
-                                        </div>
-                                        <div class="chat-text">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempor justo enim, dignissim mollis metus.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="chat-item">
-                                <div class="d-flex">
-                                    <img src="https://image.freepik.com/free-vector/gamer-logo_43901-59.jpg" alt="">
-                                    <div class="p-1">
-                                        <div class="d-flex align-items-end">
-                                            <div class="sender-name"><a href="#">#Mehedi Hasan</a></div>
-                                            <div class="chat-time">09:54 24/05/21</div>
-                                        </div>
-                                        <div class="float-right">
-                                            <button type="button" class="dropdown-btn btn-tr p-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-v"></i>
-                                            </button>
-                                            <div class="dropdown-menu">
-                                                <!-- Dropdown menu links -->
-                                                <a class="dropdown-item" href="#">Report</a>
-                                                <a class="dropdown-item" href="#">Block</a>
-                                            </div>
-                                        </div>
-                                        <div class="chat-text">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vehicula libero a quam dictum, in auctor magna efficitur. Proin posuere ligula vel augue sagittis feugiat.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="chat-item">
-                                <div class="d-flex">
-                                    <img src="https://image.freepik.com/free-vector/gamer-logo_43901-59.jpg" alt="">
-                                    <div class="p-1">
-                                        <div class="d-flex align-items-end">
-                                            <div class="sender-name"><a href="#">#Mehedi Hasan</a></div>
-                                            <div class="chat-time">09:54 24/05/21</div>
-                                        </div>
-        
-                                        <div class="float-right">
-                                            <button type="button" class="dropdown-btn btn-tr p-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-v"></i>
-                                            </button>
-                                            <div class="dropdown-menu">
-                                                <!-- Dropdown menu links -->
-                                                <a class="dropdown-item" href="#">Report</a>
-                                                <a class="dropdown-item" href="#">Block</a>
-                                            </div>
-                                        </div>
-                                        <div class="chat-text">
-                                            Lorem ipsum dolor sit amet.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-        <!--                    ---------------------------------------------------------------------------------         -->
-        <!--                    add thia class "chat-pinned" in chat item to stick the pinned message                     -->
-        <!--                    ---------------------------------------------------------------------------------         -->
-                            <div class="chat-item chat-pinned">
-                                <div class="d-flex">
-                                    <img src="https://image.freepik.com/free-vector/gamer-logo_43901-59.jpg" alt="">
-                                    <div class="p-1">
-                                        <div class="d-flex align-items-end">
-                                            <div class="sender-name"><a href="#">#Mehedi Hasan</a></div>
-                                            <div class="chat-time">09:54 24/05/21</div>
-                                        </div>
-                                        <div class="float-right">
-                                            <button type="button" class="dropdown-btn btn-tr p-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-v"></i>
-                                            </button>
-                                            <div class="dropdown-menu">
-                                                <!-- Dropdown menu links -->
-                                                <a class="dropdown-item" href="#">Report</a>
-                                                <a class="dropdown-item" href="#">Block</a>
-                                            </div>
-                                        </div>
-                                        <div class="chat-text">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="chat-item">
-                                <div class="d-flex">
-                                    <img src="https://image.freepik.com/free-vector/gamer-logo_43901-59.jpg" alt="">
-                                    <div class="p-1">
-                                        <div class="d-flex align-items-end">
-                                            <div class="sender-name"><a href="#">#Mehedi Hasan</a></div>
-                                            <div class="chat-time">09:54 24/05/21</div>
-                                        </div>
-                                        <div class="float-right">
-                                            <button type="button" class="dropdown-btn btn-tr p-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-v"></i>
-                                            </button>
-                                            <div class="dropdown-menu">
-                                                <!-- Dropdown menu links -->
-                                                <a class="dropdown-item" href="#">Report</a>
-                                                <a class="dropdown-item" href="#">Block</a>
-                                            </div>
-                                        </div>
-                                        <div class="chat-text">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sem.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="chat-item">
-                                <div class="d-flex">
-                                    <img src="https://image.freepik.com/free-vector/gamer-logo_43901-59.jpg" alt="">
-                                    <div class="p-1">
-                                        <div class="d-flex align-items-end">
-                                            <div class="sender-name"><a href="#">#Mehedi Hasan</a></div>
-                                            <div class="chat-time">09:54 24/05/21</div>
-                                        </div>
-                                        <div class="float-right">
-                                            <button type="button" class="dropdown-btn btn-tr p-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-v"></i>
-                                            </button>
-                                            <div class="dropdown-menu">
-                                                <!-- Dropdown menu links -->
-                                                <a class="dropdown-item" href="#">Report</a>
-                                                <a class="dropdown-item" href="#">Block</a>
-                                            </div>
-                                        </div>
-                                        <div class="chat-text">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sem.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="chat-item">
-                                <div class="d-flex">
-                                    <img src="https://image.freepik.com/free-vector/gamer-logo_43901-59.jpg" alt="">
-                                    <div class="p-1">
-                                        <div class="d-flex align-items-end">
-                                            <div class="sender-name"><a href="#">#Mehedi Hasan</a></div>
-                                            <div class="chat-time">09:54 24/05/21</div>
-                                        </div>
-                                        <div class="float-right">
-                                            <button type="button" class="dropdown-btn btn-tr p-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-v"></i>
-                                            </button>
-                                            <div class="dropdown-menu">
-                                                <!-- Dropdown menu links -->
-                                                <a class="dropdown-item" href="#">Report</a>
-                                                <a class="dropdown-item" href="#">Block</a>
-                                            </div>
-                                        </div>
-                                        <div class="chat-text">
-                                            Sample Message text
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="chat-item">
-                                <div class="d-flex">
-                                    <img src="https://image.freepik.com/free-vector/gamer-logo_43901-59.jpg" alt="">
-                                    <div class="p-1">
-                                        <div class="d-flex align-items-end">
-                                            <div class="sender-name"><a href="#">#Mehedi Hasan</a></div>
-                                            <div class="chat-time">09:54 24/05/21</div>
-                                        </div>
-                                        <div class="float-right">
-                                            <button type="button" class="dropdown-btn btn-tr p-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-v"></i>
-                                            </button>
-                                            <div class="dropdown-menu">
-                                                <!-- Dropdown menu links -->
-                                                <a class="dropdown-item" href="#">Report</a>
-                                                <a class="dropdown-item" href="#">Block</a>
-                                            </div>
-                                        </div>
-                                        <div class="chat-text">
-                                            Sample Message text
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="chat-item">
-                                <div class="d-flex">
-                                    <img src="https://image.freepik.com/free-vector/gamer-logo_43901-59.jpg" alt="">
-                                    <div class="p-1">
-                                        <div class="d-flex align-items-end">
-                                            <div class="sender-name"><a href="#">#Mehedi Hasan</a></div>
-                                            <div class="chat-time">09:54 24/05/21</div>
-                                        </div>
-                                        <div class="float-right">
-                                            <button type="button" class="dropdown-btn btn-tr p-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-v"></i>
-                                            </button>
-                                            <div class="dropdown-menu">
-                                                <!-- Dropdown menu links -->
-                                                <a class="dropdown-item" href="#">Report</a>
-                                                <a class="dropdown-item" href="#">Block</a>
-                                            </div>
-                                        </div>
-                                        <div class="chat-text">
-                                            Sample Message text
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="chat-item">
-                                <div class="d-flex">
-                                    <img src="https://image.freepik.com/free-vector/gamer-logo_43901-59.jpg" alt="">
-                                    <div class="p-1">
-                                        <div class="d-flex align-items-end">
-                                            <div class="sender-name"><a href="#">#Mehedi Hasan</a></div>
-                                            <div class="chat-time">09:54 24/05/21</div>
-                                        </div>
-                                        <div class="float-right">
-                                            <button type="button" class="dropdown-btn btn-tr p-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-v"></i>
-                                            </button>
-                                            <div class="dropdown-menu">
-                                                <!-- Dropdown menu links -->
-                                                <a class="dropdown-item" href="#">Report</a>
-                                                <a class="dropdown-item" href="#">Block</a>
-                                            </div>
-                                        </div>
-                                        <div class="chat-text">
-                                            Sample Message text
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="chat-item">
-                                <div class="d-flex">
-                                    <img src="https://image.freepik.com/free-vector/gamer-logo_43901-59.jpg" alt="">
-                                    <div class="p-1">
-                                        <div class="d-flex align-items-end">
-                                            <div class="sender-name"><a href="#">#Mehedi Hasan</a></div>
-                                            <div class="chat-time">09:54 24/05/21</div>
-                                        </div>
-                                        <div class="float-right">
-                                            <button type="button" class="dropdown-btn btn-tr p-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-v"></i>
-                                            </button>
-                                            <div class="dropdown-menu">
-                                                <!-- Dropdown menu links -->
-                                                <a class="dropdown-item" href="#">Report</a>
-                                                <a class="dropdown-item" href="#">Block</a>
-                                            </div>
-                                        </div>
-                                        <div class="chat-text">
-                                            Sample Message text
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="chat-item">
-                                <div class="d-flex">
-                                    <img src="https://image.freepik.com/free-vector/gamer-logo_43901-59.jpg" alt="">
-                                    <div class="p-1">
-                                        <div class="d-flex align-items-end">
-                                            <div class="sender-name"><a href="#">#Mehedi Hasan</a></div>
-                                            <div class="chat-time">09:54 24/05/21</div>
-                                        </div>
-                                        <div class="float-right">
-                                            <button type="button" class="dropdown-btn btn-tr p-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-v"></i>
-                                            </button>
-                                            <div class="dropdown-menu">
-                                                <!-- Dropdown menu links -->
-                                                <a class="dropdown-item" href="#">Report</a>
-                                                <a class="dropdown-item" href="#">Block</a>
-                                            </div>
-                                        </div>
-                                        <div class="chat-text">
-                                            Sample Message text
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
+
                         </div>
                         <div class="chat-message">
+
                             <form action="#">
                                 <div class="input-group align-items-center">
                                     <input type="text" class="form-control" placeholder="Type something...">
@@ -707,13 +372,11 @@
                                     </div>
                                 </div>
                             </form>
+
                         </div>
                     </div>
                 </div>
             </section>
-
-
-
 
 
 
@@ -723,31 +386,6 @@
 
 
 
-
-<!-- 
-    <div id="header">
-        <h1>EOTONES Youtube Live</h1>
-        <span>隨機開台</span>
-      </div>
-      
-      <div id="stream-container">
-        stream
-        <div id="stream-embed-wrapper">
-          <iframe id="stream-embed-iframe" width="560" height="100%" src="https://www.youtube.com/embed/live_stream?channel=UC0nZ5FTveaBz-qbEuhQIToQ" frameborder="0" allowfullscreen></iframe>
-        </div>
-      
-        chat
-        <div id="chat-embed-wrapper"></div>
-        
-        <div class="clear_both"></div>
-      </div>
-      
-      <div id="footer">
-        <a href="https://www.youtube.com/channel/UC0nZ5FTveaBz-qbEuhQIToQ/live" target="_blank">Watch On Youtube</a>
-      </div>
-
-
-     -->
    
     <script src="app.js"></script>
 </body>
