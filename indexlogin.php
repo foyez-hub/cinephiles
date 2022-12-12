@@ -1,76 +1,11 @@
 
 <?php 
 
-class Movie {
-    public $moviename;
-    public $movieimg;
+include_once("topnav.php");
 
-
-    function set_name($name) {
-      $this->name = $name;
-    }
-    function get_name() {
-      return $this->name;
-    }
-
-}
+include_once("sidenav.php");
 
 include 'config.php';
-
-
-$movies=array();
-
-if (isset($_POST['sub'])) {
-
-
-    if(isset($_POST["dark"])){
-
-            $sql = "SELECT * FROM `movie_info` WHERE `category`='DARK'";
-           $result1 = mysqli_query($conn, $sql);
-          while ($row = mysqli_fetch_array($result1) ) { 
-
-              $var=$row['movie_name'];
-              array_push($movies,$var);
-
-        }
-
-
-    }
-    else if(isset($_POST["light"])){
-
-
-        $sql = "SELECT * FROM `movie_info` WHERE `category`='LIGHT'";
-        $result1 = mysqli_query($conn, $sql);
-       while ($row = mysqli_fetch_array($result1) ) { 
-
-           $var=$row['movie_name'];
-           array_push($movies,$var);
-
-     }
-
-
-    }
-
-      $randomNumber = rand(0,5);
-      $_SESSION['valpass']=$movies[$randomNumber];
-
-    header("Location:recomendation.php");
-
-
-
-
-
-
-}
-
-
-
-
-
-
-
-
-
 
 
 
@@ -103,13 +38,7 @@ if (isset($_POST['sub'])) {
 
 <body>
 
-    <?php
-        include_once("topnav.php");
-    ?> 
 
-    <?php
-      include_once("sidenav.php");
-    ?>
 
 
 
@@ -134,30 +63,26 @@ if (isset($_POST['sub'])) {
   <form style="background-color: black; padding:2%" method="POST" action="">
        <fieldset>
         <legend>1.How are you today?</legend>
-        <input type="radio" name="dark" value="Dark">Happy<br>
-        <input type="radio" name="light" value="Light">Sad<br>
+        <input type="radio" name="DARK" value="Dark">Happy<br>
+        <input type="radio" name="LIGHt" value="Light">Sad<br>
         <br>
 
-        <legend>2. What comes closest to your occasion?</legend>
-        <input type="radio" name="2.1" value="2.1">watching alone<br>
-        <input type="radio" name="2.2" value="2.2">watching with your favorite person<br>
-        <input type="radio" name="2.3" value="2.3">movie party<br>
+      
+
+
+        <legend>2.Choose your preferred genre?</legend>
+        <input type="radio" name="DRAMA" value="Drama"><p>Drama</p><br>
+        <input type="radio" name="ROMANCE" value="Romance">Romance<br>
+        <input type="radio" name="THRILLER" value="Thriller">Thriller<br>
+        <input type="radio" name="SCIENCE FICTION" value="Science fiction">Science fiction<br>
+        <input type="radio" name="HORROR" value="Horror">Horror<br>
+        <input type="radio" name="FANTASY" value="Fantasy">Fantasy<br>
         <br>
 
-
-        <legend>3.Choose your preferred genre?</legend>
-        <input type="radio" name="Drama" value="Drama"><p>Drama</p><br>
-        <input type="radio" name="Romance" value="Romance">Romance<br>
-        <input type="radio" name="Thriller" value="Thriller">Thriller<br>
-        <input type="radio" name="Science fiction" value="Science fiction">Science fiction<br>
-        <input type="radio" name="Horror" value="Horror">Horror<br>
-        <input type="radio" name="Fantasy" value="Fantasy">Fantasy<br>
-        <br>
-
-        <legend>4.From which time period do you want to watch movie?</legend>
-        <input type="radio" name="4.1" value="Before2000">Before 2000<br>
-        <input type="radio" name="4.2" value="After2000">After 2000<br>
-        <input type="radio" name="4.3" value="Doesn’t matter">Doesn’t matter<br>
+        <legend>3.From which time period do you want to watch movie?</legend>
+        <input type="radio" name="B2" value="Before2000">Before 2000<br>
+        <input type="radio" name="A2" value="After2000">After 2000<br>
+        <input type="radio" name="M" value="Doesn’t matter">Doesn’t matter<br>
         <br>
 
         <input class="featured-button form-button" name='sub' type="submit" value="Submit now">

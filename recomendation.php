@@ -1,10 +1,13 @@
 <?php
 
-session_start();
+include_once("topnav.php");
+
+include_once("sidenav.php");
 include 'config.php';
 
-$moviename=$_SESSION['valpass'];
-// echo $moviename;
+$moviename=$_SESSION['val1'];
+
+
 $image;
 $des;
 $sql = "SELECT * FROM `movie_info` WHERE 1";
@@ -14,11 +17,7 @@ while ($row = mysqli_fetch_array($result1) ) {
         if($row['movie_name']==$moviename){
             $image=$row['image'];
             $des=$row['synopsis'];
-
         }
-   
- 
-   
 
 }
 
@@ -116,53 +115,7 @@ while ($row = mysqli_fetch_array($result1) ) {
 </head>
 
 <body>
-    <div class="navbar">
-        <div class="navbar-container">
-            <div class="logo-container">
-                <a href="/index.html">
-                    <h1 class="logo">CINEPHILES</h1>
-                </a>
-            </div>
-            <div class="menu-container">
-                <ul class="menu-list">
-                    
-                    <li>
-            </a></li>
-
-                </ul>
-            </div>
-            <div class="profile-container">
-                <img class="profile-picture" src="img/profile.jpg" alt="">
-                <input id="searchbar" type="text" name="search" placeholder="Search Movie">
-                <div class="profile-text-container">
-                    <div class="dropdown">
-                        <a style="margin: 0%; padding: 0%;" class="dropbtn" class="movie-list-title">Profile</a>
-                        <i style="padding-left: 0%; " class="fas fa-caret-down"></i>
-                        <div class="dropdown-content">
-                            <a id="name" href="#">Mehedi Hasan</a>
-                            <a href="#">Setting & Srivacy</a>
-                            <a href="#">Logout</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="toggle">
-                    <i class="fas fa-moon toggle-icon"></i>
-                    <i class="fas fa-sun toggle-icon"></i>
-                    <div class="toggle-ball"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="sidebar">
-        <div class="left-menu-icon fas fa-search" style="margin-top: 8px; " id="SearchIcon"></div>
-        <a style="margin-left: 20px;" href="indexlogin.php"><i class="left-menu-icon fas fa-home"></i></a>
-        <i class="left-menu-icon fas fa-users"></i>
-        <i class="left-menu-icon fas fa-bookmark"></i>
-        <i class="left-menu-icon fas fa-tv"></i>
-        <i class="left-menu-icon fas fa-hourglass-start"></i>
-        <i class="left-menu-icon fas fa-shopping-cart"></i>
-    </div>
-
+   
 
     <div class="contain1">
         <div class="pic">

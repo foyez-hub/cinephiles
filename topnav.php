@@ -1,10 +1,10 @@
 <?php 
      session_start();
-   if(isset($_SESSION['globalemail']))  $name=$_SESSION['globalemail'];
+   if(isset($_SESSION['Glousername']))  $name=$_SESSION['Glousername'];
 
     
 
-    include 'config.php';
+include 'config.php';
 $moviesnames=array();
 if(isset($_POST['q']))
 {   
@@ -22,8 +22,7 @@ if(isset($_POST['q']))
             $cnt=0;
             $ans=0;
             
-            //abc_def
-            //abc
+           
             $temp;
             for($j=0;$j<strlen($z);$j++)
             {
@@ -77,7 +76,7 @@ header("Location:SearchMovie.php");
 <div class="navbar">
         <div class="navbar-container">
             <div class="logo-container">
-                <a href="/indexlogin.php">
+                <a href="indexlogin.php">
                     <h1 class="logo">CINEPHILES</h1>
                 </a>
             </div>
@@ -96,20 +95,26 @@ header("Location:SearchMovie.php");
                 </ul>
             </div>
             <div class="profile-container">
-                <img class="profile-picture" src="img/profile.jpg" alt="">
+                <?php 
+                $email=$_SESSION['globalemail'];
+                            $sql = "SELECT * FROM `user` WHERE `email`= '$email'";
+                            $result = mysqli_query($conn, $sql);
+                            $row = mysqli_fetch_array($result);
+                            $var=$row['image'];
+
+                
+                echo '<img class="profile-picture" src="img/'.$var.'" alt="">';
+                 ?>
                 <div class="profile-text-container">
-                    <div class="dropdown">
-                        <a style="cursor: pointer; margin: 0%; padding: 0%;" class="dropbtn" class="movie-list-title"> <?php
+                <div class="dropdown">
+                        <a style="cursor: pointer; margin: 0%; padding: 0%;" class="dropbtn" class="movie-list-title" onclick="toggleClock()"> <?php
                                   if(isset($name)) echo $name; 
                                            ?> </a>
                         <i style="padding-left: 0%; " class="fas fa-caret-down"></i>
-                        <div class="dropdown-content">
-                            <!-- <a id="name" href="#"> <?php
-                                  if(isset($name)) echo $name; 
-                                           ?> 
-                              </a -->
-                            <!-- <a href="#">Setting & Srivacy</a> -->
-                            <a href="index.php">Logout</a>
+                        <div class="dropdown-content" id="dropdown" style="background-color:black">
+                            <a href="profile.php" style="color: white">Profile</a>
+                            <hr>
+                            <a href="index.php"style="color: white">Logout</a>
                         </div>
                     </div>
                 </div>
