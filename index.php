@@ -1,4 +1,4 @@
-<<<<<<< HEAD:index.php
+
 <?php 
 
 include 'config.php';

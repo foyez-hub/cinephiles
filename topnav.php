@@ -7,7 +7,7 @@
 <div class="navbar">
         <div class="navbar-container">
             <div class="logo-container">
-                <a href="/indexlogin.php">
+                <a href="indexlogin.php">
                     <h1 class="logo">CINEPHILES</h1>
                 </a>
             </div>
@@ -22,17 +22,14 @@
                 <img class="profile-picture" src="img/profile.jpg" alt="">
                 <div class="profile-text-container">
                     <div class="dropdown">
-                        <a style="cursor: pointer; margin: 0%; padding: 0%;" class="dropbtn" class="movie-list-title"> <?php
+                        <a style="cursor: pointer; margin: 0%; padding: 0%;" class="dropbtn" class="movie-list-title" onclick="toggleClock()"> <?php
                                   if(isset($name)) echo $name; 
                                            ?> </a>
                         <i style="padding-left: 0%; " class="fas fa-caret-down"></i>
-                        <div class="dropdown-content">
-                            <!-- <a id="name" href="#"> <?php
-                                  if(isset($name)) echo $name; 
-                                           ?> 
-                              </a -->
-                            <!-- <a href="#">Setting & Srivacy</a> -->
-                            <a href="index.php">Logout</a>
+                        <div class="dropdown-content" id="dropdown" style="background-color:black">
+                            <a href="profile.php" style="color: white">Profile</a>
+                            <hr>
+                            <a href="index.php"style="color: white">Logout</a>
                         </div>
                     </div>
                 </div>

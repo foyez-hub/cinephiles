@@ -191,13 +191,13 @@ if (isset($_POST['sub'])) {
                              $synopsis=$row['synopsis'];
                             $img=$row['image'];
 
-
+                             
                              echo '<div class="movie-list-item">
                             <img class="movie-list-item-img" src="img/'.$img.'" alt="">
                             <span class="movie-list-item-title">'.$var.'</span>
                             <p class="movie-list-item-desc">
                                 '.$synopsis.'</p>
-                            <button class="movie-list-item-button">Watch</button>
+                                <a href="movieOverview.php?title='.$var.'"><input class="movie-list-item-button" name="details" type="submit" value="Details"></a>
                         </div>';
                            
                         }
@@ -236,7 +236,7 @@ if (isset($_POST['sub'])) {
                            <span class="movie-list-item-title">'.$var.'</span>
                            <p class="movie-list-item-desc">
                                '.$synopsis.'</p>
-                           <button class="movie-list-item-button">Watch</button>
+                           <button class="movie-list-item-button">Details</button>
                        </div>';
                           
                        }
@@ -370,7 +370,7 @@ if (isset($_POST['sub'])) {
                 </div>
             </div>
         </div>
-    </div>
+    </div>-
     
     <script src="app.js"></script>
 </body>

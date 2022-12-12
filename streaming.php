@@ -1,9 +1,29 @@
+
+<?php
+
+include 'config.php';
+
+    
+?>
+
+
+
+
+
 <?php
    include_once("topnav.php");
+   $moviename1=$_SESSION['passdata'];
+
 ?>
 <?php
   include_once("sidenav.php");
 ?>
+
+
+
+
+
+
 
 <html lang="en">
 
@@ -54,12 +74,18 @@
 
 
 
-
     <div class="continer-Streaming">
         <div class="main-video">
-            <div class="video">
+            <div class="video"> 
                 <video src="vid/Avatar.mp4" controls unmuted autoplay></video>
-                <h3 class="title"></h3>
+                <h3 class="title">
+                <?php if(isset($moviename1)){
+                    echo  "Movie Name: ".$moviename1;
+    
+                    }
+                    ?>
+                
+                </h3>
 
             </div>
         </div>
