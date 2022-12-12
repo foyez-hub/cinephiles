@@ -1,4 +1,8 @@
 <?php
+include_once("topnav.php");
+include_once("sidenav.php");
+$moviename1=$_SESSION['passdata'];
+
 if (isset($_POST['submit'])){
 /* Attempt MySQL server connection. Assuming
 you are running MySQL server with default
@@ -34,6 +38,15 @@ mysqli_close($link);
 ?>
 <html>
 <head>
+<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Sen:wght@400;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <title>CINEPHILES</title>
 <style>
 *{
 	box-sizing:border-box;
@@ -42,11 +55,43 @@ body{
 	background-color:#abd9e9;
 	font-family:Arial;
 }
+
+
+
+.container-Streaming{
+       
+	   display: grid;
+	   grid-template-columns: 2fr 1fr;
+	   gap: 15px;
+	   align-items: flex-start;
+	   padding: 5px 5%;
+
+   }
+   .container-Streaming .main-video{
+	   background: #fff;
+	   border-radius: 5px;
+	   padding: 10px;
+   }
+   .container-Streaming .main-video video{
+	  width: 100%;
+	   border-radius: 5px;
+   }
+   .container-Streaming .main-video .title{
+	   color: #333;
+	   font-size: 23px;
+	   padding-top: 15px;
+	   padding-bottom: 15px;
+	  
+   }
+
+
+
 #container{
 	width:500px;
 	height:700px;
 	background:white;
 	margin:0 auto;
+	margin-left:10%;
 	font-size:0;
 	border-radius:5px;
 	overflow:hidden;
@@ -200,6 +245,26 @@ main footer textarea::placeholder{
 
 </style>
 <body onload="show_func()">
+
+<div class="container-Streaming">
+       <div class="main-video">
+        <div class="video">
+            <video src="img/video-1.mp4" controls muted autoplay></video>
+            <h3 class="title">
+			<?php if(isset($moviename1)){
+                    echo  "Movie Name: ".$moviename1;
+    
+                    }
+                    ?>
+			</h3>
+
+        </div>
+       </div>
+
+
+
+
+
 <div id="container">
 	<main>
 		<header>
@@ -322,5 +387,9 @@ endwhile;
 </main>
 </div>
 
+
+</div>
+
 </body>
 </html>
+

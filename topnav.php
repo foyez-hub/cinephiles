@@ -106,7 +106,9 @@ header("Location:SearchMovie.php");
                 echo '<img class="profile-picture" src="img/'.$var.'" alt="">';
                  ?>
                 <div class="profile-text-container">
-                <div class="dropdown">
+
+                    <div class="dropdown">
+
                         <a style="cursor: pointer; margin: 0%; padding: 0%;" class="dropbtn" class="movie-list-title" onclick="toggleClock()"> <?php
                                   if(isset($name)) echo $name; 
                                            ?> </a>

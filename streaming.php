@@ -1,65 +1,25 @@
+
+<?php
+
+include 'config.php';
+
+    
+?>
+
+
+
+
+
 <?php
    include_once("topnav.php");
+   $moviename1=$_SESSION['passdata'];
+
 ?>
 <?php
   include_once("sidenav.php");
 ?>
 
-<?php 
-include 'config.php';
 
-if (isset($_POST['sub'])) {
-    
-
-    if(isset($_POST["dark"])){
-
-            $sql = "SELECT * FROM `movie_info` WHERE `category`='DARK'";
-           $result1 = mysqli_query($conn, $sql);
-          while ($row = mysqli_fetch_array($result1) ) { 
-              
-              $var=$row['movie_name'];
-              array_push($movies,$var);
-
-        }
-
-
-    }
-    else if(isset($_POST["light"])){
-
-
-        $sql = "SELECT * FROM `movie_info` WHERE `category`='LIGHT'";
-        $result1 = mysqli_query($conn, $sql);
-       while ($row = mysqli_fetch_array($result1) ) { 
-           
-           $var=$row['movie_name'];
-           array_push($movies,$var);
-
-     }
-
-
-    }
-
-
-    
-    
-
-
-
-}
-
-
-
-
-
-
-    
-
-
-
-
-
-
-  ?>
 
 
 
@@ -115,12 +75,18 @@ if (isset($_POST['sub'])) {
 
 
 
-
     <div class="continer-Streaming">
         <div class="main-video">
-            <div class="video">
+            <div class="video"> 
                 <video src="vid/Avatar.mp4" controls unmuted autoplay></video>
-                <h3 class="title"></h3>
+                <h3 class="title">
+                <?php if(isset($moviename1)){
+                    echo  "Movie Name: ".$moviename1;
+    
+                    }
+                    ?>
+                
+                </h3>
 
             </div>
         </div>
