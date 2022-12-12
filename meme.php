@@ -356,7 +356,9 @@ while ($row = mysqli_fetch_array($result1) )
                 <div>
 
                     <p><'.$postOwner.'></p>
-                    <span >'.$Time.' </span>
+                    <span >'.$postOwner.' </span>
+                    <span > '.$Time.' </span>
+
     
                 </div>
     
@@ -369,10 +371,7 @@ while ($row = mysqli_fetch_array($result1) )
 
                 <div class="like-icon">
                     <div>
-
-                        <i class="fa fa-thumbs-up" style="font-size:36px"></i>
-
-
+                        <input class="featured-button form-button" name="sub" type="submit" value="Vote">
                     </div>
                 </div>
 
