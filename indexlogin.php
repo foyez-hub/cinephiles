@@ -1,11 +1,12 @@
 
+
 <?php 
 
 class Movie {
     public $moviename;
     public $movieimg;
 
-
+  
     function set_name($name) {
       $this->name = $name;
     }
@@ -21,14 +22,14 @@ include 'config.php';
 $movies=array();
 
 if (isset($_POST['sub'])) {
-
+    
 
     if(isset($_POST["dark"])){
 
             $sql = "SELECT * FROM `movie_info` WHERE `category`='DARK'";
            $result1 = mysqli_query($conn, $sql);
           while ($row = mysqli_fetch_array($result1) ) { 
-
+              
               $var=$row['movie_name'];
               array_push($movies,$var);
 
@@ -42,7 +43,7 @@ if (isset($_POST['sub'])) {
         $sql = "SELECT * FROM `movie_info` WHERE `category`='LIGHT'";
         $result1 = mysqli_query($conn, $sql);
        while ($row = mysqli_fetch_array($result1) ) { 
-
+           
            $var=$row['movie_name'];
            array_push($movies,$var);
 
@@ -56,8 +57,8 @@ if (isset($_POST['sub'])) {
 
     header("Location:recomendation.php");
 
-
-
+    
+    
 
 
 
@@ -68,7 +69,7 @@ if (isset($_POST['sub'])) {
 
 
 
-
+    
 
 
 
@@ -106,13 +107,13 @@ if (isset($_POST['sub'])) {
     <?php
         include_once("topnav.php");
     ?> 
-
+    
     <?php
       include_once("sidenav.php");
     ?>
 
 
-
+    
 
     <div class="container">
         <div class="content-container">
@@ -166,18 +167,18 @@ if (isset($_POST['sub'])) {
     </fieldset>
 </form>
 
-
+  
   </div>
 
 
-
+           
 
             <div class="movie-list-container">
                 <h1 style="margin-top:15px; text-align:center" class="movie-list-title ">NEW RELEASES</h1>
                 <div class="movie-list-wrapper">
                     <div class="movie-list">
-
-
+                       
+                         
 
 
                         <?php
@@ -190,15 +191,15 @@ if (isset($_POST['sub'])) {
                              $synopsis=$row['synopsis'];
                             $img=$row['image'];
 
-
+                             
                              echo '<div class="movie-list-item">
                             <img class="movie-list-item-img" src="img/'.$img.'" alt="">
                             <span class="movie-list-item-title">'.$var.'</span>
                             <p class="movie-list-item-desc">
                                 '.$synopsis.'</p>
-                            <button class="movie-list-item-button">Watch</button>
+                                <a href="movieOverview.php?title='.$var.'"><input class="movie-list-item-button" name="details" type="submit" value="Details"></a>
                         </div>';
-
+                           
                         }
 
                     ?>
@@ -215,8 +216,8 @@ if (isset($_POST['sub'])) {
                 <h1 style="text-align:center" class="movie-list-title">OLD MOVIES</h1>
                 <div class="movie-list-wrapper">
                 <div class="movie-list">
-
-
+                       
+                         
 
 
                        <?php
@@ -235,9 +236,9 @@ if (isset($_POST['sub'])) {
                            <span class="movie-list-item-title">'.$var.'</span>
                            <p class="movie-list-item-desc">
                                '.$synopsis.'</p>
-                           <button class="movie-list-item-button">Watch</button>
+                           <button class="movie-list-item-button">Details</button>
                        </div>';
-
+                          
                        }
 
                    ?>
@@ -369,9 +370,8 @@ if (isset($_POST['sub'])) {
                 </div>
             </div>
         </div>
-    </div>
-
+    </div>-
+    
     <script src="app.js"></script>
 </body>
 
-</html>

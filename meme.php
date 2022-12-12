@@ -7,21 +7,14 @@
 
         $name=$_SESSION['Glousername'];
         $reimag;
-        $userimg="img/1.jpeg";
+        $userimg="profileimg/p1.jfif";
 
         if (isset($_POST['submit'])) {
 
             if (isset($_POST['myfile'])){
                 $reimag=$_POST['myfile'];
                $sql = "INSERT INTO `memeinfo`(`postOwner`, `PostImg`, `postOwnerImg`) VALUES ('$name','$reimag','$userimg')";
-  
-                $result = mysqli_query($conn, $sql); 
-
-
-
-
-                
-               
+               $result = mysqli_query($conn, $sql); 
 
             }
             
@@ -317,14 +310,14 @@
       <div style="  margin-left:5px; margin-top:8px; margin-right:47px" class="main-content">
          <div class="write-post-container">
             <div class="user-profile">
-                <img src="img/1.jpeg">
+                <!-- <img src="profileimg/p2.jfif"> -->
                 <div>
-                    <p><?php if(isset($name)) echo $name; ?></p>
+                    <!-- <p><?php if(isset($name)) echo $name; ?></p> -->
 
                 </div>
 
             </div>
-            <div class="post-input-container">
+            <div class=" post-input-container">
                 <p>Post your Meme</p>
                 <div class="add-post-links">
                     <form action="" method="POST">
@@ -349,14 +342,16 @@ while ($row = mysqli_fetch_array($result1) )
       $Time= $row['Time'];
       $postOwnerImg= $row['postOwnerImg'];
       $PostLike= $row['PostLike'];
+      $postid=$row['PostId'];
+      
 
-        echo '<div class="post-container">
+        echo '<form action="" method="POST">
+        <div class="post-container">
             <div class="user-profile">
-                <img src="'.$postOwnerImg.'">
+                <img src="profileimg/p1.jfif">
                 <div>
-
-                    <p><'.$postOwner.'></p>
-                    <span >'.$postOwner.' </span>
+                           
+                <span > '.$postOwner.' </span>
                     <span > '.$Time.' </span>
 
     
@@ -371,13 +366,17 @@ while ($row = mysqli_fetch_array($result1) )
 
                 <div class="like-icon">
                     <div>
-                        <input class="featured-button form-button" name="sub" type="submit" value="Vote">
+                        
+                    <input class="featured-button form-button" name="outpost" type="submit" value="Vote"></a>
+                        
+                        '.$PostLike.'
                     </div>
                 </div>
 
             </div>
     
-          </div>';
+          </div>
+          </form>';
     
 
 }
@@ -397,37 +396,48 @@ while ($row = mysqli_fetch_array($result1) )
             <h4> Winner list </h4>
         </div>
 
-        <div class="list">
-            <div class="date">
-                <h3>18</h3>
-                <span>November</span>
-            </div>
-            
-            <div class="peopleProfile">
-               <div class="winner">
 
-                <img src="img/2.jpeg">
+        <?php
 
-               </div>
-               <h5 style="cursor:pointer;">Mehedi Hasan</h5>
-            </div>
+ $sql="SELECT * FROM `winners` WHERE 1";
+ $result1 = mysqli_query($conn, $sql);
+ while ($row = mysqli_fetch_array($result1) ) 
+ {   
+      $name= $row['name'];
+      $date= $row['date'];
+      $img= $row['img'];
+      $newStr = explode("-", $date);
 
-        </div>
 
-        <div class="list">
-            <div class="date">
-                <h3>18</h3>
-                <span>November</span>
-            </div>
-            
-            <div class="peopleProfile">
-               <div class="winner">
-                <img src="img/2.jpeg">
-               </div>
-               <h5 style="cursor:pointer;">Mehedi Hasan</h5>
-            </div>
+     
 
-        </div>
+     echo '<div class="list">
+      <div class="date">
+          <h3>'.$newStr[2].'</h3>
+          <span>NOV</span>
+      </div>
+      <div class="peopleProfile">
+         <div class="winner">
+
+          <img src="profileimg/p1.jfif">
+
+         </div>
+         <h5 style="cursor:pointer;">'.$name.'</h5>
+      </div>
+
+  </div>';
+
+
+ }
+
+ ?>
+
+
+
+
+       
+
+      
 
       </div>
 
