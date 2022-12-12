@@ -61,7 +61,7 @@
             <div class="featured-content"style="background: linear-gradient(to bottom, rgba(0,0,0,0), #151515), url('img/f-1.jpg');">
 
                    <div class="movie-list-container">
-                <h1 style="text-align:center" class="movie-list-title">TRENDY</h1>
+                <h1 style="text-align:center" class="movie-list-title">Found  Results</h1>
                 <div class="movie-list-wrapper">
                     <div class="movie-list">
 
