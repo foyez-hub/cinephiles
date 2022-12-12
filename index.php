@@ -112,6 +112,10 @@ if (isset($_POST['submitLogin'])) {
     </head>
     
     <body>
+
+
+    <div class="container content">
+
     
     
         <div class="navbar">
@@ -125,6 +129,7 @@ if (isset($_POST['submitLogin'])) {
                     <ul class="menu-list">
                         <li><a class="movie-list-title " href="index.php">Home</a></li>
                         <li><a class="movie-list-title " href="index.php">About</a></li>
+                        
                     </ul>
                 </div>
                 <div class="profile-container">
@@ -386,9 +391,7 @@ if (isset($_POST['submitLogin'])) {
                       <div>
                         <input  type="checkbox" onclick="showPassword()"><span style="color: grey">Show Password</span> 
                     </div>
-                    <!-- <div class="field">
-                        <input id="showConfirmPass" class="input" type="password" placeholder="Confirm Password" required>
-                      </div> -->
+                    
                       <div>
                         <input  type="checkbox" onclick="showConfirmPassword()"><span style="color: grey">Show Password</span> 
                     </div>
@@ -519,14 +522,14 @@ if (isset($_POST['submitLogin'])) {
                         <i class="fas fa-chevron-right arrow"></i>
                     </div>
                 </div>
-                <div class="featured-content"
+                <!-- <div class="featured-content"
                     style="background: linear-gradient(to bottom, rgba(0,0,0,0), #151515), url('img/f-2.jpg');">
                     <img class="featured-title" src="img/f-t-2.png" alt="">
                     <p class="featured-desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto illo dolor
                         deserunt nam assumenda ipsa eligendi dolore, ipsum id fugiat quo enim impedit, laboriosam omnis
                         minima voluptatibus incidunt. Accusamus, provident.</p>
                     <button class="featured-button">WATCH</button>
-                </div>
+                </div> -->
                 <div class="movie-list-container">
                     <h1 style="margin-top:15px;text-align:center" class="movie-list-title">POPULER</h1>
                     <div class="movie-list-wrapper">

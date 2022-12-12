@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 05, 2022 at 02:51 PM
+-- Generation Time: Dec 12, 2022 at 09:31 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -20,6 +20,48 @@ SET time_zone = "+00:00";
 --
 -- Database: `cinephilesdb`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chats`
+--
+
+CREATE TABLE `chats` (
+  `uname` varchar(100) NOT NULL,
+  `msg` varchar(1000) NOT NULL,
+  `dt` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `chats`
+--
+
+INSERT INTO `chats` (`uname`, `msg`, `dt`) VALUES
+('xami', 'hi			', '22-12-12 01:59pm');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `memeinfo`
+--
+
+CREATE TABLE `memeinfo` (
+  `postOwner` varchar(100) NOT NULL,
+  `PostImg` varchar(100) NOT NULL,
+  `postOwnerImg` varchar(100) NOT NULL,
+  `PostLike` int(11) NOT NULL,
+  `Time` datetime NOT NULL DEFAULT current_timestamp(),
+  `PostId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `memeinfo`
+--
+
+INSERT INTO `memeinfo` (`postOwner`, `PostImg`, `postOwnerImg`, `PostLike`, `Time`, `PostId`) VALUES
+('a', 'meme1.jpg', 'img/1.jpeg', 0, '2022-12-12 14:20:49', 1),
+('a', 'meme2.jpg', 'img/1.jpeg', 0, '2022-12-12 14:21:07', 2);
 
 -- --------------------------------------------------------
 
@@ -100,8 +142,21 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`name`, `email`, `password`, `Want_to_watch`, `recent_watch_list`, `recomended_movie`) VALUES
+('a', 'a', 0, '', '', '');
+
+--
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `memeinfo`
+--
+ALTER TABLE `memeinfo`
+  ADD PRIMARY KEY (`PostId`);
 
 --
 -- Indexes for table `movie_info`
@@ -120,6 +175,16 @@ ALTER TABLE `recommendation`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`email`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `memeinfo`
+--
+ALTER TABLE `memeinfo`
+  MODIFY `PostId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
