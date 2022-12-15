@@ -83,6 +83,7 @@ header("Location:SearchMovie.php");
             <div class="menu-container">
                 <ul class="menu-list">
                     <li><a class="movie-list-title " href="indexlogin.php">Home</a></li>
+                    <li><a class="movie-list-title " href="find_friends.php">Find Friends</a></li>
                     <li><a class="movie-list-title " href="indexlogin.php">About</a></li>
                                
                                <form id="form" action=""  method ="POST" > 

@@ -201,7 +201,11 @@ include_once("sidenav.php");
                     <button class="but1">
                         <a href="edit_Profile.php">Edit Profile</a>
                     </button>
-                    
+
+                    <button class="">
+                        <a href="find_friends.php">Find Friends</a>
+                    </button>
+                      
                     
                   </div>
                   
