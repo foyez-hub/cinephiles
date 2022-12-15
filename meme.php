@@ -1,19 +1,35 @@
 <?php
-   $reimag="img/1.jpg";
-   
+    
+        include 'config.php';
         include_once("topnav.php");
+
+
+
+        $name=$_SESSION['Glousername'];
+        
+
+        $email=$_SESSION['globalemail'];
+        $sql = "SELECT * FROM `user` WHERE `email`= '$email'";
+        $result = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_array($result);
+        $userimg=$row['image'];
+        $reimag;
         if (isset($_POST['submit'])) {
 
             if (isset($_POST['myfile'])){
                 $reimag=$_POST['myfile'];
-                // echo "".$reimag;
-               
+               $sql = "INSERT INTO `memeinfo`(`postOwner`, `PostImg`, `postOwnerImg`) VALUES ('$name','$reimag','$userimg')";
+               $result = mysqli_query($conn, $sql); 
 
             }
             
 
         }
-        // echo " ".$reimag;
+
+
+     
+
+
 
 
     ?> 
@@ -291,7 +307,7 @@
   <div class="con" >
       <div class="left-sidebar">
       <p>Click on the image to download it:</p> 
-        <a href="img/1.jpeg" download><img style=" width: 80%;height: 80%;" src="img/1.jpeg" alt=""></a>
+        <a href="memeImg/realimg.jpg" download><img style=" width: 80%;height: 80%;" src="memeImg/realimg.jpg" alt=""></a>
         
       </div>
 
@@ -299,14 +315,14 @@
       <div style="  margin-left:5px; margin-top:8px; margin-right:47px" class="main-content">
          <div class="write-post-container">
             <div class="user-profile">
-                <img src="img/1.jpeg">
+                <!-- <img src="profileimg/p2.jfif"> -->
                 <div>
-                    <p>Mehedi Hasan</p>
+                    <!-- <p><?php if(isset($name)) echo $name; ?></p> -->
 
                 </div>
 
             </div>
-            <div class="post-input-container">
+            <div class=" post-input-container">
                 <p>Post your Meme</p>
                 <div class="add-post-links">
                     <form action="" method="POST">
@@ -318,36 +334,58 @@
                 </div>
             </div>
          </div>
-         <div class="post-container">
-            <div class="user-profile">
-                <img src="img/1.jpeg">
-                <div>
 
-                    <p><?php echo $reimag?></p>
-                    <span >June 24 2021,13:40 pm </span>
+          
+          <?php
+
+$sql="SELECT * FROM `memeinfo` WHERE 1";
+$result1 = mysqli_query($conn, $sql);
+while ($row = mysqli_fetch_array($result1) ) 
+{   
+      $postOwner= $row['postOwner'];
+      $PostImg= $row['PostImg'];
+      $Time= $row['Time'];
+      $postOwnerImg= $row['postOwnerImg'];
+      $PostLike= $row['PostLike'];
+      $postid=$row['PostId'];
+      
+
+        echo '<form action="" method="POST">
+        <div class="post-container">
+            <div class="user-profile">
+                <img src="img/'.$postOwnerImg.'">
+                <div>
+                           
+                <span > '.$postOwner.' </span>
+                    <span > '.$Time.' </span>
+
     
                 </div>
     
             </div>
 
 
-            <img src="img/<?php echo $reimag;?>"  class="post-img" >
+            <img src="memeImg/'.$PostImg.'"  class="post-img" >
 
             <div class="post-row">
 
                 <div class="like-icon">
                     <div>
-
-                        <i class="fa fa-thumbs-up" style="font-size:36px"></i>
-
-
+                        
+                    <input class="featured-button form-button" name="outpost" type="submit" value="Vote"></a>
+                        
+                        '.$PostLike.'
                     </div>
                 </div>
 
             </div>
     
           </div>
+          </form>';
+    
 
+}
+          ?>
 
       
 
@@ -363,37 +401,48 @@
             <h4> Winner list </h4>
         </div>
 
-        <div class="list">
-            <div class="date">
-                <h3>18</h3>
-                <span>November</span>
-            </div>
-            
-            <div class="peopleProfile">
-               <div class="winner">
 
-                <img src="img/2.jpeg">
+        <?php
 
-               </div>
-               <h5 style="cursor:pointer;">Mehedi Hasan</h5>
-            </div>
+ $sql="SELECT * FROM `winners` WHERE 1";
+ $result1 = mysqli_query($conn, $sql);
+ while ($row = mysqli_fetch_array($result1) ) 
+ {   
+      $name= $row['name'];
+      $date= $row['date'];
+      $img= $row['img'];
+      $newStr = explode("-", $date);
 
-        </div>
 
-        <div class="list">
-            <div class="date">
-                <h3>18</h3>
-                <span>November</span>
-            </div>
-            
-            <div class="peopleProfile">
-               <div class="winner">
-                <img src="img/2.jpeg">
-               </div>
-               <h5 style="cursor:pointer;">Mehedi Hasan</h5>
-            </div>
+     
 
-        </div>
+     echo '<div class="list">
+      <div class="date">
+          <h3>'.$newStr[2].'</h3>
+          <span>NOV</span>
+      </div>
+      <div class="peopleProfile">
+         <div class="winner">
+
+          <img src="profileimg/p1.jfif">
+
+         </div>
+         <h5 style="cursor:pointer;">'.$name.'</h5>
+      </div>
+
+  </div>';
+
+
+ }
+
+ ?>
+
+
+
+
+       
+
+      
 
       </div>
 

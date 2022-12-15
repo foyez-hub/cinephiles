@@ -1,27 +1,43 @@
+
+
+
 <?php
 
-include_once("topnav.php");
-
-include_once("sidenav.php");
 include 'config.php';
-
-$moviename=$_SESSION['val1'];
+$moviename=$_GET['title'];
 
 
 $image;
 $des;
+$relese_year;
+$genres;
 $sql = "SELECT * FROM `movie_info` WHERE 1";
 $result1 = mysqli_query($conn, $sql);
+
 while ($row = mysqli_fetch_array($result1) ) { 
   
         if($row['movie_name']==$moviename){
             $image=$row['image'];
             $des=$row['synopsis'];
+            $relese_year=$row['release_year'];
+            $genres=$row['genres'];
+
         }
+   
+ 
+   
 
 }
 
     
+?>
+
+
+<?php
+   include_once("topnav.php");
+?>
+<?php
+  include_once("sidenav.php");
 ?>
 
 <html lang="en">
@@ -43,7 +59,7 @@ while ($row = mysqli_fetch_array($result1) ) {
         .contain1{
             display: flex;
             justify-content: space-between;
-            background-color: black;
+             background-color: black; 
             width: 80%;
             height: 70%;
             margin-top: 5%;
@@ -76,18 +92,44 @@ while ($row = mysqli_fetch_array($result1) ) {
         .description{
         background-color :blanchedalmond;
         flex-basis: 50%;
-        position: sticky;
+        /* position: sticky; */
         top: 70px;
         align-self: flex-start;
         width: 45%;
         height: 70%;
         margin: 7% 7%;
         }
-        .description h3{
-            margin: 1%;
+        .description h2{
+            margin: auto;
             position: relative;
             float: left;
-            top: 50%;
+            top: 10%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        #genres{
+            margin: auto;
+            position: relative;
+            float: left;
+            top: 20%;
+            left: 0vh;
+            transform: translate(-50%, -50%);
+        }
+        #year{
+            margin: auto;
+            position: relative;
+            float: left;
+            top: 25%;
+            left:5vh;
+
+            transform: translate(-75%, -25%);
+        }
+    
+        #des{
+            margin: auto;
+            position: relative;
+            float: left;
+            top: 40%;
             left: 50%;
             transform: translate(-50%, -50%);
         }
@@ -115,31 +157,45 @@ while ($row = mysqli_fetch_array($result1) ) {
 </head>
 
 <body>
-   
+
+    
+
 
     <div class="contain1">
         <div class="pic">
             <img src="img/<?php if(isset($image)){
                 echo $image;
                 }
-                ?>" alt="">
+                ?>">
 
         </div>
 
         <div class="description">
-        <h3>
+        <h2>
                <?php if(isset($moviename)){
-                echo  "Movie Name:".$moviename;
+                echo  "Movie Name: ".$moviename;
 
                 }
                 ?>
-            </h3>
-            <h3>
+        </h2>
+         <h3 id="genres">
+               <?php if(isset($genres)){
+                echo "Genres: ".$genres;
+                }
+                ?>
+         </h3>
+         <h3 id="year">
+               <?php if(isset($relese_year)){
+                echo "Release Year: ".$relese_year;
+                }
+                ?>
+         </h3>
+         <h3 id="des">
                <?php if(isset($des)){
                 echo  $des;
                 }
                 ?>
-            </h3>
+         </h3>
 
 
         </div>
@@ -148,9 +204,18 @@ while ($row = mysqli_fetch_array($result1) ) {
     </div>
 
 
-    
-         <button class="button1 ">watch party</button>
-         <button class="button1">Play</button>
+
+
+        
+
+         
+                   <?php 
+                    $_SESSION['passdata'] = $moviename;
+                    ?>
+        
+
+         <a href="streaming.php?title2=$moviename"> <input class="button1 " type="submit" value="Play"> </a>
+         <a href="Group_chat.php?title2=$moviename"> <input class="button1 " type="submit" value="Watch Party"> </a>
 
    
     <script src="app.js"></script>

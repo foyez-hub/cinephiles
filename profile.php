@@ -175,7 +175,7 @@ include_once("sidenav.php");
                <div class="wrapper">
                    
                    <div class="cover">
-                    <img src="img/1.jpeg" alt="Give Cover Photo">  
+                    <img src="img/sea.jpg" alt="Give Cover Photo">  
                    </div>
                    <div class="id-section">
                       <div class="circle">
@@ -195,7 +195,7 @@ include_once("sidenav.php");
                             echo '<h2>'.$_SESSION['Glousername'].'</h2>' ;
                          ?>
                         
-                        <h5 style="color:rgb(227, 207, 207); font-weight:bold;">Seek For Thrill </h5>
+                        <h5 style="color:rgb(227, 207, 207); font-weight:bold;">INTJ </h5>
                     </div>
                     <div class="buttons">
                     <button class="but1">

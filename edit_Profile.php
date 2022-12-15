@@ -64,6 +64,7 @@ if(isset($_POST['a']) && (isset($_POST['j'])) )
 
           <div class="form-group">
             <label class="col-lg-3 control-label">Name:</label>
+            <label class="col-lg-3 control-label">Phone Number:</label>
             <div class="col-lg-8">
               <form id="form" action=""  method ="POST" >
               <input class="form-control" name="a" type="text" value="">

@@ -35,9 +35,9 @@ ball.addEventListener("click", () => {
 
 
 function toggleClock() {
-  var my = document.getElementById('searchbar');
+  var my = document.getElementById('dropdown');
   var displaySetting = my.style.display;
-  var Button = document.getElementById('SearchIcon');
+  // var Button = document.getElementById('SearchIcon');
   if (displaySetting == 'block') {
     my.style.display = 'none';
   }
@@ -45,34 +45,6 @@ function toggleClock() {
     my.style.display = 'block';
   }
 }
-
-
-
-
-
-// var divA = document.getElementById('SearchIcon');
-// var divB = document.getElementById('searchbar');
-
-// divA.addEventListener("mouseenter", function(event) {
-//   divB.style.display = 'block';
-
- 
-// });
-
-
-
-// divB.addEventListener("mouseenter", function(event) {
-//   divB.style.display = 'block';
- 
-// });
-
-// divB.addEventListener("mouseout", function(event) {
-      
-//   setTimeout(function() {
-//     divB.style.display = 'none';
-//  }, 5000);
-// });
-
 
 
 

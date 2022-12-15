@@ -1,0 +1,269 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Sen:wght@400;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <title>CINEPHILES/Profile</title>
+
+    <style>
+          body{
+            background-color:  #151515;;
+        }
+        *{
+            margin: 0;
+            padding: 0;
+        }
+      .wrapper{
+         width: 80%;
+         margin: auto; 
+      }
+
+      .cover{
+        height:360px;
+        background: gray;
+      }
+      .cover img{
+        width:100%;
+        height:100%;
+        
+        
+
+      }
+
+      .circle{
+        width: 150px;
+        height: 150px;
+        margin: auto;
+        border-radius: 50%;
+        border: 3px solid #fff;
+        position: relative;
+        top: -90px;
+
+      }
+      .logo1{
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        
+      } 
+
+      .id{
+        position: relative;
+        top:-80px;
+        text-align: center;
+       
+     }
+    .buttons{
+        position: relative;
+        margin-top: -60px;
+
+    }
+    button{
+       padding: 10px; 
+       border: none;
+       background: #bbb7a9;
+       border-radius: 8px;
+       cursor: pointer;
+
+
+    }
+
+    .but1{
+        width: 20%;
+        margin-left: 35%;
+        margin-right:1%;
+    }
+    .but2{
+        margin-right: 10px;
+    }
+    .but3{
+         width: 60px;
+    }
+
+    button:hover{
+        background: rgba(104, 226, 10, 0.792);
+    }
+
+
+
+    /* .container1{
+            margin-left: 20px ;
+            margin-top: 20px;
+            display: grid;
+            grid-gap: 1rem;
+            background: black;
+            grid-template-areas: 
+            "section  aside footer"
+            ;
+        } */
+
+        .item1{
+            background-color: gray;
+            border: 2px solid white;
+            padding : 34px 19px;
+         
+            border-radius: 13px;
+            height: 400px;
+            width: 350px;
+            position: absolute;
+            margin-top: 120px;
+            box-sizing: border-box;
+            
+        }
+
+        .item2{
+            background-color: gray;
+            border: 2px solid white;
+            padding : 34px 19px;
+           
+            border-radius: 13px;
+            height: 400px;
+            width: 350px;
+            position: absolute;
+            margin-top: 120px;
+            margin-left: 28%;
+            box-sizing: border-box;
+        }  
+        
+        
+        .item3{
+            background-color: gray;
+            border: 2px solid white;
+            padding : 34px 19px;
+            border-radius: 13px;
+            height: 400px;
+            width: 350px;
+            position: absolute;
+            margin-top: 120px;
+            margin-left: 55%;
+            box-sizing: border-box;
+        }     
+
+
+    </style>
+
+
+
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="navbar-container">
+            <div class="logo-container">
+                <a href="/index.html">
+                    <h1 class="logo">CINEPHILES</h1>
+                </a>
+            </div>
+            <div class="menu-container">
+                <ul class="menu-list">
+                    <li><a class="movie-list-title " href="/index.html">Home</a></li>
+                    <li><a class="movie-list-title " href="/index.html">Forum</a></li>
+
+                    <div class="dropdown">
+                        <a class="dropbtn" class="movie-list-title">Activites</a>
+                        <div class="dropdown-content">
+                            <a href="#">Quizzes</a>
+                            <a href="#">MEME Contest</a>
+                            <a href="#">Fan Club</a>
+                        </div>
+                    </div>
+                    <li><a class="movie-list-title " href="/index.html">More</a></li>
+                    <li><a class="movie-list-title " href="/index.html">About</a></li>
+
+                </ul>
+            </div>
+            <div class="profile-container">
+                <img class="profile-picture" src="img/profile.jpg" alt="">
+                <div class="profile-text-container">
+                    <div class="dropdown">
+                        <a style="margin: 0%; padding: 0%;" class="dropbtn" class="movie-list-title">Profile</a>
+                        <i style="padding-left: 0%; " class="fas fa-caret-down"></i>
+                        <div class="dropdown-content">
+                            <a id="name" href="#">Mehedi Hasan</a>
+                            <a href="#">Setting & Srivacy</a>
+                            <a href="#">Logout</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="toggle">
+                    <i class="fas fa-moon toggle-icon"></i>
+                    <i class="fas fa-sun toggle-icon"></i>
+                    <div class="toggle-ball"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar">
+        <div class="left-menu-icon fas fa-search" style="margin-top: 8px; " id="SearchIcon"></div>
+        <a style="margin-left: 20px;" href="/index.html"><i class="left-menu-icon fas fa-home"></i></a>
+        <i class="left-menu-icon fas fa-users"></i>
+        <i class="left-menu-icon fas fa-bookmark"></i>
+        <i class="left-menu-icon fas fa-tv"></i>
+        <i class="left-menu-icon fas fa-hourglass-start"></i>
+        <i class="left-menu-icon fas fa-shopping-cart"></i>
+    </div>
+
+
+    <div class="container">
+        <div class="content-container">
+            <div class="featured-content">
+
+               <div class="wrapper">
+                   
+                   <div class="cover">
+                    <img src="img/1.jpeg" alt="Give Cover Photo">  
+                   </div>
+                   <div class="id-section">
+                      <div class="circle">
+                        <img src="img/2.jpeg" alt="Error" class="logo1">
+                      </div>
+                    <div class="id">
+                        <h2>Mehedi Hasan</h2>
+                        <h5 style="color:rgb(227, 207, 207); font-weight:bold;">Movie Enthusius</h5>
+                    </div>
+                    <div class="buttons">
+                    <button class="but1">
+                        <i class="fa fa-user-plus" aria-hidden="true"></i>Add Friend
+                    </button>
+                    <button class="but2">
+                        <i class="fab fa-facebook-messenger"></i>
+                    </button>
+                    <button class="but3">
+                        <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                    </button>
+                  </div>
+                  
+
+                </div>
+                
+                <div class="container1">
+                    <div class="item1">
+                       <h1 style="justify-content: center; align-items: center; text-align: center;">Want watch</h1>
+            
+                    </div>
+            
+                    <div class="item2">
+                        <h1 style="justify-content: center; align-items: center; text-align: center;">Recomandation</h1>
+                    </div>
+                    <div class="item3">
+                        <h1 style="justify-content: center; align-items: center; text-align: center;">Recent Watch list</h1>
+                    </div>
+                    
+                    
+                <!-- </div>                 -->
+
+            </div>
+                
+        </div>
+    </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>
