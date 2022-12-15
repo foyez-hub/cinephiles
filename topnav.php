@@ -1,6 +1,10 @@
 <?php 
      session_start();
+<<<<<<< HEAD
    if(isset($_SESSION['Glousername']))  $name=$_SESSION['Glousername'];
+=======
+   if(isset($_SESSION['globalemail']))  $name=$_SESSION['globalemail'];
+>>>>>>> ShojibWorkplace
 
     
 
@@ -96,6 +100,7 @@ header("Location:SearchMovie.php");
                 </ul>
             </div>
             <div class="profile-container">
+<<<<<<< HEAD
                 <?php 
                 $email=$_SESSION['globalemail'];
                             $sql = "SELECT * FROM `user` WHERE `email`= '$email'";
@@ -106,6 +111,9 @@ header("Location:SearchMovie.php");
                 
                 echo '<img class="profile-picture" src="img/'.$var.'" alt="">';
                  ?>
+=======
+                <img class="profile-picture" src="img/profile.jpg" alt="">
+>>>>>>> ShojibWorkplace
                 <div class="profile-text-container">
                     <div class="dropdown">
                         <a style="cursor: pointer; margin: 0%; padding: 0%;" class="dropbtn" class="movie-list-title"> <?php
@@ -117,7 +125,11 @@ header("Location:SearchMovie.php");
                                   if(isset($name)) echo $name; 
                                            ?> 
                               </a -->
+<<<<<<< HEAD
                             <a href="profile.php">Profile</a>
+=======
+                            <!-- <a href="#">Setting & Srivacy</a> -->
+>>>>>>> ShojibWorkplace
                             <a href="index.php">Logout</a>
                         </div>
                     </div>
