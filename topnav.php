@@ -6,6 +6,7 @@
 
 include 'config.php';
 $moviesnames=array();
+$usernames= array();
 if(isset($_POST['q']))
 {   
 
@@ -58,9 +59,61 @@ if(isset($_POST['q']))
               array_push($movies,$var);*/
 
 
+        }
+        $sql = "SELECT * FROM `user` WHERE 1 ";
+        $result = mysqli_query($conn, $sql);
+
+        while ($row = mysqli_fetch_array($result) ) { 
+              
+            $var=$row['name'];
+            $email=$row['email'];
+            $z= strtolower($var);
+            $s = strtolower($s);
+            $size=strlen($z);
+            $cnt=0;
+            $ans=0;
+            
+           
+            $temp;
+            for($j=0;$j<strlen($z);$j++)
+            {
+                
+                for($i=0;$i<strlen($s);$i++)
+                {
+                     if($z[$j]==$s[$i])
+                     {
+                        $cnt++;
+                        $j++;
+                        if($j>=strlen($z))
+                        {
+                            break;
+                        }
+                     }
+                     else
+                     {
+                        continue;
+                     }
+                }
+                $ans= max($cnt,$ans);
+                $cnt=0;
+
+            }
+
+            if($ans==strlen($s))
+            {
+
+                // echo "                             .............".$var;
+                array_push($usernames,$email);
+            }
+              /*
+              array_push($movies,$var);*/
+
+
         } 
 
 $_SESSION['search_result'] = $moviesnames;
+$_SESSION['search_result2'] = $usernames;
+
 header("Location:SearchMovie.php");
 
 }
