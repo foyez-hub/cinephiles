@@ -1,75 +1,111 @@
 
+   
 
 <?php 
 
-class Movie {
-    public $moviename;
-    public $movieimg;
-
-  
-    function set_name($name) {
-      $this->name = $name;
-    }
-    function get_name() {
-      return $this->name;
-    }
-
-}
-
 include 'config.php';
 
+include_once("topnav.php");
 
-$movies=array();
+include_once("sidenav.php");
+
+
 
 if (isset($_POST['sub'])) {
-    
-
-    if(isset($_POST["dark"])){
-
-            $sql = "SELECT * FROM `movie_info` WHERE `category`='DARK'";
-           $result1 = mysqli_query($conn, $sql);
-          while ($row = mysqli_fetch_array($result1) ) { 
-              
-              $var=$row['movie_name'];
-              array_push($movies,$var);
-
-        }
+    $movies=array();
 
 
+     $type="";
+
+     if(isset($_POST['LIGHT'])){
+        $type="LIGHT";
     }
-    else if(isset($_POST["light"])){
-
-
-        $sql = "SELECT * FROM `movie_info` WHERE `category`='LIGHT'";
-        $result1 = mysqli_query($conn, $sql);
-       while ($row = mysqli_fetch_array($result1) ) { 
-           
-           $var=$row['movie_name'];
-           array_push($movies,$var);
-
-     }
-
-
+    if(isset($_POST['DARK'])){
+        $type="DARK";
     }
 
-      $randomNumber = rand(0,5);
-      $_SESSION['valpass']=$movies[$randomNumber];
 
-    header("Location:recomendation.php");
+  
+
+    $genra="";
+    if(isset($_POST['DRAMA'])){
+        $genra="DRAMA";
+    }
+    if(isset($_POST['ROMANCE'])){
+        $genra="ROMANCE";
+    }
+    if(isset($_POST['THRILLER'])){
+        $genra="THRILLER";
+    }
+    if(isset($_POST['SCIENCE FICTION'])){
+        $genra="SCIENCE FICTION";
+    }
+    if(isset($_POST['HORROR'])){
+        $genra="HORROR";
+    }
+    if(isset($_POST['FANTASY'])){
+        $genra="FANTASY";
+    }
+
+
+
+
+
+
+    $time="";
+   
+
+
+    if(isset($_POST['B2'])){
+        $time="B2";
+    }
+    if(isset($_POST['A2'])){
+        $time="A2";
+    }
+    if(isset($_POST['M'])){
+        $time="M";
+    }
 
     
-    
 
+
+$sql = "SELECT * FROM `movie_info` WHERE 1";
+$result1 = mysqli_query($conn, $sql);
+while ($row = mysqli_fetch_array($result1) ) { 
+
+   $name=$row['movie_name'];
+   array_push($movies,$name);
+   $var=$row['category'];
+   $year=$row['release_year'];
+   $gen=$row['genres'];
+
+    
+   if($var==$type  || strval($genra)==$gen ){
+       
+    array_push($movies,$name);
+
+   }
+  
+   
+
+
+    
 
 
 }
 
 
+$len=count($movies);
+$randomNumber = rand(0,$len);
+
+
+$_SESSION['vv']=$movies[$randomNumber];
+
+header("Location:recomendation.php");
 
 
 
-
-    
+}
 
 
 
@@ -104,14 +140,7 @@ if (isset($_POST['sub'])) {
 
 <body>
 
-    <?php
-        include_once("topnav.php");
-    ?> 
-    
-    <?php
-      include_once("sidenav.php");
-    ?>
-
+ 
 
     
 
@@ -122,16 +151,16 @@ if (isset($_POST['sub'])) {
             <img class="featured-title" src="img/f-t-1.png" alt="">
             <input id="searchbar" type="text" name="search" placeholder="Search Movie">
             <h1 class="featured-desc">Recommend Movies Based On One’s Mood & Interest</h1>
-            <p class="featured-desc">Answer 4 questions and let us do the work!</p>
-            <button class="featured-button" onclick="openForm()">START</button>
+            <button class="featured-button" onclick="openForm()">Get Recommend</button>
 
 
-            <!-- start -->
-
+            
 
 
 
-<div class="form-popup" id="myForm">
+<?php
+
+echo '<div class="form-popup" id="myForm">
   <form style="background-color: black; padding:2%" method="POST" action="">
        <fieldset>
         <legend>1.How are you today?</legend>
@@ -139,14 +168,9 @@ if (isset($_POST['sub'])) {
         <input type="radio" name="light" value="Light">Sad<br>
         <br>
 
-        <legend>2. What comes closest to your occasion?</legend>
-        <input type="radio" name="2.1" value="2.1">watching alone<br>
-        <input type="radio" name="2.2" value="2.2">watching with your favorite person<br>
-        <input type="radio" name="2.3" value="2.3">movie party<br>
-        <br>
+      
 
-
-        <legend>3.Choose your preferred genre?</legend>
+        <legend>2.Choose your preferred genre?</legend>
         <input type="radio" name="Drama" value="Drama"><p>Drama</p><br>
         <input type="radio" name="Romance" value="Romance">Romance<br>
         <input type="radio" name="Thriller" value="Thriller">Thriller<br>
@@ -155,20 +179,22 @@ if (isset($_POST['sub'])) {
         <input type="radio" name="Fantasy" value="Fantasy">Fantasy<br>
         <br>
 
-        <legend>4.From which time period do you want to watch movie?</legend>
+        <legend>3.From which time period do you want to watch movie?</legend>
         <input type="radio" name="4.1" value="Before2000">Before 2000<br>
         <input type="radio" name="4.2" value="After2000">After 2000<br>
         <input type="radio" name="4.3" value="Doesn’t matter">Doesn’t matter<br>
         <br>
 
-        <input class="featured-button form-button" name='sub' type="submit" value="Submit now">
+        <input class="featured-button form-button" name="sub" type="submit" value="Submit now">
         <button type="button" class="featured-button form-button" onclick="closeForm()"> Close </button>
 
     </fieldset>
 </form>
 
   
-  </div>
+  </div>'
+
+  ?>
 
 
            

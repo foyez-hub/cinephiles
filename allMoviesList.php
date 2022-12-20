@@ -1,7 +1,42 @@
+<?php
+        include_once("topnav.php");
+    ?> 
+    
+    <?php
+
+      include_once("sidenav.php");
+    ?>
 
 
 <?php 
+
 include 'config.php';
+$email=$_SESSION['globalemail'];
+
+
+if(isset($_GET['titleself'])){
+
+    $moviename=$_GET['titleself'];
+    $sql1 = "SELECT * FROM `user` WHERE `email`='$email'";
+    $result1 = mysqli_query($conn, $sql1);
+    if ($result1->num_rows > 0) {
+
+      $row = mysqli_fetch_assoc($result1);
+      $my_list=$row['my_list'];
+      $tem=",";
+      $tem.=$my_list;
+      $tem.=",";
+      $tem.=$moviename;
+      
+
+    $sql = "UPDATE `user` SET `my_list`='$tem'  WHERE `email`='$email'";
+  
+    $result = mysqli_query($conn, $sql); 
+}
+
+}
+
+
   ?>
 
 <html lang="en">
@@ -20,13 +55,6 @@ include 'config.php';
 
 <body style="background-color:gray">
 
-    <?php
-        include_once("topnav.php");
-    ?> 
-    
-    <?php
-      include_once("sidenav.php");
-    ?>
 
 
     
@@ -44,18 +72,22 @@ include 'config.php';
                         while ($row = mysqli_fetch_array($result1) ) 
                         {   
                             $var= $row['movie_name'];
-
                              $synopsis=$row['synopsis'];
                             $img=$row['image'];
+                            $year=$row['release_year'];
 
                              
                              echo '<div class="movie-list-item" style="display: inline-block;margin:1.5%">
                             <img class="movie-list-item-img" src="img/'.$img.'" alt="">
                             <span class="movie-list-item-title">'.$var.'</span>
                             <p class="movie-list-item-desc">
-                                '.$synopsis.'</p>
+                                '.$year.'</p>
                             <a href="movieOverview.php?title='.$var.'"> <input class="movie-list-item-button" name="details" type="submit" value="Details"> </a>
-                        </div>';
+                            <a href="allMoviesList.php?titleself='.$var.'"> <input class="movie-list-item-button1" name="addlist" type="submit" value="ADD"> </a>
+
+                            
+                       </div>'
+                        ;
                            
                         }
 

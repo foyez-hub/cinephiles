@@ -3,7 +3,7 @@
 include 'config.php';
 session_start();
 
-if(isset($_POST['a']) && (isset($_POST['j'])) )
+if(isset($_POST['a']) || (isset($_POST['j'])) || (isset($_POST['am'])) )
 {   
     /*if))
     {
@@ -14,11 +14,25 @@ if(isset($_POST['a']) && (isset($_POST['j'])) )
         $result = mysqli_query($conn, $sql);
     }*/
     $x=$_POST['j'];
-    echo $_POST['j'];
     $email= $_SESSION['globalemail'];
     $s= $_POST['a'];
-    $sql = "UPDATE `user` SET `name`='$s', `image`='$x' WHERE `email`='$email'";
-    $result = mysqli_query($conn, $sql);
+    $ab= $_POST['am'];
+    if(strlen($x)>1)
+    {
+        $sql = "UPDATE `user` SET `image`='$x'  WHERE `email`='$email' ";
+        $result = mysqli_query($conn, $sql);
+    }
+    if(strlen($s)>1)
+    {
+        $sql = "UPDATE `user` SET `name`='$s'  WHERE `email`='$email' ";
+        $result = mysqli_query($conn, $sql);
+    }
+    if(strlen($ab)>1)
+    {
+        $sql = "UPDATE `user` SET `bio`='$ab'  WHERE `email`='$email' ";
+        $result = mysqli_query($conn, $sql);
+    }
+    
     $_SESSION['Glousername']=$s;
 
 
@@ -67,6 +81,13 @@ if(isset($_POST['a']) && (isset($_POST['j'])) )
             <div class="col-lg-8">
               <form id="form" action=""  method ="POST" >
               <input class="form-control" name="a" type="text" value="">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">About Me:</label>
+            <div class="col-lg-8">
+              <form id="form" action=""  method ="POST" >
+              <input class="form-control" name="am" type="text" value="">
             </div>
           </div>
           <input type="submit">

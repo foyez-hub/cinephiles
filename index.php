@@ -20,6 +20,7 @@ if (isset($_POST['submit'])) {
 
     }
      if(isset($_POST['password'])){
+        
         $password=$_POST['password'];
 
     }

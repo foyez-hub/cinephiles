@@ -3,6 +3,7 @@
     include_once("topnav.php");
     include_once("sidenav.php");
     $ar=$_SESSION['search_result'];
+    $ar2=$_SESSION['search_result2'];
 
 
 
@@ -61,14 +62,12 @@
             <div class="featured-content"style="background: linear-gradient(to bottom, rgba(0,0,0,0), #151515), url('img/f-1.jpg');">
 
                    <div class="movie-list-container">
-                <h1 style="text-align:center" class="movie-list-title">Found  Results</h1>
+                <h1 style="text-align:center" class="movie-list-title">Search Result</h1>
                 <div class="movie-list-wrapper">
                     <div class="movie-list">
 
 
                         <?php
-
-
 
 
                         foreach ($ar as $key => $value) {
@@ -84,8 +83,7 @@
                              echo '<div class="movie-list-item">
                             <img class="movie-list-item-img" src="img/'.$img.'" alt="">
                             <span class="movie-list-item-title">'.$value.'</span>
-                            <p class="movie-list-item-desc">
-                                '.$synopsis.'</p>
+                            
                             <button class="movie-list-item-button">Watch</button>
                         </div>';
 
@@ -107,6 +105,57 @@
                     <i class="fas fa-chevron-right arrow"></i>
                 </div>
             </div>
+
+
+            <!-- /*search friend -->
+            <div class="movie-list-wrapper">
+                    <div class="movie-list">
+
+
+                        <?php
+
+
+                        foreach ($ar2 as $key => $value) {
+        
+                        $sql = "SELECT * FROM `user` WHERE `email`='$value'";
+                        $result1 = mysqli_query($conn, $sql);
+                        while ($row = mysqli_fetch_array($result1) ) { 
+
+                            $img=$row['image'];
+                            $name=$row['name'];
+
+                            // echo $synopsis."\n";
+
+
+                             echo '<div class="movie-list-item">
+                            <img class="movie-list-item-img" src="img/'.$img.'" alt="">
+                            <span class="movie-list-item-title">'.$name.'</span>
+                            
+                            <a href="view_profile.php?title='.$value.'"> <input class="movie-list-item-button" type="submit" value="View Profile"> </a>     
+                            
+                        </div>';
+                        
+
+                    
+                
+                    
+                        }
+
+                    }
+                         
+                      
+
+                       
+
+                    ?>
+
+                      
+                    </div>
+                    <i class="fas fa-chevron-right arrow"></i>
+                </div>
+            </div>
+
+
 
 
             </div>

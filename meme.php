@@ -2,21 +2,97 @@
     
         include 'config.php';
         include_once("topnav.php");
-
-
-
+        include_once("sidenav.php");
         $name=$_SESSION['Glousername'];
+        $email=$_SESSION['globalemail'];
+        $sql = "SELECT * FROM `user` WHERE `email`= '$email'";
+        $result = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_array($result);
+        
+        $userimg=$row['image'];
         $reimag;
-        $userimg="profileimg/p1.jfif";
+
+
+        $reimag;
+        $email=$_SESSION['globalemail'];
+        
 
         if (isset($_POST['submit'])) {
 
             if (isset($_POST['myfile'])){
-                $reimag=$_POST['myfile'];
+
+               $reimag=$_POST['myfile'];
                $sql = "INSERT INTO `memeinfo`(`postOwner`, `PostImg`, `postOwnerImg`) VALUES ('$name','$reimag','$userimg')";
                $result = mysqli_query($conn, $sql); 
 
             }
+            
+
+        }
+
+
+
+        if (isset($_POST['outpost'])) {
+         
+        if (isset($_POST['uiu'])) {
+
+            $memeid=$_POST['uiu'];
+            $postlike=0;
+            $sql = "SELECT * FROM `memeinfo` WHERE `PostId`='$memeid'" ;
+            $result = mysqli_query($conn, $sql);
+
+            if ($result->num_rows > 0) {
+
+                $row = mysqli_fetch_array($result);
+                $postlike=$row['PostLike'];
+
+
+
+                $sqlck = "SELECT `postid`, `postOwnerEmail` FROM `votetracking` WHERE `postid`='$memeid' and `postOwnerEmail`='$email'" ;
+                $resultck = mysqli_query($conn, $sqlck);
+    
+                if ($resultck->num_rows <=0) {
+    
+
+               //insert into votetracking database
+                $sqlvote = "INSERT INTO `votetracking`(`postid`, `postOwnerEmail`) VALUES ('$memeid','$email')";
+                $resultvote = mysqli_query($conn, $sqlvote); 
+               //update like count in memeinfo database
+               $postlike++;
+               $sql = "UPDATE `memeinfo` SET `PostLike`='$postlike' WHERE `PostId`='$memeid'" ;
+               $result = mysqli_query($conn, $sql);
+               
+                }
+
+                else{
+                        //delete from votetracking database
+
+
+                    $sqlvote = "DELETE FROM `votetracking` WHERE `postid`='$memeid' AND `postOwnerEmail`='$email'";
+                    $resultvote = mysqli_query($conn, $sqlvote); 
+                   //update like count in memeinfo database
+                   $postlike--;
+
+                   $sql = "UPDATE `memeinfo` SET `PostLike`='$postlike' WHERE `PostId`='$memeid'" ;
+                   $result = mysqli_query($conn, $sql);
+                   
+
+
+
+                }
+
+
+
+
+             }
+             
+
+            
+         
+           
+            
+
+        }
             
 
         }
@@ -288,14 +364,11 @@
 
 </head>
 
-<body>
+<body style=" background:#626262 ">
 
 
 
 
-    <?php
-      include_once("sidenav.php");
-    ?>
     
 
 
@@ -324,7 +397,9 @@
                         <a href="#"> <img src="img/photo.png" >
                             <input style="border-radius:5px" type="file" id="myfile" name="myfile">
                         </a><br>
+                        
                         <input name="submit" style=" border-radius: 5px; cursor: pointer; margin-left:70px; background-color: rgb(131, 108, 193); "type="submit">
+
                       </form>
                 </div>
             </div>
@@ -348,15 +423,15 @@ while ($row = mysqli_fetch_array($result1) )
         echo '<form action="" method="POST">
         <div class="post-container">
             <div class="user-profile">
-                <img src="profileimg/p1.jfif">
+                <img src="img/'.$postOwnerImg.'">
                 <div>
-                           
-                <span > '.$postOwner.' </span>
-                    <span > '.$Time.' </span>
+                <span style="color:black ; font-size:20px"> '.$postOwner.'| </span>
+                
+                    <span  style="color:black" > '.$Time.' </span>
 
-    
+                    <input  style="display:none" name="uiu" value="'.$postid.'">
+
                 </div>
-    
             </div>
 
 
@@ -366,10 +441,8 @@ while ($row = mysqli_fetch_array($result1) )
 
                 <div class="like-icon">
                     <div>
-                        
-                    <input class="featured-button form-button" name="outpost" type="submit" value="Vote"></a>
-                        
-                        '.$PostLike.'
+                    <input class="featured-button form-button" id="'.$postid.'" name="outpost" type="submit" value="Vote">
+                         '.$PostLike.'
                     </div>
                 </div>
 
@@ -393,7 +466,10 @@ while ($row = mysqli_fetch_array($result1) )
 
       <div class="right-sidebar">
         <div class="sidebar-title">
+
             <h4> Winner list </h4>
+           
+
         </div>
 
 
@@ -407,9 +483,6 @@ while ($row = mysqli_fetch_array($result1) )
       $date= $row['date'];
       $img= $row['img'];
       $newStr = explode("-", $date);
-
-
-     
 
      echo '<div class="list">
       <div class="date">
@@ -427,17 +500,9 @@ while ($row = mysqli_fetch_array($result1) )
 
   </div>';
 
-
  }
 
  ?>
-
-
-
-
-       
-
-      
 
       </div>
 
@@ -450,6 +515,8 @@ while ($row = mysqli_fetch_array($result1) )
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <script src="app.js"></script>
+
+
 </body>
 
 </html>

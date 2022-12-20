@@ -3,7 +3,7 @@
    if(isset($_SESSION['Glousername']))  $name=$_SESSION['Glousername'];
 
     
-
+$usernames=array();
 include 'config.php';
 $moviesnames=array();
 if(isset($_POST['q']))
@@ -60,10 +60,77 @@ if(isset($_POST['q']))
 
         } 
 
+
+
+        $sql = "SELECT * FROM `user` WHERE 1 ";
+        $result = mysqli_query($conn, $sql);
+
+        while ($row = mysqli_fetch_array($result) ) { 
+              
+            $var=$row['name'];
+            $email=$row['email'];
+            $z= strtolower($var);
+            $s = strtolower($s);
+            $size=strlen($z);
+            $cnt=0;
+            $ans=0;
+            
+           
+            $temp;
+            for($j=0;$j<strlen($z);$j++)
+            {
+                
+                for($i=0;$i<strlen($s);$i++)
+                {
+                     if($z[$j]==$s[$i])
+                     {
+                        $cnt++;
+                        $j++;
+                        if($j>=strlen($z))
+                        {
+                            break;
+                        }
+                     }
+                     else
+                     {
+                        continue;
+                     }
+                }
+                $ans= max($cnt,$ans);
+                $cnt=0;
+
+            }
+
+            if($ans==strlen($s))
+            {
+
+                // echo "                             .............".$var;
+                array_push($usernames,$email);
+            }
+              /*
+              array_push($movies,$var);*/
+
+
+        } 
+
 $_SESSION['search_result'] = $moviesnames;
+$_SESSION['search_result2'] = $usernames;
+
+
+
+
 header("Location:SearchMovie.php");
 
 }
+
+
+
+
+
+
+
+
+
 
 
 
@@ -85,11 +152,12 @@ header("Location:SearchMovie.php");
                     <li><a class="movie-list-title " href="indexlogin.php">Home</a></li>
                     <li><a class="movie-list-title " href="indexlogin.php">About</a></li>
                                
-                               <form id="form" action=""  method ="POST" > 
+                    <form style="margin-left:40%; background:#fff; width:350px; height:32px; display:flex;" id="form" action=""  method ="POST" > 
+                       <i style=" align-self:center; padding:10px 12px; color:#777" class="fa fa-search" aria-hidden="true"></i>
 
-                <input type="search" id="query" name="q" placeholder="Search...">
-                     <button>Search</button>
-                                </form>
+                       <input style=" flex:1; border:none;outline:none;" type="search" id="query" name="q" placeholder="Search...">
+                        <button style=" background:gray; padding:8px 30px; border:none; outline:none; color:#fff;letter-spacing:1px; cursor:pointer;" type="submit">Search</button>
+                    </form>
 
 
                 </ul>

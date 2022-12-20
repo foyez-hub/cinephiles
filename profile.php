@@ -3,6 +3,138 @@
 include 'config.php';
 include_once("topnav.php");
 include_once("sidenav.php");
+    if(isset($_GET['titleself']))
+    {
+        
+        $usermail=$_GET['titleself'];
+        $mymail= $_SESSION['globalemail'];
+        $sql = "SELECT * FROM `user` WHERE `email`='$mymail'";
+        
+        $result1 = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_array($result1);
+        $wants=$row['friendreq'];
+        $str=explode(",", $wants);
+        $friend=",";
+        foreach ($str as $key => $value) {
+        /*echo $value;*/
+        if($value != $usermail)
+        {   
+            $friend .= $value;
+             $friend .= ",";
+        }
+    }
+    $sql = "UPDATE `user` SET `friendreq`='$friend' WHERE `email`='$mymail'";
+    $result = mysqli_query($conn, $sql);
+
+
+
+
+
+    $sql = "SELECT * FROM `user` WHERE `email`='$usermail'";
+    $result1 = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_array($result1);
+    $wants=$row['sentreq'];
+    $str=explode(",", $wants);
+    $friend=",";
+    foreach ($str as $key => $value) {
+       if($value!=$mymail)
+        {$friend .= $value;
+            $friend .= ",";
+        }
+    }
+    $sql = "UPDATE `user` SET `sentreq`='$friend' WHERE `email`='$usermail'";
+    $result = mysqli_query($conn, $sql);
+        
+    
+
+    $sql = "SELECT * FROM `user` WHERE `email`='$usermail'";
+    $result1 = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_array($result1);
+    $wants=$row['friendlist'];
+    $str=explode(",", $wants);
+    $friend=",";
+    foreach ($str as $key => $value) {
+       $friend .= $value;
+       $friend .= ",";
+    }
+    $friend .= $mymail;
+    $sql = "UPDATE `user` SET `sentreq`='$friend' WHERE `email`='$usermail'";
+    $result = mysqli_query($conn, $sql);
+    
+
+
+    $sql = "SELECT * FROM `user` WHERE `email`='$mymail'";
+    $result1 = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_array($result1);
+    $wants=$row['friendlist'];
+    $str=explode(",", $wants);
+    $friend=",";
+    foreach ($str as $key => $value) {
+       $friend .= $value;
+       $friend .= ",";
+    }
+    $friend .= $usermail;
+    $sql = "UPDATE `user` SET `sentreq`='$friend' WHERE `email`='$mymail'";
+    $result = mysqli_query($conn, $sql);
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    if(isset($_POST['cancelsr'])){
+
+    $email=$_POST['cancelsr'];
+   
+    $sql = "SELECT * FROM `user` WHERE `email`='$email'";
+    $mymail= $_SESSION['globalemail'];
+    $result1 = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_array($result1);
+    $wants=$row['friendreq'];
+    $str=explode(",", $wants);
+    $friend=",";
+    foreach ($str as $key => $value) {
+       /*echo $value;*/
+       if($value!=$mymail)
+        {$friend .= $value;
+            $friend .= ",";
+        }
+    }
+    $sql = "UPDATE `user` SET `friendreq`='$friend' WHERE `email`='$email'";
+    $result = mysqli_query($conn, $sql);
+
+
+
+
+
+    $sql = "SELECT * FROM `user` WHERE `email`='$mymail'";
+    $result1 = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_array($result1);
+    $wants=$row['sentreq'];
+    $str=explode(",", $wants);
+    $friend=",";
+    foreach ($str as $key => $value) {
+       if($value!=$email)
+        {$friend .= $value;
+            $friend .= ",";
+        }
+    }
+    $sql = "UPDATE `user` SET `sentreq`='$friend' WHERE `email`='$mymail'";
+    $result = mysqli_query($conn, $sql);
+}
+
+    
 
 
  /*echo "           ".$_SESSION['Glousername'];*/
@@ -175,7 +307,7 @@ include_once("sidenav.php");
                <div class="wrapper">
                    
                    <div class="cover">
-                    <img src="img/1.jpeg" alt="Give Cover Photo">  
+                    <img src="img/sea.jpg" alt="Give Cover Photo">  
                    </div>
                    <div class="id-section">
                       <div class="circle">
@@ -185,8 +317,19 @@ include_once("sidenav.php");
                             $result = mysqli_query($conn, $sql);
                             $row = mysqli_fetch_array($result);
                             $var=$row['image'];
-          
-                        echo '<img src="img/'.$var.'" alt="" class="logo1">';
+                        if(strlen($var)>2)
+                        {
+                            echo '<img src="img/'.$var.'" alt="" class="logo1">';
+                        }
+                        if(strlen($var)<2)
+                        {   
+                            $sql = "UPDATE `user` SET `image`='profile.jpg' WHERE `email`='$email'";
+                            $result = mysqli_query($conn, $sql);
+                            $row = mysqli_fetch_array($result);
+                            $var=$row['image'];
+                            echo '<img src="img/'.$var.'" alt="" class="logo1">';
+                        }
+
                         ?>
                       </div>
                     <div class="id">
@@ -195,7 +338,22 @@ include_once("sidenav.php");
                             echo '<h2>'.$_SESSION['Glousername'].'</h2>' ;
                          ?>
                         
-                        <h5 style="color:rgb(227, 207, 207); font-weight:bold;">Seek For Thrill </h5>
+                        <h5 style="color:rgb(227, 207, 207); font-weight:bold;">
+                        <?php 
+                            $email=$_SESSION['globalemail'];
+                            $sql = "SELECT * FROM `user` WHERE `email`= '$email'";
+                            $result = mysqli_query($conn, $sql);
+                            $row = mysqli_fetch_array($result);
+                            $var=$row['bio'];
+                            if(strlen($var)<1)
+                            {
+                                echo "Movie Freak";
+                            }
+                            else echo $var;
+                         ?>    
+
+
+                         </h5>
                     </div>
                     <div class="buttons">
                     <button class="but1">
@@ -204,6 +362,7 @@ include_once("sidenav.php");
                     
                     
                   </div>
+
                   
 
                 </div>
@@ -217,11 +376,58 @@ include_once("sidenav.php");
         <div class="content-container" style="background-color:black">
             <div class="featured-content" style="background-color:black">
             <div class="movie-list-container" style="background-color:black">
-                <h1 style="margin-top:15px; text-align:center" class="movie-list-title ">RECOMMENDED</h1>
+                <h1 style="margin-top:15px; text-align:center" class="movie-list-title ">My List</h1>
                     <div class="movie-list-wrapper">
                     <div class="movie-list">
 
 
+                         
+   <?php
+
+
+                        
+                        $email=$_SESSION['globalemail'];
+                        $sql = "SELECT * FROM `user` WHERE `email`='$email'";
+                        $result1 = mysqli_query($conn, $sql);
+                        $row = mysqli_fetch_array($result1);
+                        $wants=$row['my_list'];
+                        $str=explode(",", $wants);
+                        foreach ($str as $key => $value) {
+                             /*echo $value;*/
+                        if(strlen($value)<1)
+                        {
+                            continue;
+                        }
+
+                        $sql = "SELECT * FROM `movie_info` WHERE `movie_name`='$value'";
+                        $result1 = mysqli_query($conn, $sql);
+                        $row = mysqli_fetch_array($result1);
+                        $img= $row['image'];
+                        $year= $row['release_year'];
+
+                             echo '<div class="movie-list-item">
+                            <img class="movie-list-item-img" src="img/'.$img.'" alt="">
+                            <span class="movie-list-item-title">'.$value.'</span>
+                            <p class="movie-year-title">'.$year.'
+                                </p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>';
+
+                        }
+
+                    ?>
+                 </div>
+                 <i class="fas fa-chevron-right arrow"></i> 
+             </div>
+              </div>
+
+              <div class="movie-list-container" style="background-color:black">
+                <h1 style="margin-top:15px; text-align:center" class="movie-list-title ">Friend Request</h1>
+                    <div class="movie-list-wrapper">
+                    <div class="movie-list">
+
+
+                      
                          <?php
 
 
@@ -230,126 +436,110 @@ include_once("sidenav.php");
                         $sql = "SELECT * FROM `user` WHERE `email`='$email'";
                         $result1 = mysqli_query($conn, $sql);
                         $row = mysqli_fetch_array($result1);
-                        $wants=$row['recommended'];
+                        $wants=$row['friendreq'];
                         $str=explode(",", $wants);
                         foreach ($str as $key => $value) {
-                             /*echo $value;*/
 
-                        $sql = "SELECT * FROM `movie_info` WHERE `movie_name`='$value'";
+                        if(strlen($value) <1 )
+                        {
+                            continue;
+                        }
+
+                        $sql = "SELECT * FROM `user` WHERE `email`='$value'";
                         $result1 = mysqli_query($conn, $sql);
                         $row = mysqli_fetch_array($result1);
                         $img= $row['image'];
-                        $year= $row['release_year'];
-
-
-                             echo '<div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/'.$img.'" alt="">
-                            <span class="movie-list-item-title">'.$value.'</span>
-                            <p class="movie-year-title">'.$year.'
-                                </p>
-                            <button class="movie-list-item-button">Watch</button>
-                        </div>';
-
-                        }
-
-                    ?>
-                 </div>
-                 <i class="fas fa-chevron-right arrow"></i> 
-             </div>
-              </div> 
-             </div>
-
-
-
-
-             <div class="movie-list-container" style="background-color:black">
-                <h1 style="margin-top:15px; text-align:center" class="movie-list-title ">RECENTLY WATCHED</h1>
-                    <div class="movie-list-wrapper">
-                    <div class="movie-list">
-
-
-                        <?php
-
-
+                        $name= $row['name'];
                         
-                        $email=$_SESSION['globalemail'];
-                        $sql = "SELECT * FROM `user` WHERE `email`='$email'";
-                        $result1 = mysqli_query($conn, $sql);
-                        $row = mysqli_fetch_array($result1);
-                        $wants=$row['recent_watch_list'];
-                        $str=explode(",", $wants);
-                        foreach ($str as $key => $value) {
-                             /*echo $value;*/
 
-                        $sql = "SELECT * FROM `movie_info` WHERE `movie_name`='$value'";
-                        $result1 = mysqli_query($conn, $sql);
-                        $row = mysqli_fetch_array($result1);
-                        $img= $row['image'];
-                        $year= $row['release_year'];
-
-
-                             echo '<div class="movie-list-item">
+                             echo '<div class="movie-list-item" style="display: inline-block;margin:1.5%">
                             <img class="movie-list-item-img" src="img/'.$img.'" alt="">
-                            <span class="movie-list-item-title">'.$value.'</span>
-                            <p class="movie-year-title">'.$year.'
-                                </p>
-                            <button class="movie-list-item-button">Watch</button>
-                        </div>';
+                            <span class="movie-list-item-title">'.$name.'</span>
+                            
+                            <a href="view_profile.php?title='.$value.'"> <input class="movie-list-item-button" type="submit" value="View Profile"> </a>
+                            <a href="profile.php?titleself='.$value.'"> <input class="movie-list-item-button1" name="addfriend" type="submit" value="Accept Request"> </a>
 
-                        }
-
-                    ?>
-                 </div>
-                 <i class="fas fa-chevron-right arrow"></i> 
-             </div>
-              </div> 
-             </div>
-
-
-            <div class="movie-list-container" style="background-color:black">
-                <h1 style="margin-top:15px; text-align:center" class="movie-list-title ">WATCHED</h1>
-                    <div class="movie-list-wrapper">
-                    <div class="movie-list">
-
-
-                        <?php
-
-
+                            
+                       </div>';
                         
-                        $email=$_SESSION['globalemail'];
-                        $sql = "SELECT * FROM `user` WHERE `email`='$email'";
-                        $result1 = mysqli_query($conn, $sql);
-                        $row = mysqli_fetch_array($result1);
-                        $wants=$row['want_to_watch'];
-                        $str=explode(",", $wants);
-                        foreach ($str as $key => $value) {
-                             /*echo $value;*/
-
-                        $sql = "SELECT * FROM `movie_info` WHERE `movie_name`='$value'";
-                        $result1 = mysqli_query($conn, $sql);
-                        $row = mysqli_fetch_array($result1);
-                        $img= $row['image'];
-                        $year= $row['release_year'];
-
-
-                             echo '<div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/'.$img.'" alt="">
-                            <span class="movie-list-item-title">'.$value.'</span>
-                            <p class="movie-year-title">'.$year.'
-                                </p>
-                            <button class="movie-list-item-button">Watch</button>
-                        </div>';
-
                         }
 
                     ?>
                  </div>
                  <i class="fas fa-chevron-right arrow"></i> 
              </div>
-              </div> 
-             </div>
+              </div>
+
              
+            <div class="movie-list-container" style="background-color:black">
+                <h1 style="margin-top:15px; text-align:center" class="movie-list-title ">Sent Request</h1>
+                    <div class="movie-list-wrapper">
+                    <div class="movie-list">
 
+
+                      
+                         <?php
+
+
+                        
+                        $email=$_SESSION['globalemail'];
+                        $sql = "SELECT * FROM `user` WHERE `email`='$email'";
+                        $result1 = mysqli_query($conn, $sql);
+                        $row = mysqli_fetch_array($result1);
+                        $wants=$row['sentreq'];
+                        $str=explode(",", $wants);
+                        foreach ($str as $key => $value) {
+
+                        if(strlen($value) <1 )
+                        {
+                            continue;
+                        }
+
+                        $sql = "SELECT * FROM `user` WHERE `email`='$value'";
+                        $result1 = mysqli_query($conn, $sql);
+                        $row = mysqli_fetch_array($result1);
+                        $img= $row['image'];
+                        $name= $row['name'];
+                        
+
+                             echo '<div class="movie-list-item">
+                            <img class="movie-list-item-img" src="img/'.$img.'" alt="">
+                            <span class="movie-list-item-title">'.$name.'</span>
+                            <a href="view_profile.php?title='.$value.'"> <input class="movie-list-item-button" type="submit" value="View Profile"> </a>
+
+                        <form action="" method="POST">
+                        <div class="buttons">
+
+                       
+
+                        <input name="cancelsr" class="but1"  type="submit" value="'.$value.'">
+
+                        </div>
+
+                        </form>
+
+
+                        </div>';
+                        
+                        }
+
+                    ?>
+                 </div>
+                 <i class="fas fa-chevron-right arrow"></i> 
+             </div>
+              </div>  
+
+
+
+
+
+
+             </div>
+
+
+
+
+            
 
             </div>
         </div>

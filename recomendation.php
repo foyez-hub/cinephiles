@@ -5,7 +5,7 @@ include_once("topnav.php");
 include_once("sidenav.php");
 include 'config.php';
 
-$moviename=$_SESSION['val1'];
+$moviename=$_SESSION['vv'];
 
 
 $image;
@@ -37,6 +37,7 @@ while ($row = mysqli_fetch_array($result1) ) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
     <title>CINEPHILES</title>
     <style>
+        
          body{
             background-color: rgb(83, 25, 25);
          }
@@ -149,8 +150,9 @@ while ($row = mysqli_fetch_array($result1) ) {
 
 
     
-         <button class="button1 ">watch party</button>
-         <button class="button1">Play</button>
+      
+    <a href="streaming.php?title2=$_SESSION['vv']"> <input class="button1 " type="submit" value="Play"> </a>
+         <a href="Group_chat.php?title2=$_SESSION['vv']"> <input class="button1 " type="submit" value="Watch Party"> </a>
 
    
     <script src="app.js"></script>

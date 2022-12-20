@@ -1,7 +1,14 @@
 <?php
 include_once("topnav.php");
 include_once("sidenav.php");
-$moviename1=$_SESSION['passdata'];
+include 'config.php';
+
+$moviename1;
+
+
+if(assert($_GET['watchparty'])){
+	$moviename1=$_GET['watchparty'];
+}
 
 if (isset($_POST['submit'])){
 /* Attempt MySQL server connection. Assuming
@@ -238,7 +245,7 @@ main footer .input2{
 	background-color:black;
 	border: 2px solid white;
 }
-}
+
 main footer textarea::placeholder{
 	color:#ddd;
 }
@@ -249,7 +256,7 @@ main footer textarea::placeholder{
 <div class="container-Streaming">
        <div class="main-video">
         <div class="video">
-            <video src="img/video-1.mp4" controls muted autoplay></video>
+            <video src="vid/Avatar.mp4" controls muted autoplay></video>
             <h3 class="title">
 			<?php if(isset($moviename1)){
                     echo  "Movie Name: ".$moviename1;
