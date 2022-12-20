@@ -236,7 +236,7 @@ if (isset($_POST['sub'])) {
                            <span class="movie-list-item-title">'.$var.'</span>
                            <p class="movie-list-item-desc">
                                '.$synopsis.'</p>
-                           <button class="movie-list-item-button">Details</button>
+                               <a href="movieOverview.php?title='.$var.'"><input class="movie-list-item-button" name="details" type="submit" value="Details"></a>
                        </div>';
                           
                        }

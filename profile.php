@@ -79,7 +79,6 @@ include_once("sidenav.php");
        padding: 10px; 
        border: none;
        background: #bbb7a9;
-       border-radius: 8px;
        cursor: pointer;
 
 
@@ -101,18 +100,6 @@ include_once("sidenav.php");
         background: rgba(104, 226, 10, 0.792);
     }
 
-
-
-    /* .container1{
-            margin-left: 20px ;
-            margin-top: 20px;
-            display: grid;
-            grid-gap: 1rem;
-            background: black;
-            grid-template-areas: 
-            "section  aside footer"
-            ;
-        } */
 
         .item1{
             background-color: gray;

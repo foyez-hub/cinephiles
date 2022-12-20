@@ -16,6 +16,8 @@ include 'config.php';
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
     <title>CINEPHILES</title>
+ 
+
 </head>
 
 <body style="background-color:gray">
@@ -54,7 +56,8 @@ include 'config.php';
                             <span class="movie-list-item-title">'.$var.'</span>
                             <p class="movie-list-item-desc">
                                 '.$synopsis.'</p>
-                            <a href="movieOverview.php?title='.$var.'"> <input class="movie-list-item-button" name="details" type="submit" value="Details"> </a>
+                            <a href="movieOverview.php?title='.$var.'"> <input class="movie-list-item-button" name="details" type="submit" value="Details"> </a>                     
+                            <input class="movie-list-item-button1" name="details" type="submit" value="ADD">                     
                         </div>';
                            
                         }
@@ -66,6 +69,6 @@ include 'config.php';
             </div>
         </div>
     </div>
-    
+
     <script src="app.js"></script>
 </body>

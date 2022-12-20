@@ -82,15 +82,15 @@ header("Location:SearchMovie.php");
             </div>
             <div class="menu-container">
                 <ul class="menu-list">
-                    <li><a class="movie-list-title " href="indexlogin.php">Home</a></li>
+                    <li><a style="margin-top: 49px" class="movie-list-title " href="indexlogin.php">Home</a></li>
                     <li><a class="movie-list-title " href="indexlogin.php">About</a></li>
-                               
-                               <form id="form" action=""  method ="POST" > 
 
-                <input type="search" id="query" name="q" placeholder="Search...">
-                     <button>Search</button>
-                                </form>
+                    <form style="margin-left:40%; background:#fff; width:350px; height:32px; display:flex;" id="form" action=""  method ="POST" > 
+                       <i style=" align-self:center; padding:10px 12px; color:#777" class="fa fa-search" aria-hidden="true"></i>
 
+                       <input style=" flex:1; border:none;outline:none;" type="search" id="query" name="q" placeholder="Search...">
+                        <button style=" background:gray; padding:8px 30px; border:none; outline:none; color:#fff;letter-spacing:1px; cursor:pointer;" type="submit">Search</button>
+                    </form>
 
                 </ul>
             </div>
@@ -128,3 +128,5 @@ header("Location:SearchMovie.php");
             </div>
         </div>
     </div>
+
+</div>

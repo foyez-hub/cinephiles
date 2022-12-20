@@ -221,6 +221,7 @@
   .featured-content {
     height: 50vh;
     padding: 10px;
+    
   }
   
   .featured-title {
@@ -294,7 +295,8 @@
   
   .movie-list-item:hover .movie-list-item-title,
   .movie-list-item:hover .movie-list-item-desc,
-  .movie-list-item:hover .movie-list-item-button {
+  .movie-list-item:hover .movie-list-item-button ,
+  .movie-list-item:hover .movie-list-item-button1 {
     opacity: 1;
   }
   
@@ -341,6 +343,23 @@
     position: absolute;
     bottom: 20px;
     left: 50px;
+    opacity: 0;
+    transition: 1s all ease-in-out;
+  }
+  .movie-list-item-button1{
+    padding: 10px;
+    padding-left:15px;
+    padding-right:15px;
+    margin-left: 40px;
+    background-color: #4dbf00;
+    color: white;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    bottom: 20px;
+    left: 120px;
     opacity: 0;
     transition: 1s all ease-in-out;
   }
@@ -450,3 +469,10 @@
 .input:focus::placeholder{
   color: #1a75ff;
 }
+
+
+
+
+
+/* tryOverviw Page  */
+

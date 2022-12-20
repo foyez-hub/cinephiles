@@ -1,8 +1,7 @@
 
 
-
 <?php
-
+session_start();
 include 'config.php';
 $moviename=$_GET['title'];
 
@@ -33,105 +32,99 @@ while ($row = mysqli_fetch_array($result1) ) {
 ?>
 
 
-<?php
-   include_once("topnav.php");
-?>
-<?php
-  include_once("sidenav.php");
-?>
 
+
+
+
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Sen:wght@400;700;800&display=swap"
-        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
-    <title>CINEPHILES</title>
+    <title>Movie Overview</title>
     <style>
-         body{
-            background-color: rgb(83, 25, 25);
-         }
-        .contain1{
+        *margin{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: 'Poppins', sans-serif;
+
+        }
+
+        .overviewMain{
+            width: 100%;
+            height:100vh;
+            background-image: linear-gradient(rgba(12,3,51,0.3),rgba(12,3,51,0.3));
+            position: relative;
+            padding: 0 0;
             display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
+        nav{
+            width:100%;
+            position:absolute;
+            top:0;
+            left:0;
+            padding:0 0;
+            display: flex;
+            align-items: center;
             justify-content: space-between;
-             background-color: black; 
-            width: 80%;
-            height: 70%;
-            margin-top: 5%;
-            margin-left: 12%;
-            margin-bottom: 1%;
-            margin-right: 5%;
-            border-radius: 2%;
 
-        }
+       }
 
-        .pic{
-        background-color :blanchedalmond;
-        border-radius: 5%;
-        flex-basis:35%;
-        position: sticky;
-        top: 70px;
-        align-self: flex-start;
-        width: 30%;
-        height: 70%;
-        margin: 7% 7%;
-        
+       nav ul li{
+        list-style:none;
+        display: inline-block;
+        margin-left: -8%;
+       }
+       nav ul a h1{
+        list-style:none;
+        display: inline-block;
+        margin-top: 3px;
+        margin-left: 20px;
+        color: #fff;
+        font-size: 40px;
 
-        }
-    .pic img{
-        width: 100%;
-        height: 100%;
-        border-radius: 5%;
-    }
+       }
+      
+       nav ul li a{
+        color: #fff;
 
-        .description{
-        background-color :blanchedalmond;
-        flex-basis: 50%;
-        /* position: sticky; */
-        top: 70px;
-        align-self: flex-start;
-        width: 45%;
-        height: 70%;
-        margin: 7% 7%;
+       }
+       .content{
+        width: 80%;
+        text-align: center;
+
+       }
+      .content h1, h2, p{
+        color: #fff;
         }
-        .description h2{
-            margin: auto;
-            position: relative;
-            float: left;
-            top: 10%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+      .back-video{
+        position: absolute; 
+        right:0;
+        bottom: 0;
+        z-index: -1;
+      } 
+@media (min-aspect-ratio: 16/9) {
+        .back-video{
+            width: 100%;
+            height: auto;
         }
-        #genres{
-            margin: auto;
-            position: relative;
-            float: left;
-            top: 15%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+  }
+@media (max-aspect-ratio: 16/9) {
+    .back-video{
+            width: auto;
+            height: 100%;
         }
-        #year{
-            margin: auto;
-            position: relative;
-            float: left;
-            top: 25%;
-            transform: translate(-75%, -25%);
-        }
-    
-        #des{
-            margin: auto;
-            position: relative;
-            float: left;
-            top: 40%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-        .button1{
+}
+
+
+
+.button1{
         background-color: gray;
         color: black;
         padding:4px;
@@ -139,7 +132,7 @@ while ($row = mysqli_fetch_array($result1) ) {
         text-align: center;
         font-weight: bold;
         border-radius: 10%;
-        margin-left: 23%;
+        margin-left: 5%;
         cursor: pointer;
         width: 15%;
         height: 6%;
@@ -149,74 +142,81 @@ while ($row = mysqli_fetch_array($result1) ) {
        background-color: green;
     }
     
-          
-       
     </style>
 </head>
-
 <body>
-
-    
-
-
-    <div class="contain1">
-        <div class="pic">
-            <img src="img/<?php if(isset($image)){
-                echo $image;
-                }
-                ?>">
-
-        </div>
-
-        <div class="description">
-        <h2>
-               <?php if(isset($moviename)){
+    <div class="overviewMain">
+       <video autoplay loop umuted plays-inline class="back-video">
+        <!-- <source src="vid/Avatar.mp4" type="video/mp4"> -->
+        <source src="vid/Avatar.mp4" type="video/mp4">
+       </video>
+       <nav>
+        <ul>
+            <li><a href="#"><i class="fa fa-arrow-left fa-2x " aria-hidden="true"></i></a></li>
+            <a href="indexlogin.php">
+                <h1>CINEPHILES</h1>
+            </a>
+        </ul>
+       </nav>
+       
+       <div class="content">
+        <h1><?php if(isset($moviename)){
                 echo  "Movie Name: ".$moviename;
 
                 }
                 ?>
-        </h2>
-         <h3 id="genres">
-               <?php if(isset($genres)){
+        </h1>
+        <h2><?php if(isset($genres)){
                 echo "Genres: ".$genres;
                 }
                 ?>
-         </h3>
-         <h3 id="year">
-               <?php if(isset($relese_year)){
+        </h2>
+        <h2><?php if(isset($relese_year)){
                 echo "Release Year: ".$relese_year;
                 }
                 ?>
-         </h3>
-         <h3 id="des">
-               <?php if(isset($des)){
+        </h2>
+        <p><?php if(isset($des)){
                 echo  $des;
                 }
                 ?>
-         </h3>
+        </p>
 
-
-        </div>
-
-
-    </div>
-
-
-
-
-        
-
-         
-                   <?php 
-                    $_SESSION['passdata'] = $moviename;
-                    ?>
+        <?php 
+        $_SESSION['passdata'] = $moviename;
+        ?>
         
 
          <a href="streaming.php?title2=$moviename"> <input class="button1 " type="submit" value="Play"> </a>
          <a href="Group_chat.php?title2=$moviename"> <input class="button1 " type="submit" value="Watch Party"> </a>
 
-   
-    <script src="app.js"></script>
-</body>
+    
+        
+       </div>
+    </div>
 
+
+    <script src="app.js"></script>
+    
+</body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
