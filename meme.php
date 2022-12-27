@@ -52,6 +52,7 @@
         display: flex;
         justify-content: space-between;
         padding: 13px 5%;
+        position:relative;
 
 
     }
@@ -179,40 +180,6 @@
 
 }
 
-.user-profile{
-    display: flex;
-    align-items: center;
-
-}
-
-
-
-.user-profile img{
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    margin-right: 10px;
-
-}
-
-.user-profile {
-    margin-bottom: -5px;
-    font-weight: 500;
-    color: #626262;
-    cursor: pointer;
-
-}
-.user-profile span{
-    font-size: 13px;
-    color: #9a9a9a;
-
-}
-.user-profile small{
-    display: flex;
-    align-items: center;
-
-}
-
 .post-input-container{
     padding-left: 55px;
     padding-top: 20px;
@@ -282,6 +249,9 @@
 }
 
 
+
+
+
     </style>
 
 
@@ -303,6 +273,14 @@
       <div class="left-sidebar">
       <p>Click on the image to download it:</p> 
         <a href="memeImg/realimg.jpg" download><img style=" width: 80%;height: 80%;" src="memeImg/realimg.jpg" alt=""></a>
+        <div class="most-vote-section">
+        <div class="user-profile">
+           <img src="img/15.jpg" > 
+           <span > Mehadi  </span>
+        </div>
+        <img src="img/15.jpg"  class="post-img" >
+
+        </div>
         
       </div>
 

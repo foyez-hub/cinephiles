@@ -4,8 +4,308 @@ include 'config.php';
 include_once("topnav.php");
 include_once("sidenav.php");
 
+    //save privacy
 
- /*echo "           ".$_SESSION['Glousername'];*/
+    if(isset($_POST['save'])){
+
+        $val="p";
+        if($_POST['only']) 
+        {
+            $val= "o";
+        }
+        else if($_POST['public']) 
+        {
+            $val= "p";
+        }
+        else if($_POST['friend']) 
+        {
+            $val= "f";
+        }
+        $mymail= $_SESSION['globalemail'];
+        $sql = "UPDATE `user` SET `watchlistp`='$val' WHERE `email`='$mymail'";
+        $result =mysqli_query($conn, $sql);
+    }
+    if(isset($_POST['save2'])){
+
+        $val="p";
+        if($_POST['only']) 
+        {
+            $val= "o";
+        }
+        else if($_POST['public']) 
+        {
+            $val= "p";
+        }
+        else if($_POST['friend']) 
+        {
+            $val= "f";
+        }
+        $mymail= $_SESSION['globalemail'];
+        $sql = "UPDATE `user` SET `watchlistp`='$val' WHERE `email`='$mymail'";
+        $result =mysqli_query($conn, $sql);
+
+     }
+     if(isset($_POST['save3'])){
+
+        $val="p";
+        if($_POST['only']) 
+        {
+            $val= "o";
+        }
+        else if($_POST['public']) 
+        {
+            $val= "p";
+        }
+        else if($_POST['friend']) 
+        {
+            $val= "f";
+        }
+        $mymail= $_SESSION['globalemail'];
+        $sql = "UPDATE `user` SET `watchlistp`='$val' WHERE `email`='$mymail'";
+        $result =mysqli_query($conn, $sql);
+
+     }
+
+    if(isset($_GET['acceptrequest']))
+    {
+        
+
+        $usermail=$_GET['acceptrequest'];
+        $mymail= $_SESSION['globalemail'];
+        $sql = "SELECT * FROM `user` WHERE `email`='$mymail'";
+        
+        $result1 = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_array($result1);
+        $wants=$row['friendreq'];
+        $str=explode(",", $wants);
+        $friend=",";
+        foreach ($str as $key => $value) {
+        // /echo $value;/
+
+        if($value != $usermail && strlen($value)>1)
+        {   
+            $friend .= $value;
+             $friend .= ",";
+        }
+    }  
+    $sql = "UPDATE `user` SET `friendreq`='$friend' WHERE `email`='$mymail'";
+    $result = mysqli_query($conn, $sql);
+
+    $sql = "SELECT * FROM `user` WHERE `email`='$mymail'";
+    $result1 = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_array($result1);
+    $wants=$row['friendlist'];
+    $str=explode(",", $wants);
+    $friend=",";
+    foreach ($str as $key => $value) {
+        if(strlen($value)>1)
+        {
+            $friend .= $value;
+            $friend .= ",";     
+        }
+       
+    }
+    $friend .= $usermail;
+    $friend .=",";
+    $sql = "UPDATE `user` SET `friendlist`='$friend' WHERE `email`='$mymail'";
+    $result = mysqli_query($conn, $sql);
+
+
+
+
+$sql = "SELECT * FROM `user` WHERE `email`='$usermail'";
+        
+        $result1 = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_array($result1);
+        $wants=$row['friendreq'];
+        $str=explode(",", $wants);
+        $friend=",";
+        foreach ($str as $key => $value) {
+        // /echo $value;/
+        if($value != $mymail && strlen($value)>1)
+        {   
+            $friend .= $value;
+             $friend .= ",";
+        }
+    }  
+    $sql = "UPDATE `user` SET `sentreq`='$friend' WHERE `email`='$usermail'";
+    $result = mysqli_query($conn, $sql);
+
+    $sql = "SELECT * FROM `user` WHERE `email`='$usermail'";
+    $result1 = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_array($result1);
+    $wants=$row['friendlist'];
+    $str=explode(",", $wants);
+    $friend=",";
+    foreach ($str as $key => $value) {
+        if(strlen($value)>1)
+        {
+            $friend .= $value;
+            $friend .= ",";     
+        }
+       
+    }
+    $friend .= $mymail;
+    $friend .=",";
+    $sql = "UPDATE `user` SET `friendlist`='$friend' WHERE `email`='$usermail'";
+    $result = mysqli_query($conn, $sql);
+    
+
+
+    
+
+
+
+    }
+
+
+
+
+
+    if(isset($_GET['cancel']))
+    {
+        $email=$_GET['cancel'];
+        $mymail= $_SESSION['globalemail'];  
+
+        $sql = "SELECT * FROM `user` WHERE `email`='$mymail'";
+        $result1 = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_array($result1);
+        $wants=$row['friendreq'];
+        $str=explode(",", $wants);
+        $friend=",";
+        foreach ($str as $key => $value) {
+            if(strlen($value)>1 && $value != $email)
+            {
+                $friend .= $value;
+                $friend .= ",";     
+            }
+       
+        }
+
+    $sql = "UPDATE `user` SET `friendreq`='$friend' WHERE `email`='$mymail'";
+    $result = mysqli_query($conn, $sql);
+
+
+
+    $sql = "SELECT * FROM `user` WHERE `email`='$email'";
+    $result1 = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_array($result1);
+    $wants=$row['sentreq'];
+    $str=explode(",", $wants);
+    $friend=",";
+    foreach ($str as $key => $value) {
+        if(strlen($value)>1 && $value != $mymail)
+        {
+            $friend .= $value;
+            $friend .= ",";     
+        }
+       
+    }
+    $sql = "UPDATE `user` SET `sentreq`='$friend' WHERE `email`='$email'";
+    $result = mysqli_query($conn, $sql);
+
+
+
+    }
+
+    if(isset($_GET['unfriend'])){
+
+    $email=$_GET['unfriend'];
+    $mymail= $_SESSION['globalemail'];
+   
+    $sql = "SELECT * FROM `user` WHERE `email`='$email'";
+    $result1 = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_array($result1);
+    $wants=$row['friendlist'];
+    $str=explode(",", $wants);
+    $friend=",";
+    foreach ($str as $key => $value) {
+    //    /echo $value;/
+       if($value!=$mymail  && strlen($value)>1)
+        {$friend .= $value;
+            $friend .= ",";
+        }
+    }
+    $sql = "UPDATE `user` SET `friendlist`='$friend' WHERE `email`='$email'";
+    $result = mysqli_query($conn, $sql);
+
+
+
+
+
+    $sql = "SELECT * FROM `user` WHERE `email`='$mymail'";
+    $result1 = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_array($result1);
+    $wants=$row['friendlist'];
+    $str=explode(",", $wants);
+    $friend=",";
+    foreach ($str as $key => $value) {
+       if($value!=$email && strlen($value)>1)
+        {$friend .= $value;
+            $friend .= ",";
+        }
+    }
+    $sql = "UPDATE `user` SET `friendlist`='$friend' WHERE `email`='$mymail'";
+    $result = mysqli_query($conn, $sql);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+    if(isset($_GET['cancelsr'])){
+
+    $email=$_GET['cancelsr'];
+    $mymail= $_SESSION['globalemail'];
+   
+    $sql = "SELECT * FROM `user` WHERE `email`='$email'";
+    $mymail= $_SESSION['globalemail'];
+    $result1 = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_array($result1);
+    $wants=$row['friendreq'];
+    $str=explode(",", $wants);
+    $friend=",";
+    foreach ($str as $key => $value) {
+    //    /echo $value;/
+       if($value!=$mymail  && strlen($value)>1)
+        {$friend .= $value;
+            $friend .= ",";
+        }
+    }
+    $sql = "UPDATE `user` SET `friendreq`='$friend' WHERE `email`='$email'";
+    $result = mysqli_query($conn, $sql);
+
+
+
+
+
+    $sql = "SELECT * FROM `user` WHERE `email`='$mymail'";
+    $result1 = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_array($result1);
+    $wants=$row['sentreq'];
+    $str=explode(",", $wants);
+    $friend=",";
+    foreach ($str as $key => $value) {
+       if($value!=$email && strlen($value)>1)
+        {$friend .= $value;
+            $friend .= ",";
+        }
+    }
+    $sql = "UPDATE `user` SET `sentreq`='$friend' WHERE `email`='$mymail'";
+    $result = mysqli_query($conn, $sql);
+}
+
+    
+
+
+//  /echo "           ".$_SESSION['Glousername'];/
 
  ?>
 
@@ -141,7 +441,108 @@ include_once("sidenav.php");
             margin-top: 120px;
             margin-left: 55%;
             box-sizing: border-box;
-        }     
+        }  
+        .list{
+            margin:15px;
+            margin-left:10%;
+            height:80px;
+            width:80%;
+            color:gray;
+            background-color:white;
+            display:flex;
+            align-items: center;
+            justify-content:space-between;
+        }
+        .list ul li a{  
+        margin-top: 49px; 
+        color:black;
+        }
+    .people-bar{
+        display: none;
+    }
+
+#request-bar{
+    padding-top:5px;
+    position:absolute;
+    width:90%;
+    max-width:1000px;
+    background:blue;
+    top:690px;
+    left:20%;
+    right:20%;
+    z-index: 10000;
+    display:none;
+}
+
+
+.people-section{
+    width:450px;
+    padding:5%;
+    background:white;
+    margin:20px;
+    display:none;
+
+
+}
+.people-profile {
+    margin-bottom: -5px;
+    font-weight: 500;
+    color: #626262;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+
+}
+
+.people-profile img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 10px;
+
+} 
+.people-profile p{
+    font-size:30px;
+}
+.friend-nav{
+    cursor: pointer;
+}
+#privacy-section{
+            width: 120px;
+            height: 120px;
+            position:relative;
+            background-color: gray;
+            padding-left: 15px;
+            padding-top: 15px;
+            display: none;
+           
+
+}
+#privacy-section2{
+            width: 120px;
+            height: 120px;
+            position:relative;
+            background-color: gray;
+            padding-left: 15px;
+            padding-top: 15px;
+            display: none;
+           
+
+}
+#privacy-section3{
+            width: 120px;
+            height: 120px;
+            position:relative;
+            background-color: gray;
+            padding-left: 15px;
+            padding-top: 15px;
+            display: none;
+           
+
+}
+
+        
+
 
 
     </style>
@@ -166,14 +567,25 @@ include_once("sidenav.php");
                    </div>
                    <div class="id-section">
                       <div class="circle">
-                        <?php 
+                      <?php 
                             $email=$_SESSION['globalemail'];
                             $sql = "SELECT * FROM `user` WHERE `email`= '$email'";
                             $result = mysqli_query($conn, $sql);
                             $row = mysqli_fetch_array($result);
                             $var=$row['image'];
-          
-                        echo '<img src="img/'.$var.'" alt="" class="logo1">';
+                        if(strlen($var)>2)
+                        {
+                            echo '<img src="img/'.$var.'" alt="" class="logo1">';
+                        }
+                        if(strlen($var)<2)
+                        {   
+                            $sql = "UPDATE `user` SET `image`='profile.jpg' WHERE `email`='$email'";
+                            $result = mysqli_query($conn, $sql);
+                            $row = mysqli_fetch_array($result);
+                            $var=$row['image'];
+                            echo '<img src="img/'.$var.'" alt="" class="logo1">';
+                        }
+
                         ?>
                       </div>
                     <div class="id">
@@ -182,7 +594,22 @@ include_once("sidenav.php");
                             echo '<h2>'.$_SESSION['Glousername'].'</h2>' ;
                          ?>
                         
-                        <h5 style="color:rgb(227, 207, 207); font-weight:bold;">Seek For Thrill </h5>
+                        <h5 style="color:rgb(227, 207, 207); font-weight:bold;">
+                        
+                        <?php 
+                            $email=$_SESSION['globalemail'];
+                            $sql = "SELECT * FROM `user` WHERE `email`= '$email'";
+                            $result = mysqli_query($conn, $sql);
+                            $row = mysqli_fetch_array($result);
+                            $var=$row['bio'];
+                            if(strlen($var)<1)
+                            {
+                                echo "Movie Freak";
+                            }
+                            else echo $var;
+                         ?>
+                    
+                    </h5>
                     </div>
                     <div class="buttons">
                     <button class="but1">
@@ -195,6 +622,9 @@ include_once("sidenav.php");
 
                 </div>
             </div>
+
+          
+
                 
         </div>
     </div>
@@ -203,43 +633,69 @@ include_once("sidenav.php");
        <div class="container" style="background-color:black">
         <div class="content-container" style="background-color:black">
             <div class="featured-content" style="background-color:black">
+            
+
+
+
             <div class="movie-list-container" style="background-color:black">
-                <h1 style="margin-top:15px; text-align:center" class="movie-list-title ">RECOMMENDED</h1>
+            <div class="privacy" style="display:flex; align-items: center;justify-content:center;">
+            <a style="pading:20px;width:80px;height:30px;cursor:pointer; background:white; color:black;margin:a; font-size:15px" onclick="openprivacyForm()">Privacy<i class='fas fa-eye'></i></a>
+                
+                <form action="" method="POST"  id="privacy-section">
+                 <input type="radio" name = "public" value="public">Public</br>
+                 <input type="radio" name = "friend" value="friend">Friends</br>
+                 <input type="radio" name = "only" value="only">Only Me</br>
+                 <div style="display: flex;">
+                 <input  type="submit" name = "save" value="Save"></br>
+                 <a style="width:50px; cursor:pointer; background:white; color:black;  margin:auto" onclick="closeprivacyForm()">close</a>
+                     
+                 </div>
+                 
+ 
+
+
+              </form>
+              <h1 style="margin-top:15px; text-align:center" class="movie-list-title ">Watch list</h1>
+
+            </div>
                     <div class="movie-list-wrapper">
                     <div class="movie-list">
-
-
-                         <?php
+                    <?php
 
 
                         
-                        $email=$_SESSION['globalemail'];
-                        $sql = "SELECT * FROM `user` WHERE `email`='$email'";
-                        $result1 = mysqli_query($conn, $sql);
-                        $row = mysqli_fetch_array($result1);
-                        $wants=$row['recommended'];
-                        $str=explode(",", $wants);
-                        foreach ($str as $key => $value) {
-                             /*echo $value;*/
+                    $email=$_SESSION['globalemail'];
+                    $sql = "SELECT * FROM `user` WHERE `email`='$email'";
+                    $result1 = mysqli_query($conn, $sql);
+                    $row = mysqli_fetch_array($result1);
+                    $wants=$row['recommended'];
+                    $str=explode(",", $wants);
+                    foreach ($str as $key => $value) {
+                        // /echo $value;/
+                    if(strlen($value)<1)
+                    {
+                        continue;
+                    }
 
-                        $sql = "SELECT * FROM `movie_info` WHERE `movie_name`='$value'";
-                        $result1 = mysqli_query($conn, $sql);
-                        $row = mysqli_fetch_array($result1);
-                        $img= $row['image'];
-                        $year= $row['release_year'];
+                    $sql = "SELECT * FROM `movie_info` WHERE `movie_name`='$value'";
+                    $result1 = mysqli_query($conn, $sql);
+                    $row = mysqli_fetch_array($result1);
+                    $img= $row['image'];
+                    $year= $row['release_year'];
 
+                        echo '<div class="movie-list-item">
+                        <img class="movie-list-item-img" src="img/'.$img.'" alt="">
+                        <span class="movie-list-item-title">'.$value.'</span>
+                        <p class="movie-year-title">'.$year.'
+                            </p>
+                        <button class="movie-list-item-button">Watch</button>
+                    </div>';
 
-                             echo '<div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/'.$img.'" alt="">
-                            <span class="movie-list-item-title">'.$value.'</span>
-                            <p class="movie-year-title">'.$year.'
-                                </p>
-                            <button class="movie-list-item-button">Watch</button>
-                        </div>';
-
-                        }
+                    }
 
                     ?>
+
+                        
                  </div>
                  <i class="fas fa-chevron-right arrow"></i> 
              </div>
@@ -250,7 +706,26 @@ include_once("sidenav.php");
 
 
              <div class="movie-list-container" style="background-color:black">
-                <h1 style="margin-top:15px; text-align:center" class="movie-list-title ">RECENTLY WATCHED</h1>
+             <div class="privacy" style="display:flex; align-items: center;justify-content:center;">
+            <a style="pading:20px;width:80px;height:30px;cursor:pointer; background:white; color:black;margin:a; font-size:15px" onclick="openprivacyForm2()">Privacy<i class='fas fa-eye'></i></a>
+                
+                <form action="" method="POST"  id="privacy-section2">
+                 <input type="radio" name = "public" value="public">Public</br>
+                 <input type="radio" name = "friend" value="friend">Friends</br>
+                 <input type="radio" name = "only" value="only">Only Me</br>
+                 <div style="display: flex;">
+                 <input  type="submit" name = "save2" value="save2"></br>
+                 <a style="width:50px; cursor:pointer; background:white; color:black;  margin:auto" onclick="closeprivacyForm2()">close</a>
+                     
+                 </div>
+                 
+ 
+
+
+              </form>
+              <h1 style="margin-top:15px; text-align:center" class="movie-list-title ">RECENTLY WATCHED</h1>
+
+            </div>
                     <div class="movie-list-wrapper">
                     <div class="movie-list">
 
@@ -263,9 +738,13 @@ include_once("sidenav.php");
                         $sql = "SELECT * FROM `user` WHERE `email`='$email'";
                         $result1 = mysqli_query($conn, $sql);
                         $row = mysqli_fetch_array($result1);
-                        $wants=$row['recent_watch_list'];
+                        $wants=$row['my_list'];
                         $str=explode(",", $wants);
                         foreach ($str as $key => $value) {
+                            if(strlen($value)<1)
+                    {
+                        continue;
+                    }
                              /*echo $value;*/
 
                         $sql = "SELECT * FROM `movie_info` WHERE `movie_name`='$value'";
@@ -294,7 +773,29 @@ include_once("sidenav.php");
 
 
             <div class="movie-list-container" style="background-color:black">
-                <h1 style="margin-top:15px; text-align:center" class="movie-list-title ">WATCHED</h1>
+
+
+            <div class="privacy" style="display:flex; align-items: center;justify-content:center;">
+            <a style="pading:20px;width:80px;height:30px;cursor:pointer; background:white; color:black;margin:a; font-size:15px" onclick="openprivacyForm3()">Privacy<i class='fas fa-eye'></i></a>
+                
+                <form action="" method="POST"  id="privacy-section3">
+                 <input type="radio" name = "public" value="public">Public</br>
+                 <input type="radio" name = "friend" value="friend">Friends</br>
+                 <input type="radio" name = "only" value="only">Only Me</br>
+                 <div style="display: flex;">
+                 <input  type="submit" name = "save3" value="save3"></br>
+                 <a style="width:50px; cursor:pointer; background:white; color:black;  margin:auto" onclick="closeprivacyForm3()">close</a>
+                     
+                 </div>
+                 
+ 
+
+
+              </form>
+              <h1 style="margin-top:15px; text-align:center" class="movie-list-title ">Favourite</h1>
+
+            </div>
+                
                     <div class="movie-list-wrapper">
                     <div class="movie-list">
 
@@ -310,6 +811,10 @@ include_once("sidenav.php");
                         $wants=$row['want_to_watch'];
                         $str=explode(",", $wants);
                         foreach ($str as $key => $value) {
+                            if(strlen($value)<1)
+                    {
+                        continue;
+                    }
                              /*echo $value;*/
 
                         $sql = "SELECT * FROM `movie_info` WHERE `movie_name`='$value'";
@@ -343,12 +848,63 @@ include_once("sidenav.php");
     </div>
 
 
+<div id="people-bar">  
+    <div class="people-section">
+        <div class="people-profile">
+           <img src="img/15.jpg" > 
+           <p > Mehadi Hasan </p>
+       </div>     
+    </div>
+
+    <div class="people-section">
+        <div class="people-profile">
+           <img src="img/15.jpg" > 
+           <p > Mehadi Hasan </p>
+       </div>     
+    </div>
+
+
+    <div class="people-section">
+        <div class="people-profile">
+           <img src="img/15.jpg" > 
+           <p > Mehadi Hasan </p>
+       </div>     
+    </div>
+    <div class="people-section">
+        <div class="people-profile">
+           <img src="img/15.jpg" > 
+           <p > Mehadi Hasan </p>
+       </div>     
+    </div>
+</div>
+
+
+
+<div id="request-bar">   
+    <div class="people-section">
+        <div class="user-profile">
+           <img src="img/15.jpg" > 
+           <p > Mehadi </p>
+           <span>&nbsp you sent friend Request</span>
+
+        </div>
+
+        <div class="request-div">
+            <button class="req-btn">Cancel Request</button>
+        </div>
+        
+
+    </div>
+
+</div>
 
 
 
 
 
-    <script src="app.js"></script>
+
+
+<script src="app.js"></script>
 </body>
 
 </html>

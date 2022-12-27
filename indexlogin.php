@@ -100,6 +100,7 @@ if (isset($_POST['sub'])) {
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
     <title>CINEPHILES</title>
+    
 </head>
 
 <body>
@@ -370,7 +371,7 @@ if (isset($_POST['sub'])) {
                 </div>
             </div>
         </div>
-    </div>-
+    </div>
     
     <script src="app.js"></script>
 </body>

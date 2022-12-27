@@ -37,7 +37,6 @@ ball.addEventListener("click", () => {
 function toggleClock() {
   var my = document.getElementById('dropdown');
   var displaySetting = my.style.display;
-  // var Button = document.getElementById('SearchIcon');
   if (displaySetting == 'block') {
     my.style.display = 'none';
   }
@@ -47,9 +46,78 @@ function toggleClock() {
 }
 
 
+// function openfriendForm() {
+//   document.getElementById("people-bar").style.display = "block";
+//   document.getElementById("notification-bar").style.display = "none";
+// }
+
+
+// function closefriendForm() {
+//   document.getElementById("people-bar").style.display = "none";
+// }
+
+// function opennotificationbarForm() {
+//   document.getElementById("notification-bar").style.display = "block";
+//   document.getElementById("people-bar").style.display = "none";
+// }
+
+
+// function closenotificationbarForm() {
+//   document.getElementById("notification-bar").style.display = "none";
+// }
+
+// function openSentRequestForm() {
+//   document.getElementById("notification-bar").style.display = "none";
+//   document.getElementById("people-bar").style.display = "none";
+//   document.getElementById("request-bar").style.display = "block";
+// }
+
+
+// function closesentrequestForm() {
+//   document.getElementById("request-bar").style.display = "none";
+// }
+
+function openprivacyForm() {
+  // document.getElementById("notification-bar").style.display = "none";
+  // document.getElementById("people-bar").style.display = "none";
+  // document.getElementById("request-bar").style.display = "none";
+  document.getElementById("privacy-section").style.display = "block";
+}
+
+
+function closeprivacyForm() {
+  document.getElementById("privacy-section").style.display = "none";
+}
+
+
+function openprivacyForm2() {
+  // document.getElementById("notification-bar").style.display = "none";
+  // document.getElementById("people-bar").style.display = "none";
+  // document.getElementById("request-bar").style.display = "none";
+  document.getElementById("privacy-section2").style.display = "block";
+}
+
+
+function closeprivacyForm2() {
+  document.getElementById("privacy-section2").style.display = "none";
+}
+
+function openprivacyForm3() {
+  // document.getElementById("notification-bar").style.display = "none";
+  // document.getElementById("people-bar").style.display = "none";
+  // document.getElementById("request-bar").style.display = "none";
+  document.getElementById("privacy-section3").style.display = "block";
+}
+
+
+function closeprivacyForm3() {
+  document.getElementById("privacy-section3").style.display = "none";
+}
+
 
 function openForm() {
   document.getElementById("myForm").style.display = "block";
+  // document.getElementById("notification-bar").style.display = "none";
 }
 
 function closeForm() {

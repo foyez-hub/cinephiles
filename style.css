@@ -1,5 +1,6 @@
 * {
     margin: 0;
+    box-sizing: border-box; 
   }
   
   body {
@@ -470,9 +471,4 @@
   color: #1a75ff;
 }
 
-
-
-
-
-/* tryOverviw Page  */
 
