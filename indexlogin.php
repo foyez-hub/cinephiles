@@ -5,11 +5,16 @@
 
 include 'config.php';
 
+<<<<<<< HEAD
+=======
+include_once("topnav.php");
+>>>>>>> FoyezPlayground
 
 include_once("sidenav.php");
 
 
 
+<<<<<<< HEAD
 
 include_once("topnav.php");
 
@@ -19,6 +24,20 @@ include_once("topnav.php");
 $startsec=0;
 $genres_count=0;
 $countgenresarray=array();
+=======
+if (isset($_POST['sub'])) {
+    $movies=array();
+
+
+     $type="";
+
+     if(isset($_POST['LIGHT'])){
+        $type="LIGHT";
+    }
+    if(isset($_POST['DARK'])){
+        $type="DARK";
+    }
+>>>>>>> FoyezPlayground
 
 // favorites count
 $email=$_SESSION['globalemail'];
@@ -29,10 +48,34 @@ $wants=$row['favorites'];
 $str=explode(",", $wants);
 foreach ($str as $key => $value) {
 
+<<<<<<< HEAD
     if(strlen($value)<1)
   {
    continue;
   }
+=======
+  
+
+    $genra="";
+    if(isset($_POST['DRAMA'])){
+        $genra="DRAMA";
+    }
+    if(isset($_POST['ROMANCE'])){
+        $genra="ROMANCE";
+    }
+    if(isset($_POST['THRILLER'])){
+        $genra="THRILLER";
+    }
+    if(isset($_POST['SCIENCE FICTION'])){
+        $genra="SCIENCE FICTION";
+    }
+    if(isset($_POST['HORROR'])){
+        $genra="HORROR";
+    }
+    if(isset($_POST['FANTASY'])){
+        $genra="FANTASY";
+    }
+>>>>>>> FoyezPlayground
 
   $sqlgen = "SELECT * FROM `movie_info` WHERE `movie_name`='$value'";
   $resultgen = mysqli_query($conn, $sqlgen);
@@ -45,9 +88,49 @@ foreach ($str as $key => $value) {
 
 
 
+<<<<<<< HEAD
 
 
+=======
+    $time="";
+   
 
+
+    if(isset($_POST['B2'])){
+        $time="B2";
+    }
+    if(isset($_POST['A2'])){
+        $time="A2";
+    }
+    if(isset($_POST['M'])){
+        $time="M";
+    }
+
+    
+
+
+$sql = "SELECT * FROM `movie_info` WHERE 1";
+$result1 = mysqli_query($conn, $sql);
+while ($row = mysqli_fetch_array($result1) ) { 
+
+   $name=$row['movie_name'];
+   array_push($movies,$name);
+   $var=$row['category'];
+   $year=$row['release_year'];
+   $gen=$row['genres'];
+
+    
+   if($var==$type  || strval($genra)==$gen ){
+       
+    array_push($movies,$name);
+
+   }
+  
+   
+>>>>>>> FoyezPlayground
+
+
+    
 
 
 $startsec++;
@@ -55,22 +138,35 @@ $startsec++;
 }
 
 
+<<<<<<< HEAD
 $wants1=$row['recent'];
 $str=explode(",", $wants1);
 foreach ($str as $key => $value) {
+=======
+$len=count($movies);
+$randomNumber = rand(0,$len);
+>>>>>>> FoyezPlayground
 
     if(strlen($value)<1)
   {
    continue;
   }
 
+$_SESSION['vv']=$movies[$randomNumber];
+
+header("Location:recomendation.php");
 
   $sqlgen = "SELECT * FROM `movie_info` WHERE `movie_name`='$value'";
   $resultgen = mysqli_query($conn, $sqlgen);
   $rowgen = mysqli_fetch_array($resultgen);
   $genras=$rowgen['genres'];
 
+<<<<<<< HEAD
   array_push($countgenresarray,$genras);
+=======
+
+}
+>>>>>>> FoyezPlayground
 
 $startsec++;
 
@@ -156,9 +252,14 @@ $_SESSION['vv1']=$allmaxmoives;
             style="background: linear-gradient(to bottom, rgba(0,0,0,0), #151515), url('img/f-1.jpg');">
             <img class="featured-title" src="img/f-t-1.png" alt="">
             <input id="searchbar" type="text" name="search" placeholder="Search Movie">
+<<<<<<< HEAD
             <h1 class="featured-desc">Recommend Movies Based On One’s Activity & Interest</h1>
             <button class="featured-button" onclick="openForm()">Get Recommend</button>
             </div>
+=======
+            <h1 class="featured-desc">Recommend Movies Based On One’s Mood & Interest</h1>
+            <button class="featured-button" onclick="openForm()">Get Recommend</button>
+>>>>>>> FoyezPlayground
 
 
             
@@ -178,6 +279,10 @@ echo '<div class="form-popup" id="myForm">
       
 
         <legend>2.Choose your preferred genre?</legend>
+<<<<<<< HEAD
+=======
+        <input type="radio" name="Drama" value="Drama"><p>Drama</p><br>
+>>>>>>> FoyezPlayground
         <input type="radio" name="Romance" value="Romance">Romance<br>
         <input type="radio" name="Thriller" value="Thriller">Thriller<br>
         <input type="radio" name="Science fiction" value="Science fiction">Science fiction<br>

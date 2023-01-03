@@ -108,6 +108,7 @@ if(isset($_POST['a']) || (isset($_POST['j'])) || (isset($_POST['am'])) )
             </div>
           </div>
           <div class="form-group">
+<<<<<<< HEAD
             <label class="col-lg-3 control-label">BIO:</label>
             <div class="col-lg-8">
               <form id="form" action=""  method ="POST" >
@@ -118,6 +119,15 @@ if(isset($_POST['a']) || (isset($_POST['j'])) || (isset($_POST['am'])) )
           </div>
           <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Save Profile</button></div>
             </div>
+=======
+            <label class="col-lg-3 control-label">About Me:</label>
+            <div class="col-lg-8">
+              <form id="form" action=""  method ="POST" >
+              <input class="form-control" name="am" type="text" value="">
+            </div>
+          </div>
+          <input type="submit">
+>>>>>>> FoyezPlayground
             </form>
 
           

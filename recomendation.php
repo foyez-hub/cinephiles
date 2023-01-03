@@ -5,6 +5,7 @@ include_once("topnav.php");
 include_once("sidenav.php");
 include 'config.php';
 
+<<<<<<< HEAD
 $movienames=array();
 if(isset($_SESSION['vv1'])){
     $movienames=$_SESSION['vv1'];
@@ -14,6 +15,9 @@ if(isset($_SESSION['vv1'])){
   $randomNumber1=$randsec%count($movienames);
   $moviename=$movienames[$randomNumber1];
 
+=======
+$moviename=$_SESSION['vv'];
+>>>>>>> FoyezPlayground
 
 
 $image;
@@ -120,6 +124,13 @@ while ($row = mysqli_fetch_array($result1) ) {
     <a href="recomendation.php"> <input class="button1 " type="submit" value="Shuffle"> </a>
 </div>
 
+<<<<<<< HEAD
+=======
+    
+      
+    <a href="streaming.php?title2=$_SESSION['vv']"> <input class="button1 " type="submit" value="Play"> </a>
+         <a href="Group_chat.php?title2=$_SESSION['vv']"> <input class="button1 " type="submit" value="Watch Party"> </a>
+>>>>>>> FoyezPlayground
 
    
     <script src="app.js"></script>

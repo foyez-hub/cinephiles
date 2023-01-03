@@ -6,6 +6,7 @@ include 'config.php';
 $moviename1;
 
 
+<<<<<<< HEAD
 if(isset($_GET['watchparty'])){
 	$moviename1=$_GET['watchparty'];
 
@@ -68,6 +69,11 @@ if(isset($_GET['watchparty'])){
 
 
 $_SESSION['Glomoviename'] = $moviename1;
+=======
+if(assert($_GET['watchparty'])){
+	$moviename1=$_GET['watchparty'];
+}
+>>>>>>> FoyezPlayground
 
 if (isset($_POST['submit'])){
 /* Attempt MySQL server connection. Assuming
@@ -318,8 +324,13 @@ main footer textarea::placeholder{
 <div class="container-Streaming">
        <div class="main-video">
         <div class="video">
+<<<<<<< HEAD
             <video  id="video1" src="Movie_CLIP/<?php echo $vid;?>" controls autoplay></video>
             <h3 id="moviename" class="title">
+=======
+            <video src="vid/Avatar.mp4" controls muted autoplay></video>
+            <h3 class="title">
+>>>>>>> FoyezPlayground
 			<?php if(isset($moviename1)){
                     echo  "Movie Name: ".$moviename1;
     

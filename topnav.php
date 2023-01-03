@@ -63,7 +63,10 @@ if(isset($_POST['q']))
 
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> FoyezPlayground
         $sql = "SELECT * FROM `user` WHERE 1 ";
         $result = mysqli_query($conn, $sql);
 
@@ -103,7 +106,11 @@ if(isset($_POST['q']))
 
             }
 
+<<<<<<< HEAD
             if($ans==strlen($s) && $email!=$mymail)
+=======
+            if($ans==strlen($s))
+>>>>>>> FoyezPlayground
             {
 
                 // echo "                             .............".$var;
@@ -113,7 +120,10 @@ if(isset($_POST['q']))
               array_push($movies,$var);*/
 
 
+<<<<<<< HEAD
         }
+=======
+>>>>>>> FoyezPlayground
         } 
 
 $_SESSION['search_result'] = $moviesnames;
@@ -142,6 +152,19 @@ header("Location:SearchMovie.php");
     <title>CINEPHILES</title>
     <style>
 
+<<<<<<< HEAD
+=======
+
+
+
+
+
+
+
+
+
+?>
+>>>>>>> FoyezPlayground
 
         .user-profile{
     display: flex;
@@ -270,11 +293,23 @@ header("Location:SearchMovie.php");
             </div>
             <div class="menu-container">
                 <ul class="menu-list">
+<<<<<<< HEAD
                     <li><a style="margin-top: 49px" class="movie-list-title " href="indexlogin.php"></a></li>
                     <li><a class="movie-list-title " href="indexlogin.php"></a></li>
 
                     <form style="margin-left:40%; background:#fff; width:350px; height:32px; display:flex;" id="form" action=""  method ="POST" > 
                        <i style=" align-self:center; padding:10px 12px; color:#777" class="fa fa-search" aria-hidden="true"></i>
+=======
+                    <li><a class="movie-list-title " href="indexlogin.php">Home</a></li>
+                    <li><a class="movie-list-title " href="indexlogin.php">About</a></li>
+                               
+                    <form style="margin-left:40%; background:#fff; width:350px; height:32px; display:flex;" id="form" action=""  method ="POST" > 
+                       <i style=" align-self:center; padding:10px 12px; color:#777" class="fa fa-search" aria-hidden="true"></i>
+
+                       <input style=" flex:1; border:none;outline:none;" type="search" id="query" name="q" placeholder="Search...">
+                        <button style=" background:gray; padding:8px 30px; border:none; outline:none; color:#fff;letter-spacing:1px; cursor:pointer;" type="submit">Search</button>
+                    </form>
+>>>>>>> FoyezPlayground
 
                        <input style=" flex:1; border:none;outline:none;" type="search" id="query" name="q" placeholder="Search...">
                         <button style=" background:gray; padding:8px 30px; border:none; outline:none; color:#fff;letter-spacing:1px; cursor:pointer;" type="submit">Search</button>

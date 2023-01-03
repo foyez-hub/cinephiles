@@ -9,6 +9,7 @@
         include_once("sidenav.php");
         $name=$_SESSION['Glousername'];
         $email=$_SESSION['globalemail'];
+<<<<<<< HEAD
 
 
         $sql = "SELECT * FROM `user` WHERE `email`= '$email'";
@@ -23,6 +24,27 @@
         if (isset($_POST['submit'])) {
 
             if (isset($_POST['myfile'])){
+=======
+        $sql = "SELECT * FROM `user` WHERE `email`= '$email'";
+        $result = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_array($result);
+        
+        $userimg=$row['image'];
+        $reimag;
+
+
+        $reimag;
+        $email=$_SESSION['globalemail'];
+        
+
+        if (isset($_POST['submit'])) {
+
+            if (isset($_POST['myfile'])){
+
+               $reimag=$_POST['myfile'];
+               $sql = "INSERT INTO `memeinfo`(`postOwner`, `PostImg`, `postOwnerImg`) VALUES ('$name','$reimag','$userimg')";
+               $result = mysqli_query($conn, $sql); 
+>>>>>>> FoyezPlayground
 
                $reimag=$_POST['myfile'];
                if(strlen($reimag)>2)
@@ -100,6 +122,7 @@ if (isset($_POST['outpost'])) {
 
 }
 
+<<<<<<< HEAD
 //Most funny
 
 $mostOmwerimg;
@@ -158,10 +181,62 @@ if ($result->num_rows > 0) {
 
 
 
+=======
+
+        if (isset($_POST['outpost'])) {
+         
+        if (isset($_POST['uiu'])) {
+
+            $memeid=$_POST['uiu'];
+            $postlike=0;
+            $sql = "SELECT * FROM `memeinfo` WHERE `PostId`='$memeid'" ;
+            $result = mysqli_query($conn, $sql);
+
+            if ($result->num_rows > 0) {
+
+                $row = mysqli_fetch_array($result);
+                $postlike=$row['PostLike'];
+
+
+
+                $sqlck = "SELECT `postid`, `postOwnerEmail` FROM `votetracking` WHERE `postid`='$memeid' and `postOwnerEmail`='$email'" ;
+                $resultck = mysqli_query($conn, $sqlck);
+    
+                if ($resultck->num_rows <=0) {
+    
+
+               //insert into votetracking database
+                $sqlvote = "INSERT INTO `votetracking`(`postid`, `postOwnerEmail`) VALUES ('$memeid','$email')";
+                $resultvote = mysqli_query($conn, $sqlvote); 
+               //update like count in memeinfo database
+               $postlike++;
+               $sql = "UPDATE `memeinfo` SET `PostLike`='$postlike' WHERE `PostId`='$memeid'" ;
+               $result = mysqli_query($conn, $sql);
+               
+                }
+
+                else{
+                        //delete from votetracking database
+
+
+                    $sqlvote = "DELETE FROM `votetracking` WHERE `postid`='$memeid' AND `postOwnerEmail`='$email'";
+                    $resultvote = mysqli_query($conn, $sqlvote); 
+                   //update like count in memeinfo database
+                   $postlike--;
+
+                   $sql = "UPDATE `memeinfo` SET `PostLike`='$postlike' WHERE `PostId`='$memeid'" ;
+                   $result = mysqli_query($conn, $sql);
+                   
+
+
+
+                }
+>>>>>>> FoyezPlayground
 
 
 
 
+<<<<<<< HEAD
 //meme share
 
 if (isset($_POST['share'])) {
@@ -226,6 +301,23 @@ if (isset($_POST['share'])) {
 
                        
             }
+=======
+             }
+             
+
+            
+         
+           
+            
+
+        }
+            
+
+        }
+
+
+     
+>>>>>>> FoyezPlayground
 
 
 
@@ -527,7 +619,11 @@ if (isset($_POST['share'])) {
 
 </head>
 
+<<<<<<< HEAD
 <body style=" background:#626262 ;background-image: url('memeImg/mbb.jpg');background-attachment: fixed ">
+=======
+<body style=" background:#626262 ">
+>>>>>>> FoyezPlayground
 
 
 
@@ -658,9 +754,14 @@ while ($row = mysqli_fetch_array($result1) )
 
                 <div class="like-icon">
                     <div>
+<<<<<<< HEAD
                     <input class="featured-button form-button" id="unvote" name="outpost" type="submit" value="'.$isvote.'">
                          '.$PostLike.'
                          <input style="background-color: #10e7c5" class="featured-button form-button" id="unvote" name="share" type="submit" value="Share">
+=======
+                    <input class="featured-button form-button" id="'.$postid.'" name="outpost" type="submit" value="Vote">
+                         '.$PostLike.'
+>>>>>>> FoyezPlayground
                     </div>
                 </div>
 
@@ -685,10 +786,14 @@ while ($row = mysqli_fetch_array($result1) )
       <div class="right-sidebar">
         <div class="sidebar-title">
 
+<<<<<<< HEAD
 
 
             <h4 id="uiu"> Winner list </h4>
             
+=======
+            <h4> Winner list </h4>
+>>>>>>> FoyezPlayground
            
 
         </div>
@@ -706,6 +811,7 @@ while ($row = mysqli_fetch_array($result1) )
        $date= $row['date'];
        $mail=$row['email'];
 
+<<<<<<< HEAD
     
       $sqlinfo1 = "SELECT * FROM `user` WHERE `email`='$mail'";
       $resultinfo1 = mysqli_query($conn, $sqlinfo1);
@@ -727,6 +833,8 @@ while ($row = mysqli_fetch_array($result1) )
         }
         $tt=$day[0]%12;
 
+=======
+>>>>>>> FoyezPlayground
      echo '<div class="list">
       <div class="date">
           <h3>'.$tt.':'.$day[1].'</h3>
@@ -749,12 +857,16 @@ while ($row = mysqli_fetch_array($result1) )
  ?>
       
 
+<<<<<<< HEAD
 
 
       </div>
 
 
 
+=======
+      </div>
+>>>>>>> FoyezPlayground
 
 </div>
 
@@ -766,6 +878,7 @@ while ($row = mysqli_fetch_array($result1) )
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <script src="app.js"></script>
 
+<<<<<<< HEAD
  <script>
 
 
@@ -774,6 +887,8 @@ while ($row = mysqli_fetch_array($result1) )
 
 
     </script>
+=======
+>>>>>>> FoyezPlayground
 
 </body>
 

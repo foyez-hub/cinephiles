@@ -11,6 +11,9 @@ if(isset($_GET['title'])){
 
 
 
+
+
+
 $image;
 $des;
 $relese_year;
@@ -39,6 +42,7 @@ if(isset($_POST['watchparty'])){
 
     $email=$_SESSION['globalemail'];
 
+<<<<<<< HEAD
     if( isset($moviename) ){
       
     
@@ -74,12 +78,17 @@ header("Location:watchParty.php");
 
     
 ?>
+=======
+>>>>>>> FoyezPlayground
 
 
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> FoyezPlayground
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -192,11 +201,19 @@ header("Location:watchParty.php");
     <div class="overviewMain">
        <video autoplay loop umuted plays-inline class="back-video">
         <!-- <source src="vid/Avatar.mp4" type="video/mp4"> -->
+<<<<<<< HEAD
         <source src="movies_vid/<?php echo $vid;?>" type="video/mp4"> 
        </video>
        <nav>
         <ul>
             <li><a href="allMoviesList.php"><i class="fa fa-arrow-left fa-2x " aria-hidden="true"></i></a></li>
+=======
+        <source src="vid/Avatar.mp4" type="video/mp4">
+       </video>
+       <nav>
+        <ul>
+            <li><a href="#"><i class="fa fa-arrow-left fa-2x " aria-hidden="true"></i></a></li>
+>>>>>>> FoyezPlayground
             <a href="indexlogin.php">
                 <h1>CINEPHILES</h1>
             </a>
@@ -226,6 +243,7 @@ header("Location:watchParty.php");
                 ?>
         </p>
 
+<<<<<<< HEAD
         <?php
          $_SESSION['passdata']=$moviename
 
@@ -237,6 +255,17 @@ header("Location:watchParty.php");
          <form action="" method="POST">
           <input class="button1 " type="submit" value="Create Watch Party" name="watchparty">
           </form>
+=======
+        <?php 
+        $_SESSION['passdata'] = $moviename;
+        ?>
+        
+
+         <a href="streaming.php"> <input class="button1 " type="submit" value="Play"> </a>
+
+         <a href="watchParty.php"> <input class="button1 " type="submit" value="Create Watch Party" name="foyez" value="Play">
+
+>>>>>>> FoyezPlayground
         
        </div>
     </div>

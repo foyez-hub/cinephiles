@@ -19,6 +19,7 @@ if(isset($_GET['titleself'])){
     $moviename=$_GET['titleself'];
     $sql1 = "SELECT * FROM `user` WHERE `email`='$email'";
     $result1 = mysqli_query($conn, $sql1);
+<<<<<<< HEAD
 
 
     $row = mysqli_fetch_array($result1);
@@ -35,10 +36,24 @@ if(isset($_GET['titleself'])){
             
 
     $sql = "UPDATE `user` SET `watchlist`='$friend'  WHERE `email`='$email'";
+=======
+    if ($result1->num_rows > 0) {
+
+      $row = mysqli_fetch_assoc($result1);
+      $my_list=$row['my_list'];
+      $tem=",";
+      $tem.=$my_list;
+      $tem.=",";
+      $tem.=$moviename;
+      
+
+    $sql = "UPDATE `user` SET `my_list`='$tem'  WHERE `email`='$email'";
+>>>>>>> FoyezPlayground
   
     $result = mysqli_query($conn, $sql); 
 }
 
+<<<<<<< HEAD
 
 
 
@@ -69,6 +84,8 @@ if(isset($_GET['titleFavorite'])){
     $sql = "UPDATE `user` SET `favorites`='$friend' WHERE `email`='$mymail'";
     $result = mysqli_query($conn, $sql);
 
+=======
+>>>>>>> FoyezPlayground
 }
 
 
@@ -140,6 +157,7 @@ if(isset($_GET['titleFavorite'])){
                                 '.$year.'</p>
                             <a href="movieOverview.php?title='.$var.'"> <input class="movie-list-item-button" name="details" type="submit" value="Details"> </a>
                             <a href="allMoviesList.php?titleself='.$var.'"> <input class="movie-list-item-button1" name="addlist" type="submit" value="ADD"> </a>
+<<<<<<< HEAD
                             <button class="movie-list-item-button2" class="btn"><i class="fa fa-star"style="font-size:20px;color:yellow"></i></button>
 
 
@@ -160,11 +178,16 @@ if(isset($_GET['titleFavorite'])){
                             <a href="allMoviesList.php?titleself='.$var.'"> <input class="movie-list-item-button1" name="addlist" type="submit" value="ADD"> </a>
                             <a href="allMoviesList.php?titleFavorite='.$var.'"> <input class="movie-list-item-button2" name="Favorite" type="submit" value="Favorite"> </a>
                              
+=======
+>>>>>>> FoyezPlayground
 
                             
                        </div>'
                         ;
+<<<<<<< HEAD
                         }
+=======
+>>>>>>> FoyezPlayground
                            
                         }
 

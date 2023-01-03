@@ -62,7 +62,11 @@
             <div class="featured-content"style="background: linear-gradient(to bottom, rgba(0,0,0,0), #151515), url('img/f-1.jpg');">
 
                    <div class="movie-list-container">
+<<<<<<< HEAD
                 <h1 style="text-align:center" class="movie-list-title">Movies</h1>
+=======
+                <h1 style="text-align:center" class="movie-list-title">Search Result</h1>
+>>>>>>> FoyezPlayground
                 <div class="movie-list-wrapper">
                     <div class="movie-list">
 
@@ -84,7 +88,11 @@
                             <img class="movie-list-item-img" src="img/'.$img.'" alt="">
                             <span class="movie-list-item-title">'.$value.'</span>
                             
+<<<<<<< HEAD
                                <a href="movieOverview.php?title='.$value.'"> <input class="movie-list-item-button" name="details" type="submit" value="Details"> </a>
+=======
+                            <button class="movie-list-item-button">Watch</button>
+>>>>>>> FoyezPlayground
                         </div>';
 
                     
@@ -108,8 +116,11 @@
 
 
             <!-- /*search friend -->
+<<<<<<< HEAD
             <div class="movie-list-container">
                 <h1 style="text-align:center" class="movie-list-title">Peoples</h1>
+=======
+>>>>>>> FoyezPlayground
             <div class="movie-list-wrapper">
                     <div class="movie-list">
 

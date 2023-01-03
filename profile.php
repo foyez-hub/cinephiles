@@ -3,6 +3,138 @@
 include 'config.php';
 include_once("topnav.php");
 include_once("sidenav.php");
+    if(isset($_GET['titleself']))
+    {
+        
+        $usermail=$_GET['titleself'];
+        $mymail= $_SESSION['globalemail'];
+        $sql = "SELECT * FROM `user` WHERE `email`='$mymail'";
+        
+        $result1 = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_array($result1);
+        $wants=$row['friendreq'];
+        $str=explode(",", $wants);
+        $friend=",";
+        foreach ($str as $key => $value) {
+        /*echo $value;*/
+        if($value != $usermail)
+        {   
+            $friend .= $value;
+             $friend .= ",";
+        }
+    }
+    $sql = "UPDATE `user` SET `friendreq`='$friend' WHERE `email`='$mymail'";
+    $result = mysqli_query($conn, $sql);
+
+
+
+
+
+    $sql = "SELECT * FROM `user` WHERE `email`='$usermail'";
+    $result1 = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_array($result1);
+    $wants=$row['sentreq'];
+    $str=explode(",", $wants);
+    $friend=",";
+    foreach ($str as $key => $value) {
+       if($value!=$mymail)
+        {$friend .= $value;
+            $friend .= ",";
+        }
+    }
+    $sql = "UPDATE `user` SET `sentreq`='$friend' WHERE `email`='$usermail'";
+    $result = mysqli_query($conn, $sql);
+        
+    
+
+    $sql = "SELECT * FROM `user` WHERE `email`='$usermail'";
+    $result1 = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_array($result1);
+    $wants=$row['friendlist'];
+    $str=explode(",", $wants);
+    $friend=",";
+    foreach ($str as $key => $value) {
+       $friend .= $value;
+       $friend .= ",";
+    }
+    $friend .= $mymail;
+    $sql = "UPDATE `user` SET `sentreq`='$friend' WHERE `email`='$usermail'";
+    $result = mysqli_query($conn, $sql);
+    
+
+
+    $sql = "SELECT * FROM `user` WHERE `email`='$mymail'";
+    $result1 = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_array($result1);
+    $wants=$row['friendlist'];
+    $str=explode(",", $wants);
+    $friend=",";
+    foreach ($str as $key => $value) {
+       $friend .= $value;
+       $friend .= ",";
+    }
+    $friend .= $usermail;
+    $sql = "UPDATE `user` SET `sentreq`='$friend' WHERE `email`='$mymail'";
+    $result = mysqli_query($conn, $sql);
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    if(isset($_POST['cancelsr'])){
+
+    $email=$_POST['cancelsr'];
+   
+    $sql = "SELECT * FROM `user` WHERE `email`='$email'";
+    $mymail= $_SESSION['globalemail'];
+    $result1 = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_array($result1);
+    $wants=$row['friendreq'];
+    $str=explode(",", $wants);
+    $friend=",";
+    foreach ($str as $key => $value) {
+       /*echo $value;*/
+       if($value!=$mymail)
+        {$friend .= $value;
+            $friend .= ",";
+        }
+    }
+    $sql = "UPDATE `user` SET `friendreq`='$friend' WHERE `email`='$email'";
+    $result = mysqli_query($conn, $sql);
+
+
+
+
+
+    $sql = "SELECT * FROM `user` WHERE `email`='$mymail'";
+    $result1 = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_array($result1);
+    $wants=$row['sentreq'];
+    $str=explode(",", $wants);
+    $friend=",";
+    foreach ($str as $key => $value) {
+       if($value!=$email)
+        {$friend .= $value;
+            $friend .= ",";
+        }
+    }
+    $sql = "UPDATE `user` SET `sentreq`='$friend' WHERE `email`='$mymail'";
+    $result = mysqli_query($conn, $sql);
+}
+
+    
 
     //save privacy
 
@@ -436,7 +568,11 @@ if(isset($_GET['titleX2'])){
                <div class="wrapper">
                    
                    <div class="cover">
+<<<<<<< HEAD
                     <img src="img/avatar.jpg" alt="Give Cover Photo">  
+=======
+                    <img src="img/sea.jpg" alt="Give Cover Photo">  
+>>>>>>> FoyezPlayground
                    </div>
                    <div class="id-section">
                       <div class="circle">
@@ -468,7 +604,10 @@ if(isset($_GET['titleX2'])){
                          ?>
                         
                         <h5 style="color:rgb(227, 207, 207); font-weight:bold;">
+<<<<<<< HEAD
                         
+=======
+>>>>>>> FoyezPlayground
                         <?php 
                             $email=$_SESSION['globalemail'];
                             $sql = "SELECT * FROM `user` WHERE `email`= '$email'";
@@ -480,9 +619,16 @@ if(isset($_GET['titleX2'])){
                                 echo "Movie Freak";
                             }
                             else echo $var;
+<<<<<<< HEAD
                          ?>
                     
                     </h5>
+=======
+                         ?>    
+
+
+                         </h5>
+>>>>>>> FoyezPlayground
                     </div>
                     <div class="buttons">
                     <button class="but1">
@@ -491,6 +637,7 @@ if(isset($_GET['titleX2'])){
                     
                     
                   </div>
+
                   
 
                 </div>
@@ -511,6 +658,7 @@ if(isset($_GET['titleX2'])){
 
 
             <div class="movie-list-container" style="background-color:black">
+<<<<<<< HEAD
             <div class="privacy" style="display:flex; align-items: center;justify-content:center;">
             <a class="privacy-class"  onclick="openprivacyForm()">Privacy
 
@@ -551,11 +699,15 @@ if(isset($_GET['titleX2'])){
               <h1 style="margin-top:15px; text-align:center" class="movie-list-title ">Watchlist</h1>
 
             </div>
+=======
+                <h1 style="margin-top:15px; text-align:center" class="movie-list-title ">My List</h1>
+>>>>>>> FoyezPlayground
                     <div class="movie-list-wrapper">
                     <div class="movie-list">
                     <?php
 
 
+<<<<<<< HEAD
                         
                     $email=$_SESSION['globalemail'];
                     $sql = "SELECT * FROM `user` WHERE `email`='$email'";
@@ -647,6 +799,10 @@ if(isset($_GET['titleX2'])){
 
 
                         <?php
+=======
+                         
+   <?php
+>>>>>>> FoyezPlayground
 
 
                         
@@ -654,10 +810,15 @@ if(isset($_GET['titleX2'])){
                         $sql = "SELECT * FROM `user` WHERE `email`='$email'";
                         $result1 = mysqli_query($conn, $sql);
                         $row = mysqli_fetch_array($result1);
+<<<<<<< HEAD
                         $wants=$row['recent'];
+=======
+                        $wants=$row['my_list'];
+>>>>>>> FoyezPlayground
                         $str=explode(",", $wants);
                         $cnt=0;
                         foreach ($str as $key => $value) {
+<<<<<<< HEAD
                             
                             if($cnt>5) break;
                             
@@ -668,13 +829,19 @@ if(isset($_GET['titleX2'])){
                                 continue;
                             }
                             $cnt+=1;
+=======
+                             /*echo $value;*/
+                        if(strlen($value)<1)
+                        {
+                            continue;
+                        }
+>>>>>>> FoyezPlayground
 
                         $sql = "SELECT * FROM `movie_info` WHERE `movie_name`='$value'";
                         $result1 = mysqli_query($conn, $sql);
                         $row = mysqli_fetch_array($result1);
                         $img= $row['image'];
                         $year= $row['release_year'];
-
 
                              echo '<div class="movie-list-item">
                             <img class="movie-list-item-img" src="img/'.$img.'" alt="">
@@ -692,6 +859,7 @@ if(isset($_GET['titleX2'])){
                  </div>
                  <i class="fas fa-chevron-right arrow"></i> 
              </div>
+<<<<<<< HEAD
               </div> 
              </div>
 
@@ -744,11 +912,18 @@ if(isset($_GET['titleX2'])){
 
             </div>
                 
+=======
+              </div>
+
+              <div class="movie-list-container" style="background-color:black">
+                <h1 style="margin-top:15px; text-align:center" class="movie-list-title ">Friend Request</h1>
+>>>>>>> FoyezPlayground
                     <div class="movie-list-wrapper">
                     <div class="movie-list">
 
 
-                        <?php
+                      
+                         <?php
 
 
                         
@@ -756,6 +931,7 @@ if(isset($_GET['titleX2'])){
                         $sql = "SELECT * FROM `user` WHERE `email`='$email'";
                         $result1 = mysqli_query($conn, $sql);
                         $row = mysqli_fetch_array($result1);
+<<<<<<< HEAD
                         $wants=$row['favorites'];
                         $str=explode(",", $wants);
                         foreach ($str as $key => $value) {
@@ -764,16 +940,27 @@ if(isset($_GET['titleX2'])){
                         continue;
                     }
                              /*echo $value;*/
+=======
+                        $wants=$row['friendreq'];
+                        $str=explode(",", $wants);
+                        foreach ($str as $key => $value) {
+>>>>>>> FoyezPlayground
 
-                        $sql = "SELECT * FROM `movie_info` WHERE `movie_name`='$value'";
+                        if(strlen($value) <1 )
+                        {
+                            continue;
+                        }
+
+                        $sql = "SELECT * FROM `user` WHERE `email`='$value'";
                         $result1 = mysqli_query($conn, $sql);
                         $row = mysqli_fetch_array($result1);
                         $img= $row['image'];
-                        $year= $row['release_year'];
+                        $name= $row['name'];
+                        
 
-
-                             echo '<div class="movie-list-item">
+                             echo '<div class="movie-list-item" style="display: inline-block;margin:1.5%">
                             <img class="movie-list-item-img" src="img/'.$img.'" alt="">
+<<<<<<< HEAD
                             <span class="movie-list-item-title">'.$value.'</span>
                             <p class="movie-year-title">'.$year.'
                                 </p>
@@ -783,13 +970,23 @@ if(isset($_GET['titleX2'])){
 
 
                         </div>';
+=======
+                            <span class="movie-list-item-title">'.$name.'</span>
+                            
+                            <a href="view_profile.php?title='.$value.'"> <input class="movie-list-item-button" type="submit" value="View Profile"> </a>
+                            <a href="profile.php?titleself='.$value.'"> <input class="movie-list-item-button1" name="addfriend" type="submit" value="Accept Request"> </a>
+>>>>>>> FoyezPlayground
 
+                            
+                       </div>';
+                        
                         }
 
                     ?>
                  </div>
                  <i class="fas fa-chevron-right arrow"></i> 
              </div>
+<<<<<<< HEAD
               </div> 
 
               <div class="container" style="background-color:black">
@@ -836,11 +1033,19 @@ if(isset($_GET['titleX2'])){
 
             </div>
                 
+=======
+              </div>
+
+             
+            <div class="movie-list-container" style="background-color:black">
+                <h1 style="margin-top:15px; text-align:center" class="movie-list-title ">Sent Request</h1>
+>>>>>>> FoyezPlayground
                     <div class="movie-list-wrapper">
                     <div class="movie-list">
 
 
-                        <?php
+                      
+                         <?php
 
                         $sql = "SELECT * FROM `user` WHERE `email`='$email'";
                         $result1 = mysqli_query($conn, $sql);
@@ -857,6 +1062,7 @@ if(isset($_GET['titleX2'])){
                         $sql = "SELECT * FROM `user` WHERE `email`='$email'";
                         $result1 = mysqli_query($conn, $sql);
                         $row = mysqli_fetch_array($result1);
+<<<<<<< HEAD
                         $wants=$row['friendmeme'];
                         $str=explode(",", $wants);
                         foreach ($str as $key => $value) {
@@ -870,7 +1076,43 @@ if(isset($_GET['titleX2'])){
                              echo '<div class="movie-list-item">
                             <img class="movie-list-item-img" src="memeImg/'.$value.'" alt="">
                         </div>';
+=======
+                        $wants=$row['sentreq'];
+                        $str=explode(",", $wants);
+                        foreach ($str as $key => $value) {
 
+                        if(strlen($value) <1 )
+                        {
+                            continue;
+                        }
+
+                        $sql = "SELECT * FROM `user` WHERE `email`='$value'";
+                        $result1 = mysqli_query($conn, $sql);
+                        $row = mysqli_fetch_array($result1);
+                        $img= $row['image'];
+                        $name= $row['name'];
+                        
+
+                             echo '<div class="movie-list-item">
+                            <img class="movie-list-item-img" src="img/'.$img.'" alt="">
+                            <span class="movie-list-item-title">'.$name.'</span>
+                            <a href="view_profile.php?title='.$value.'"> <input class="movie-list-item-button" type="submit" value="View Profile"> </a>
+
+                        <form action="" method="POST">
+                        <div class="buttons">
+
+                       
+
+                        <input name="cancelsr" class="but1"  type="submit" value="'.$value.'">
+
+                        </div>
+
+                        </form>
+>>>>>>> FoyezPlayground
+
+
+                        </div>';
+                        
                         }
 
                         }
@@ -879,6 +1121,7 @@ if(isset($_GET['titleX2'])){
                  </div>
                  <i class="fas fa-chevron-right arrow"></i> 
              </div>
+<<<<<<< HEAD
               </div>
 
           </div>
@@ -887,7 +1130,21 @@ if(isset($_GET['titleX2'])){
 
 
              
+=======
+              </div>  
 
+
+
+
+
+
+             </div>
+>>>>>>> FoyezPlayground
+
+
+
+
+            
 
             </div>
         </div>
