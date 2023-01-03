@@ -5,7 +5,15 @@ include_once("topnav.php");
 include_once("sidenav.php");
 include 'config.php';
 
-$moviename=$_SESSION['val1'];
+$movienames=array();
+if(isset($_SESSION['vv1'])){
+    $movienames=$_SESSION['vv1'];
+  }
+  date_default_timezone_set("Asia/Dhaka");   
+  $randsec=date("s");
+  $randomNumber1=$randsec%count($movienames);
+  $moviename=$movienames[$randomNumber1];
+
 
 
 $image;
@@ -37,60 +45,28 @@ while ($row = mysqli_fetch_array($result1) ) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
     <title>CINEPHILES</title>
     <style>
+        
          body{
             background-color: rgb(83, 25, 25);
          }
         .contain1{
-            display: flex;
-            justify-content: space-between;
-            background-color: black;
-            width: 80%;
-            height: 70%;
-            margin-top: 5%;
-            margin-left: 12%;
-            margin-bottom: 1%;
+            background-color: none;
+            width: 700px;
+            height: 500px;
+            margin-top: 1%;
+            margin-left: 30%;
+            margin-bottom: 5%;
             margin-right: 5%;
-            border-radius: 2%;
 
         }
 
-        .pic{
-        background-color :blanchedalmond;
-        border-radius: 5%;
-        flex-basis:35%;
-        position: sticky;
-        top: 70px;
-        align-self: flex-start;
-        width: 30%;
-        height: 70%;
-        margin: 7% 7%;
-        
-
-        }
     .pic img{
+        
         width: 100%;
         height: 100%;
         border-radius: 5%;
     }
 
-        .description{
-        background-color :blanchedalmond;
-        flex-basis: 50%;
-        position: sticky;
-        top: 70px;
-        align-self: flex-start;
-        width: 45%;
-        height: 70%;
-        margin: 7% 7%;
-        }
-        .description h3{
-            margin: 1%;
-            position: relative;
-            float: left;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
         .button1{
         background-color: gray;
         color: black;
@@ -99,7 +75,8 @@ while ($row = mysqli_fetch_array($result1) ) {
         text-align: center;
         font-weight: bold;
         border-radius: 10%;
-        margin-left: 23%;
+        margin-top: -15%;
+        margin-left: auto;
         cursor: pointer;
         width: 15%;
         height: 6%;
@@ -118,6 +95,7 @@ while ($row = mysqli_fetch_array($result1) ) {
    
 
     <div class="contain1">
+        
         <div class="pic">
             <img src="img/<?php if(isset($image)){
                 echo $image;
@@ -126,31 +104,22 @@ while ($row = mysqli_fetch_array($result1) ) {
 
         </div>
 
-        <div class="description">
-        <h3>
-               <?php if(isset($moviename)){
-                echo  "Movie Name:".$moviename;
-
-                }
-                ?>
-            </h3>
-            <h3>
-               <?php if(isset($des)){
-                echo  $des;
-                }
-                ?>
-            </h3>
-
-
-        </div>
+        
 
 
     </div>
 
 
     
-         <button class="button1 ">watch party</button>
-         <button class="button1">Play</button>
+<div style="margin-left: 35%">
+
+
+<?php
+    echo '<a href="movieOverview.php?title='.$moviename.'"> <input class="button1" name="Favorite" type="submit" value="Details"> </a>';
+?>
+    <a href="recomendation.php"> <input class="button1 " type="submit" value="Shuffle"> </a>
+</div>
+
 
    
     <script src="app.js"></script>

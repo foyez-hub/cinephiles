@@ -4,8 +4,121 @@ include 'config.php';
 include_once("topnav.php");
 include_once("sidenav.php");
 
+    //save privacy
 
- /*echo "           ".$_SESSION['Glousername'];*/
+    if(isset($_POST['save'])){
+
+        if(isset($_POST['public'])) 
+        {   
+            $val="p";
+            $val=$_POST['public'];
+            $mymail= $_SESSION['globalemail'];
+            $sql = "UPDATE `user` SET `watchlistp`='$val' WHERE `email`='$mymail'";
+            $result =mysqli_query($conn, $sql);
+        }
+        
+    }
+    if(isset($_POST['save2'])){
+
+        
+        if(isset($_POST['public'])) 
+        {   
+            $val="p";   
+            $val=$_POST['public'];
+            $mymail= $_SESSION['globalemail'];
+            $sql = "UPDATE `user` SET `recentlyp`='$val' WHERE `email`='$mymail'";
+            $result =mysqli_query($conn, $sql);
+        }
+        
+    }
+    if(isset($_POST['save3'])){
+
+        
+        if(isset($_POST['public'])) 
+        {   
+            $val="p";
+            $val=$_POST['public'];
+            $mymail= $_SESSION['globalemail'];
+            $sql = "UPDATE `user` SET `favoritesp`='$val' WHERE `email`='$mymail'";
+            $result =mysqli_query($conn, $sql);
+        }
+        
+    }
+    if(isset($_POST['save4'])){
+
+        
+        if(isset($_POST['public'])) 
+        {   
+            $val="p";
+            $val=$_POST['public'];
+            $mymail= $_SESSION['globalemail'];
+            $sql = "UPDATE `user` SET `memep`='$val' WHERE `email`='$mymail'";
+            $result =mysqli_query($conn, $sql);
+        }
+        
+    }
+
+
+
+
+    
+
+
+if(isset($_GET['titleX'])){
+
+    $moviex=$_GET['titleX'];
+
+
+       $mymail= $_SESSION['globalemail'];
+        $sql = "SELECT * FROM `user` WHERE `email`='$mymail'";
+        
+        $result1 = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_array($result1);
+        $wants=$row['watchlist'];
+        $str=explode(",", $wants);
+        $friend=",";
+        foreach ($str as $key => $value) {
+        /*echo $value;*/
+        if($value != $moviex && strlen($value)>1)
+            $friend .= $value;
+             $friend .= ",";
+        }  
+       
+
+    $sql = "UPDATE `user` SET `watchlist`='$friend' WHERE `email`='$mymail'";
+    $result = mysqli_query($conn, $sql);
+
+}
+if(isset($_GET['titleX2'])){
+
+    $moviex=$_GET['titleX2'];
+
+
+       $mymail= $_SESSION['globalemail'];
+        $sql = "SELECT * FROM `user` WHERE `email`='$mymail'";
+        
+        $result1 = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_array($result1);
+        $wants=$row['favorites'];
+        $str=explode(",", $wants);
+        $friend=",";
+        foreach ($str as $key => $value) {
+        /*echo $value;*/
+        if($value != $moviex && strlen($value)>1)
+            $friend .= $value;
+             $friend .= ",";
+        }  
+       
+
+    $sql = "UPDATE `user` SET `favorites`='$friend' WHERE `email`='$mymail'";
+    $result = mysqli_query($conn, $sql);
+
+}
+
+    
+
+
+//  /echo "           ".$_SESSION['Glousername'];/
 
  ?>
 
@@ -79,7 +192,6 @@ include_once("sidenav.php");
        padding: 10px; 
        border: none;
        background: #bbb7a9;
-       border-radius: 8px;
        cursor: pointer;
 
 
@@ -101,18 +213,6 @@ include_once("sidenav.php");
         background: rgba(104, 226, 10, 0.792);
     }
 
-
-
-    /* .container1{
-            margin-left: 20px ;
-            margin-top: 20px;
-            display: grid;
-            grid-gap: 1rem;
-            background: black;
-            grid-template-areas: 
-            "section  aside footer"
-            ;
-        } */
 
         .item1{
             background-color: gray;
@@ -154,7 +254,168 @@ include_once("sidenav.php");
             margin-top: 120px;
             margin-left: 55%;
             box-sizing: border-box;
-        }     
+        }  
+        .list{
+            margin:15px;
+            margin-left:10%;
+            height:80px;
+            width:80%;
+            color:gray;
+            background-color:white;
+            display:flex;
+            align-items: center;
+            justify-content:space-between;
+        }
+        .list ul li a{  
+        margin-top: 49px; 
+        color:black;
+        }
+    .people-bar{
+        display: none;
+    }
+
+#request-bar{
+    padding-top:5px;
+    position:absolute;
+    width:90%;
+    max-width:1000px;
+    background:blue;
+    top:690px;
+    left:20%;
+    right:20%;
+    z-index: 10000;
+    display:none;
+}
+
+
+.people-section{
+    width:450px;
+    padding:5%;
+    background:white;
+    margin:20px;
+    display:none;
+
+}
+.people-profile {
+    margin-bottom: -5px;
+    font-weight: 500;
+    color: #626262;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+
+}
+
+.people-profile img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 10px;
+
+} 
+.people-profile p{
+    font-size:30px;
+}
+.friend-nav{
+    cursor: pointer;
+}
+#privacy-section{
+
+            width: 220px;
+            height: 150px;
+            background-color: #07375c;
+            padding-left: 15px;
+            padding-top: 15px;
+            display: none;
+            position: absolute;
+            z-index: 10;
+
+
+}
+#privacy-section2{
+            width: 220px;
+            height: 150px;
+            background-color: #07375c;
+            padding-left: 15px;
+            padding-top: 15px;
+            display: none;
+            position: absolute;
+            z-index: 10;
+
+           
+
+}
+#privacy-section3{
+            width: 220px;
+            height: 150px;
+            background-color: #07375c;
+            padding-left: 15px;
+            padding-top: 15px;
+            display: none;
+            position: absolute;
+            z-index: 10;
+
+           
+
+}
+
+#privacy-section4{
+            width: 220px;
+            height: 150px;
+            background-color: #07375c;
+            padding-left: 15px;
+            padding-top: 15px;
+            display: none;
+            position: absolute;
+            z-index: 10;
+
+           
+
+}
+
+
+.privacy-class{
+    padding-top: 15px;
+    padding-left: 20px;
+    width:80px;
+    height:30px;
+    cursor:pointer; 
+    background:white; 
+    color:black;
+    margin-top: 20px;
+    font-size:15px;
+}
+        
+
+.privacy-radio {
+    margin-left:50px;
+
+}
+.privacy-save{
+    margin-left:50px; 
+    margin-top:7px; 
+    border-radius: 20px; 
+    cursor:pointer; 
+    border-style:none; 
+    background-color:  #4dbf00; 
+    width:50px; 
+    font-weight:800;
+
+}
+.privacy-close{
+    border-radius: 30px; 
+    font-weight:800;
+    width:50px; 
+    padding-left:5px; 
+    cursor:pointer; 
+    background:red; 
+    color:black;  
+    margin-top:8px; 
+    margin-left:5px;
+    
+}
+
+
 
 
     </style>
@@ -168,25 +429,36 @@ include_once("sidenav.php");
     
 
 
-    <div class="container">
-        <div class="content-container">
+    <div style="background-color: #460505;" class="container">
+        <div  class="content-container">
             <div class="featured-content">
 
                <div class="wrapper">
                    
                    <div class="cover">
-                    <img src="img/1.jpeg" alt="Give Cover Photo">  
+                    <img src="img/avatar.jpg" alt="Give Cover Photo">  
                    </div>
                    <div class="id-section">
                       <div class="circle">
-                        <?php 
+                      <?php 
                             $email=$_SESSION['globalemail'];
                             $sql = "SELECT * FROM `user` WHERE `email`= '$email'";
                             $result = mysqli_query($conn, $sql);
                             $row = mysqli_fetch_array($result);
                             $var=$row['image'];
-          
-                        echo '<img src="img/'.$var.'" alt="" class="logo1">';
+                        if(strlen($var)>2)
+                        {
+                            echo '<img src="img/'.$var.'" alt="" class="logo1">';
+                        }
+                        if(strlen($var)<2)
+                        {   
+                            $sql = "UPDATE `user` SET `image`='profile.jpg' WHERE `email`='$email'";
+                            $result = mysqli_query($conn, $sql);
+                            $row = mysqli_fetch_array($result);
+                            $var=$row['image'];
+                            echo '<img src="img/'.$var.'" alt="" class="logo1">';
+                        }
+
                         ?>
                       </div>
                     <div class="id">
@@ -195,7 +467,22 @@ include_once("sidenav.php");
                             echo '<h2>'.$_SESSION['Glousername'].'</h2>' ;
                          ?>
                         
-                        <h5 style="color:rgb(227, 207, 207); font-weight:bold;">Seek For Thrill </h5>
+                        <h5 style="color:rgb(227, 207, 207); font-weight:bold;">
+                        
+                        <?php 
+                            $email=$_SESSION['globalemail'];
+                            $sql = "SELECT * FROM `user` WHERE `email`= '$email'";
+                            $result = mysqli_query($conn, $sql);
+                            $row = mysqli_fetch_array($result);
+                            $var=$row['bio'];
+                            if(strlen($var)<1)
+                            {
+                                echo "Movie Freak";
+                            }
+                            else echo $var;
+                         ?>
+                    
+                    </h5>
                     </div>
                     <div class="buttons">
                     <button class="but1">
@@ -208,6 +495,9 @@ include_once("sidenav.php");
 
                 </div>
             </div>
+
+          
+
                 
         </div>
     </div>
@@ -216,43 +506,92 @@ include_once("sidenav.php");
        <div class="container" style="background-color:black">
         <div class="content-container" style="background-color:black">
             <div class="featured-content" style="background-color:black">
+            
+
+
+
             <div class="movie-list-container" style="background-color:black">
-                <h1 style="margin-top:15px; text-align:center" class="movie-list-title ">RECOMMENDED</h1>
+            <div class="privacy" style="display:flex; align-items: center;justify-content:center;">
+            <a class="privacy-class"  onclick="openprivacyForm()">Privacy
+
+                <?php                                         
+                    $email=$_SESSION['globalemail'];
+
+                    $sql = "SELECT * FROM `user` WHERE `email`='$email'";
+                        $result1 = mysqli_query($conn, $sql);
+                        $row = mysqli_fetch_array($result1);
+                        $wants=$row['watchlistp'];
+                        $x="fas fa-eye";
+                        if($wants=="f")
+                        {
+                            $x="fas fa-user-friends";
+                        }
+                        else if($wants=="o")
+                        {
+                            $x="fas fa-eye-slash";
+                        }
+                        echo '<i style="margin-left:2px"class="'.$x.'"></i>';
+                 ?>
+            </a>
+                
+                <form action="" method="POST"  id="privacy-section">
+                 <input class="privacy-radio"  type="radio" name = "public" value="p">Public</br>
+                 <input class="privacy-radio" type="radio" name = "public" value="f">Friends</br>
+                 <input class="privacy-radio" type="radio" name = "public" value="o">Only Me</br>
+                 <div style="display: flex;">
+                 <input class="privacy-save"  type="submit" name = "save" value="Save"></br>
+                 <a class="privacy-close" onclick="closeprivacyForm()">close</a>
+                     
+                 </div>
+                 
+ 
+
+
+              </form>
+              <h1 style="margin-top:15px; text-align:center" class="movie-list-title ">Watchlist</h1>
+
+            </div>
                     <div class="movie-list-wrapper">
                     <div class="movie-list">
-
-
-                         <?php
+                    <?php
 
 
                         
-                        $email=$_SESSION['globalemail'];
-                        $sql = "SELECT * FROM `user` WHERE `email`='$email'";
-                        $result1 = mysqli_query($conn, $sql);
-                        $row = mysqli_fetch_array($result1);
-                        $wants=$row['recommended'];
-                        $str=explode(",", $wants);
-                        foreach ($str as $key => $value) {
-                             /*echo $value;*/
+                    $email=$_SESSION['globalemail'];
+                    $sql = "SELECT * FROM `user` WHERE `email`='$email'";
+                    $result1 = mysqli_query($conn, $sql);
+                    $row = mysqli_fetch_array($result1);
+                    $wants=$row['watchlist'];
+                    $str=explode(",", $wants);
+                    foreach ($str as $key => $value) {
+                        // /echo $value;/
+                    if(strlen($value)<1)
+                    {
+                        continue;
+                    }
 
-                        $sql = "SELECT * FROM `movie_info` WHERE `movie_name`='$value'";
-                        $result1 = mysqli_query($conn, $sql);
-                        $row = mysqli_fetch_array($result1);
-                        $img= $row['image'];
-                        $year= $row['release_year'];
+                    $sql = "SELECT * FROM `movie_info` WHERE `movie_name`='$value'";
+                    $result1 = mysqli_query($conn, $sql);
+                    $row = mysqli_fetch_array($result1);
+                    $img= $row['image'];
+                    $year= $row['release_year'];
 
+                    $_SESSION['passdata1']=$value;
 
-                             echo '<div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/'.$img.'" alt="">
-                            <span class="movie-list-item-title">'.$value.'</span>
-                            <p class="movie-year-title">'.$year.'
-                                </p>
-                            <button class="movie-list-item-button">Watch</button>
-                        </div>';
+                        echo '<div class="movie-list-item">
+                        <img class="movie-list-item-img" src="img/'.$img.'" alt="">
+                        <span class="movie-list-item-title">'.$value.'</span>
+                        <p class="movie-year-title">'.$year.'
+                            </p>
+                        <a href="movieOverview.php?title='.$value.'"> <input class="movie-list-item-button2" name="Favorite" type="submit" value="Details"> </a>
+                        <a href="profile.php?titleX='.$value.'"> <input style="background-color:red" class="movie-list-item-button" name="Favorite" type="submit" value="X"> </a>
+                    </div>';
 
-                        }
+                    }
 
                     ?>
+
+                        
                  </div>
                  <i class="fas fa-chevron-right arrow"></i> 
              </div>
@@ -263,7 +602,46 @@ include_once("sidenav.php");
 
 
              <div class="movie-list-container" style="background-color:black">
-                <h1 style="margin-top:15px; text-align:center" class="movie-list-title ">RECENTLY WATCHED</h1>
+             <div class="privacy" style="display:flex; align-items: center;justify-content:center;">
+            <a  class="privacy-class" onclick="openprivacyForm2()">Privacy
+
+                <?php                                         
+                    $email=$_SESSION['globalemail'];
+
+                    $sql = "SELECT * FROM `user` WHERE `email`='$email'";
+                        $result1 = mysqli_query($conn, $sql);
+                        $row = mysqli_fetch_array($result1);
+                        $wants=$row['recentlyp'];
+                        $x="fas fa-eye";
+                        if($wants=="f")
+                        {
+                            $x="fas fa-user-friends";
+                        }
+                        else if($wants=="o")
+                        {
+                            $x="fas fa-eye-slash";
+                        }
+                        echo '<i style="margin-left:2px"class="'.$x.'"></i>';
+                 ?>
+                    </a>
+                
+                <form action="" method="POST"  id="privacy-section2">
+                 <input class="privacy-radio" type="radio" name = "public" value="p">Public</br>
+                 <input class="privacy-radio" type="radio" name = "public" value="f">Friends</br>
+                 <input class="privacy-radio" type="radio" name = "public" value="o">Only Me</br>
+                 <div  style="display: flex;">
+                 <input class="privacy-save"  type="submit" name = "save2" value="Save"></br>
+                 <a class="privacy-close"  onclick="closeprivacyForm2()">close</a>
+                     
+                 </div>
+                 
+ 
+
+
+              </form>
+              <h1 style="margin-top:15px; text-align:center" class="movie-list-title ">RECENTLY WATCHED</h1>
+
+            </div>
                     <div class="movie-list-wrapper">
                     <div class="movie-list">
 
@@ -276,10 +654,20 @@ include_once("sidenav.php");
                         $sql = "SELECT * FROM `user` WHERE `email`='$email'";
                         $result1 = mysqli_query($conn, $sql);
                         $row = mysqli_fetch_array($result1);
-                        $wants=$row['recent_watch_list'];
+                        $wants=$row['recent'];
                         $str=explode(",", $wants);
+                        $cnt=0;
                         foreach ($str as $key => $value) {
-                             /*echo $value;*/
+                            
+                            if($cnt>5) break;
+                            
+
+                            if(strlen($value)<2)
+                            {   
+                                
+                                continue;
+                            }
+                            $cnt+=1;
 
                         $sql = "SELECT * FROM `movie_info` WHERE `movie_name`='$value'";
                         $result1 = mysqli_query($conn, $sql);
@@ -293,7 +681,9 @@ include_once("sidenav.php");
                             <span class="movie-list-item-title">'.$value.'</span>
                             <p class="movie-year-title">'.$year.'
                                 </p>
-                            <button class="movie-list-item-button">Watch</button>
+
+                            <a href="movieOverview.php?title='.$value.'"> <input class="movie-list-item-button" name="Favorite" type="submit" value="Details"> </a>
+
                         </div>';
 
                         }
@@ -305,9 +695,55 @@ include_once("sidenav.php");
               </div> 
              </div>
 
-
+             <div class="container" style="background-color:black">
+        <div class="content-container" style="background-color:black">
+            <div class="featured-content" style="background-color:black">
             <div class="movie-list-container" style="background-color:black">
-                <h1 style="margin-top:15px; text-align:center" class="movie-list-title ">WATCHED</h1>
+
+
+            <div class="privacy" style="display:flex; align-items: center;justify-content:center;">
+            <a class="privacy-class" onclick="openprivacyForm3()">Privacy
+
+                <?php                                         
+                    $email=$_SESSION['globalemail'];
+
+                    $sql = "SELECT * FROM `user` WHERE `email`='$email'";
+                        $result1 = mysqli_query($conn, $sql);
+                        $row = mysqli_fetch_array($result1);
+                        $wants=$row['favoritesp'];
+                        $x="fas fa-eye";
+                        if($wants=="f")
+                        {
+                            $x="fas fa-user-friends";
+                        }
+                        else if($wants=="o")
+                        {
+                            $x="fas fa-eye-slash";
+                        }
+                        echo '<i style="margin-left:2px"class="'.$x.'"></i>';
+                 ?>
+
+
+             </a>
+                
+                <form action="" method="POST"  id="privacy-section3">
+                 <input class="privacy-radio" type="radio" name = "public" value="p" checked>Public</br>
+                 <input class="privacy-radio" type="radio" name = "public" value="f">Friends</br>
+                 <input class="privacy-radio" type="radio" name = "public" value="o">Only Me</br>
+                 <div style="display: flex;">
+                 <input class="privacy-save"  type="submit" name = "save3" value="Save"></br>
+                 <a class="privacy-close" onclick="closeprivacyForm3()">close</a>
+                     
+                 </div>
+                 
+ 
+
+
+              </form>
+              <h1 style="margin-top:15px; text-align:center" class="movie-list-title ">Favorites</h1>
+
+            </div>
+                
                     <div class="movie-list-wrapper">
                     <div class="movie-list">
 
@@ -320,9 +756,13 @@ include_once("sidenav.php");
                         $sql = "SELECT * FROM `user` WHERE `email`='$email'";
                         $result1 = mysqli_query($conn, $sql);
                         $row = mysqli_fetch_array($result1);
-                        $wants=$row['want_to_watch'];
+                        $wants=$row['favorites'];
                         $str=explode(",", $wants);
                         foreach ($str as $key => $value) {
+                            if(strlen($value)<1)
+                    {
+                        continue;
+                    }
                              /*echo $value;*/
 
                         $sql = "SELECT * FROM `movie_info` WHERE `movie_name`='$value'";
@@ -337,7 +777,11 @@ include_once("sidenav.php");
                             <span class="movie-list-item-title">'.$value.'</span>
                             <p class="movie-year-title">'.$year.'
                                 </p>
-                            <button class="movie-list-item-button">Watch</button>
+                            
+                            <a href="movieOverview.php?title='.$value.'"> <input class="movie-list-item-button" name="Favorite" type="submit" value="Details"> </a>
+                            <a href="profile.php?titleX2='.$value.'"> <input style="background-color:red" class="movie-list-item-button2" name="Favorite" type="submit" value="X"> </a>
+
+
                         </div>';
 
                         }
@@ -347,7 +791,101 @@ include_once("sidenav.php");
                  <i class="fas fa-chevron-right arrow"></i> 
              </div>
               </div> 
+
+              <div class="container" style="background-color:black">
+        <div class="content-container" style="background-color:black">
+            <div class="featured-content" style="background-color:black">
+         <div class="movie-list-container" style="background-color:black">
+
+
+            <div class="privacy" style="display:flex; align-items: center;justify-content:center;">
+            <a class="privacy-class" onclick="openprivacyForm4()">Privacy 
+
+                <?php 
+                    $sql = "SELECT * FROM `user` WHERE `email`='$email'";
+                        $result1 = mysqli_query($conn, $sql);
+                        $row = mysqli_fetch_array($result1);
+                        $wants=$row['memep'];
+                        $x="fas fa-eye";
+                        if($wants=="p")
+                        {
+                            $x="fas fa-user-friends";
+                        }
+                        else
+                        {
+                            $x="fas fa-eye-slash";
+                        }
+                        echo '<i style="margin-left:2px"class="'.$x.'"></i>';
+                 ?>
+                </a>
+                
+                <form action="" method="POST"  id="privacy-section4">
+                 <input class="privacy-radio" type="radio" name = "public" value="p" checked>Enable</br>
+                 <input class="privacy-radio" type="radio" name = "public" value="o">Disable</br>
+                 <div style="display: flex;">
+                 <input class="privacy-save"  type="submit" name = "save4" value="Save"></br>
+                 <a class="privacy-close" onclick="closeprivacyForm4()">close</a>
+                     
+                 </div>
+                 
+ 
+
+
+              </form>
+              <h1 style="margin-top:15px; text-align:center" class="movie-list-title ">Friends Memes</h1>
+
+            </div>
+                
+                    <div class="movie-list-wrapper">
+                    <div class="movie-list">
+
+
+                        <?php
+
+                        $sql = "SELECT * FROM `user` WHERE `email`='$email'";
+                        $result1 = mysqli_query($conn, $sql);
+                        $row = mysqli_fetch_array($result1);
+                        $wants=$row['memep'];
+                        if($wants=="p")
+                        {
+
+
+
+
+                        
+                        $email=$_SESSION['globalemail'];
+                        $sql = "SELECT * FROM `user` WHERE `email`='$email'";
+                        $result1 = mysqli_query($conn, $sql);
+                        $row = mysqli_fetch_array($result1);
+                        $wants=$row['friendmeme'];
+                        $str=explode(",", $wants);
+                        foreach ($str as $key => $value) {
+                            if(strlen($value)<1)
+                        {
+                        continue;
+                        }
+                           
+
+
+                             echo '<div class="movie-list-item">
+                            <img class="movie-list-item-img" src="memeImg/'.$value.'" alt="">
+                        </div>';
+
+                        }
+
+                        }
+
+                    ?>
+                 </div>
+                 <i class="fas fa-chevron-right arrow"></i> 
              </div>
+              </div>
+
+          </div>
+
+             
+
+
              
 
 
@@ -356,12 +894,65 @@ include_once("sidenav.php");
     </div>
 
 
+<div id="people-bar">  
+    
+    <div class="people-section">
+        <div class="people-profile">
+           <img src="img/15.jpg" > 
+           <p > Mehadi Hasan </p>
+       </div>     
+    </div>
+
+    <div class="people-section">
+        <div class="people-profile">
+           <img src="img/15.jpg" > 
+           <p > Mehadi Hasan </p>
+       </div>     
+    </div>
+
+
+    <div class="people-section">
+        <div class="people-profile">
+           <img src="img/15.jpg" > 
+           <p > Mehadi Hasan </p>
+       </div>     
+    </div>
+    <div class="people-section">
+        <div class="people-profile">
+           <img src="img/15.jpg" > 
+           <p > Mehadi Hasan </p>
+       </div>     
+    </div>
+</div>
+
+
+
+<div id="request-bar">  
+    
+    <div class="people-section">
+        <div class="user-profile">
+           <img src="img/15.jpg" > 
+           <p > Mehadi </p>
+           <span>&nbsp you sent friend Request</span>
+
+        </div>
+
+        <div class="request-div">
+            <button class="req-btn">Cancel Request</button>
+        </div>
+        
+
+    </div>
+
+</div>
 
 
 
 
 
-    <script src="app.js"></script>
+
+
+<script src="app.js"></script>
 </body>
 
 </html>
