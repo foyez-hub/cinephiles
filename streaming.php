@@ -12,7 +12,64 @@ include 'config.php';
 
 <?php
    include_once("topnav.php");
+
    $moviename1=$_SESSION['passdata'];
+
+
+     $sql = "SELECT * FROM `movie_info` WHERE 1";
+     $result1 = mysqli_query($conn, $sql);
+     $vid;
+     while ($row = mysqli_fetch_array($result1) ) { 
+  
+        if($row['movie_name']==$moviename1){
+            
+            $vid=$row['movie_clip'];
+            $year=$row['release_year'];
+        }
+   
+ 
+   
+
+}
+
+
+
+
+
+
+
+
+//add recent movie
+
+
+    
+
+        $mymail= $_SESSION['globalemail'];
+        $sql = "SELECT * FROM `user` WHERE `email`='$mymail'";
+        
+        $result1 = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_array($result1);
+        $wants=$row['recent'];
+        $str=explode(",", $wants);
+        $friend=",";
+        $friend .=$moviename1;
+        foreach ($str as $key => $value) {
+        /*echo $value;*/
+        if($value != $moviename1 && strlen($moviename1)>1)
+            $friend .= $value;
+             $friend .= ",";
+        }  
+        
+        $friend .= ",";
+
+    $sql = "UPDATE `user` SET `recent`='$friend' WHERE `email`='$mymail'";
+    $result = mysqli_query($conn, $sql);
+
+//end add recent movie
+
+
+
+
 
 ?>
 <?php
@@ -37,22 +94,24 @@ include 'config.php';
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
     <title>CINEPHILES</title>
     <style>
+
         body {
             background-color: rgb(83, 25, 25);
         }
 
+
+
         .continer-Streaming {
+            
             display: flex;
             justify-content: space-between;
-            background-color: black;
-            width: 60%;
-            height: 70%;
+            background-color: none;
+            width: 85%;
+            height: 85%;
             margin-top: 5%;
-            margin-left: 20%;
+            margin-left: 13%;
             margin-bottom: 1%;
-            margin-right: 5%;
-            border-radius: 2%;
-
+            margin-right: 1%;
         }
 
         .video video {
@@ -66,6 +125,19 @@ include 'config.php';
             color: white;
 
         }
+
+        
+
+
+
+
+        
+
+
+        
+
+
+
     </style>
 </head>
 
@@ -78,15 +150,19 @@ include 'config.php';
     <div class="continer-Streaming">
         <div class="main-video">
             <div class="video"> 
-                <video src="vid/Avatar.mp4" controls unmuted autoplay></video>
-                <h3 class="title">
+                <video id="video1" src="Movie_CLIP/<?php echo $vid;?>" controls unmuted autoplay ></video>
+
+                <h3 id="moviename" class="title">
                 <?php if(isset($moviename1)){
-                    echo  "Movie Name: ".$moviename1;
-    
+                    echo  $moviename1." | ".$year;
+
                     }
                     ?>
                 
                 </h3>
+
+            
+
 
             </div>
         </div>
@@ -94,6 +170,7 @@ include 'config.php';
 
 
 
+ 
 
     <script src="app.js"></script>
 </body>

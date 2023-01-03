@@ -1,91 +1,132 @@
 
+   
 
 <?php 
-
-class Movie {
-    public $moviename;
-    public $movieimg;
-
-  
-    function set_name($name) {
-      $this->name = $name;
-    }
-    function get_name() {
-      return $this->name;
-    }
-
-}
 
 include 'config.php';
 
 
-$movies=array();
-
-if (isset($_POST['sub'])) {
-    
-
-    if(isset($_POST["dark"])){
-
-            $sql = "SELECT * FROM `movie_info` WHERE `category`='DARK'";
-           $result1 = mysqli_query($conn, $sql);
-          while ($row = mysqli_fetch_array($result1) ) { 
-              
-              $var=$row['movie_name'];
-              array_push($movies,$var);
-
-        }
+include_once("sidenav.php");
 
 
-    }
-    else if(isset($_POST["light"])){
 
 
-        $sql = "SELECT * FROM `movie_info` WHERE `category`='LIGHT'";
-        $result1 = mysqli_query($conn, $sql);
-       while ($row = mysqli_fetch_array($result1) ) { 
-           
-           $var=$row['movie_name'];
-           array_push($movies,$var);
-
-     }
+include_once("topnav.php");
 
 
-    }
+//recommend 
 
-      $randomNumber = rand(0,5);
-      $_SESSION['valpass']=$movies[$randomNumber];
+$startsec=0;
+$genres_count=0;
+$countgenresarray=array();
 
-    header("Location:recomendation.php");
+// favorites count
+$email=$_SESSION['globalemail'];
+$sql = "SELECT * FROM `user` WHERE `email`='$email'";
+$result1 = mysqli_query($conn, $sql);
+$row = mysqli_fetch_array($result1);
+$wants=$row['favorites'];
+$str=explode(",", $wants);
+foreach ($str as $key => $value) {
 
-    
-    
+    if(strlen($value)<1)
+  {
+   continue;
+  }
+
+  $sqlgen = "SELECT * FROM `movie_info` WHERE `movie_name`='$value'";
+  $resultgen = mysqli_query($conn, $sqlgen);
+  $rowgen = mysqli_fetch_array($resultgen);
+  $genras=$rowgen['genres'];
+
+  array_push($countgenresarray,$genras);
 
 
+
+
+
+
+
+
+
+
+$startsec++;
+
+}
+
+
+$wants1=$row['recent'];
+$str=explode(",", $wants1);
+foreach ($str as $key => $value) {
+
+    if(strlen($value)<1)
+  {
+   continue;
+  }
+
+
+  $sqlgen = "SELECT * FROM `movie_info` WHERE `movie_name`='$value'";
+  $resultgen = mysqli_query($conn, $sqlgen);
+  $rowgen = mysqli_fetch_array($resultgen);
+  $genras=$rowgen['genres'];
+
+  array_push($countgenresarray,$genras);
+
+$startsec++;
+
+}
+
+$wants2=$row['watchlist'];
+$str=explode(",", $wants2);
+
+foreach ($str as $key => $value) {
+
+    if(strlen($value)<1)
+  {
+   continue;
+  }
+
+  $sqlgen = "SELECT * FROM `movie_info` WHERE `movie_name`='$value'";
+  $resultgen = mysqli_query($conn, $sqlgen);
+  $rowgen = mysqli_fetch_array($resultgen);
+  $genras=$rowgen['genres'];
+
+  array_push($countgenresarray,$genras);
+$startsec++;
 
 }
 
 
 
 
+$maxgen=-1;
+$maxmovie;
+$countgenresarray=array_count_values($countgenresarray);
+foreach($countgenresarray as $x => $val) {
+    if($val>$maxgen){
+        $maxgen=$val;
+        $maxmovie=$x;
+    }
+  }
 
 
-    
+
+$allmaxmoives=array();
+
+$sqlmax = "SELECT * FROM `movie_info` WHERE `genres`='$maxmovie'";
+$resultmax = mysqli_query($conn, $sqlmax);
+while ($rowmax = mysqli_fetch_array($resultmax) ) { 
+
+   $name1=$rowmax['movie_name'];
+   array_push($allmaxmoives,$name1);
+
+}
 
 
-
-
+$_SESSION['vv1']=$allmaxmoives;
 
 
   ?>
-
-
-
-
-
-
-
-
-
 
 
 <html lang="en">
@@ -104,34 +145,29 @@ if (isset($_POST['sub'])) {
 
 <body>
 
-    <?php
-        include_once("topnav.php");
-    ?> 
-    
-    <?php
-      include_once("sidenav.php");
-    ?>
-
+ 
 
     
 
     <div class="container">
         <div class="content-container">
+
             <div class="featured-content"
             style="background: linear-gradient(to bottom, rgba(0,0,0,0), #151515), url('img/f-1.jpg');">
             <img class="featured-title" src="img/f-t-1.png" alt="">
             <input id="searchbar" type="text" name="search" placeholder="Search Movie">
-            <h1 class="featured-desc">Recommend Movies Based On One’s Mood & Interest</h1>
-            <p class="featured-desc">Answer 4 questions and let us do the work!</p>
-            <button class="featured-button" onclick="openForm()">START</button>
+            <h1 class="featured-desc">Recommend Movies Based On One’s Activity & Interest</h1>
+            <button class="featured-button" onclick="openForm()">Get Recommend</button>
+            </div>
 
 
-            <!-- start -->
+            
 
 
 
+<?php
 
-<div class="form-popup" id="myForm">
+echo '<div class="form-popup" id="myForm">
   <form style="background-color: black; padding:2%" method="POST" action="">
        <fieldset>
         <legend>1.How are you today?</legend>
@@ -139,15 +175,9 @@ if (isset($_POST['sub'])) {
         <input type="radio" name="light" value="Light">Sad<br>
         <br>
 
-        <legend>2. What comes closest to your occasion?</legend>
-        <input type="radio" name="2.1" value="2.1">watching alone<br>
-        <input type="radio" name="2.2" value="2.2">watching with your favorite person<br>
-        <input type="radio" name="2.3" value="2.3">movie party<br>
-        <br>
+      
 
-
-        <legend>3.Choose your preferred genre?</legend>
-        <input type="radio" name="Drama" value="Drama"><p>Drama</p><br>
+        <legend>2.Choose your preferred genre?</legend>
         <input type="radio" name="Romance" value="Romance">Romance<br>
         <input type="radio" name="Thriller" value="Thriller">Thriller<br>
         <input type="radio" name="Science fiction" value="Science fiction">Science fiction<br>
@@ -155,20 +185,22 @@ if (isset($_POST['sub'])) {
         <input type="radio" name="Fantasy" value="Fantasy">Fantasy<br>
         <br>
 
-        <legend>4.From which time period do you want to watch movie?</legend>
+        <legend>3.From which time period do you want to watch movie?</legend>
         <input type="radio" name="4.1" value="Before2000">Before 2000<br>
         <input type="radio" name="4.2" value="After2000">After 2000<br>
         <input type="radio" name="4.3" value="Doesn’t matter">Doesn’t matter<br>
         <br>
 
-        <input class="featured-button form-button" name='sub' type="submit" value="Submit now">
+        <input class="featured-button form-button" name="sub" type="submit" value="Submit now">
         <button type="button" class="featured-button form-button" onclick="closeForm()"> Close </button>
 
     </fieldset>
 </form>
 
   
-  </div>
+  </div>'
+
+  ?>
 
 
            
@@ -236,8 +268,8 @@ if (isset($_POST['sub'])) {
                            <span class="movie-list-item-title">'.$var.'</span>
                            <p class="movie-list-item-desc">
                                '.$synopsis.'</p>
-                           <button class="movie-list-item-button">Details</button>
-                       </div>';
+                               <a href="movieOverview.php?title='.$var.'"><input class="movie-list-item-button" name="details" type="submit" value="Details"></a>
+                               </div>';
                           
                        }
 
@@ -247,14 +279,18 @@ if (isset($_POST['sub'])) {
                     <i class="fas fa-chevron-right arrow"></i>
                 </div>
             </div>
+
+            <h1 style="margin-top:15px; text-align:center " class="movie-list-title ">Cinephiles Premium</h1>
+
             <div class="featured-content"
-                style="background: linear-gradient(to bottom, rgba(0,0,0,0), #151515), url('img/f-2.jpg');">
-                <img class="featured-title" src="img/f-t-2.png" alt="">
-                <p class="featured-desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto illo dolor
-                    deserunt nam assumenda ipsa eligendi dolore, ipsum id fugiat quo enim impedit, laboriosam omnis
-                    minima voluptatibus incidunt. Accusamus, provident.</p>
-                <button class="featured-button">WATCH</button>
+            
+                style="background: linear-gradient(to bottom, rgba(0,0,0,0), #151515), url('img/avatar.jpg');">
+                <!-- <img class="featured-title" src="img/f-t-2.png" alt=""> -->
+                <p class="featured-desc">On the lush alien world of Pandora live the Na'vi, beings who appear primitive but are highly evolved. Because the planet's environment is poisonous, human/Na'vi hybrids, called Avatars, must link to human minds to allow for free movement on Pandora. Jake Sully (Sam Worthington), a paralyzed former Marine, becomes mobile again through one such Avatar and falls in love with a Na'vi woman (Zoe Saldana).</p>
+                <!-- <button class="featured-button">WATCH</button> -->
+                <a href="movieOverview.php?title=Avatar"><input class="featured-button" name="details" type="submit" value="WATCH"></a>
             </div>
+
             <div class="movie-list-container">
                 <h1 style="margin-top:15px;text-align:center" class="movie-list-title">POPULER</h1>
                 <div class="movie-list-wrapper">
@@ -312,6 +348,7 @@ if (isset($_POST['sub'])) {
                     <i class="fas fa-chevron-right arrow"></i>
                 </div>
             </div>
+
             <div class="movie-list-container">
                 <h1 style="text-align:center" class="movie-list-title">TRENDY</h1>
                 <div class="movie-list-wrapper">
@@ -360,7 +397,7 @@ if (isset($_POST['sub'])) {
                         </div>
                         <div class="movie-list-item">
                             <img class="movie-list-item-img" src="img/4.jpg" alt="">
-                            <span class="movie-list-item-title">Her</span>
+                            <span  class="movie-list-item-title">Her</span>
                             <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
                                 hic fugit similique accusantium.</p>
                             <button class="movie-list-item-button">Watch</button>
@@ -369,9 +406,26 @@ if (isset($_POST['sub'])) {
                     <i class="fas fa-chevron-right arrow"></i>
                 </div>
             </div>
+
         </div>
-    </div>-
+    </div>
     
     <script src="app.js"></script>
+
+    <script>
+
+     
+function openForm() {
+    
+        document.getElementById("myForm").style.display = "none";
+        document.getElementById("notification-bar").style.display = "none";
+        location.href = 'recomendation.php';
+
+    
+
+}
+
+
+        </Script>
 </body>
 

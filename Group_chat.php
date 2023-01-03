@@ -1,7 +1,73 @@
 <?php
 include_once("topnav.php");
 include_once("sidenav.php");
-$moviename1=$_SESSION['passdata'];
+include 'config.php';
+
+$moviename1;
+
+
+if(isset($_GET['watchparty'])){
+	$moviename1=$_GET['watchparty'];
+
+	
+	$sql = "SELECT * FROM `movie_info` WHERE 1";
+	$result1 = mysqli_query($conn, $sql);
+	$vid;
+	while ($row = mysqli_fetch_array($result1) ) { 
+ 
+	   if($row['movie_name']==$moviename1){
+		   
+		   $vid=$row['movie_clip'];
+	   }
+  
+
+  
+
+}
+
+	
+}
+
+
+          date_default_timezone_set("Asia/Dhaka");   
+          $curmin=date("i");
+          $cursec=date("s");
+         
+
+
+
+		  $sql2 = "SELECT * FROM `watchparty` WHERE `moviename`='$moviename1'";
+		  $result2 = mysqli_query($conn, $sql2);
+		  while ($row2 = mysqli_fetch_array($result2) ) { 
+	   
+			
+				 
+				 $startmin=$row2['min'];
+				 $startsec=$row2['sec'];
+
+			 }
+		
+	  
+		
+	  
+	  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$_SESSION['Glomoviename'] = $moviename1;
 
 if (isset($_POST['submit'])){
 /* Attempt MySQL server connection. Assuming
@@ -46,6 +112,9 @@ mysqli_close($link);
         href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Sen:wght@400;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+
+	<!-- JQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <title>CINEPHILES</title>
 <style>
 *{
@@ -214,7 +283,7 @@ main footer textarea{
 	resize:none;
 	border:100%;
 	display:block;
-	width:140%;
+	width:130%;
 	height:55px;
 	border-radius:3px;
 	padding:20px;
@@ -238,7 +307,7 @@ main footer .input2{
 	background-color:black;
 	border: 2px solid white;
 }
-}
+
 main footer textarea::placeholder{
 	color:#ddd;
 }
@@ -249,8 +318,8 @@ main footer textarea::placeholder{
 <div class="container-Streaming">
        <div class="main-video">
         <div class="video">
-            <video src="img/video-1.mp4" controls muted autoplay></video>
-            <h3 class="title">
+            <video  id="video1" src="Movie_CLIP/<?php echo $vid;?>" controls autoplay></video>
+            <h3 id="moviename" class="title">
 			<?php if(isset($moviename1)){
                     echo  "Movie Name: ".$moviename1;
     
@@ -278,98 +347,38 @@ main footer textarea::placeholder{
 		</header>
 
 <script>
+
+
 function show_func(){
 
 var element = document.getElementById("chathist");
 	element.scrollTop = element.scrollHeight;
 
 }
+
+setInterval(show_func,500);
+
+
+
 </script>
 
-<form id="myform" action="Group_chat.php" method="POST" >
+<!-- <form id="myform" action="Group_chat.php" method="POST" > -->
 <div class="inner_div" id="chathist">
-<?php
-$host = "localhost";
-$user = "root";
-$pass = "";
-$db_name = "cinephilesdb";
-$con = new mysqli($host, $user, $pass, $db_name);
+<!-- //copy for another reload.php page -->
 
-$query = "SELECT * FROM chats";
-$run = $con->query($query);
-$i=0;
 
-while($row = $run->fetch_array()) :
-if($i==0){
-$i=5;
-$first=$row;
-?>
-<div id="triangle1" class="triangle1"></div>
-<div id="message1" class="message1">
-<span style="color:white;float:right;">
-<?php echo $row['msg']; ?></span> <br/>
-<div>
-<span style="color:black;float:left;
-font-size:10px;clear:both;">
-	<?php echo $row['uname']; ?>,
-		<?php echo $row['dt']; ?>
-</span>
-</div>
-</div>
-<br/><br/>
-<?php
-}
-else
-{
-if($row['uname']!=$first['uname'])
-{
-?>
-<div id="triangle" class="triangle"></div>
-<div id="message" class="message">
-<span style="color:white;float:left;">
-<?php echo $row['msg']; ?>
-</span> <br/>
-<div>
-<span style="color:black;float:right;
-		font-size:10px;clear:both;">
-<?php echo $row['uname']; ?>,
-		<?php echo $row['dt']; ?>
-</span>
-</div>
-</div>
-<br/><br/>
-<?php
-}
-else
-{
-?>
-<div id="triangle1" class="triangle1"></div>
-<div id="message1" class="message1">
-<span style="color:white;float:right;">
-<?php echo $row['msg']; ?>
-</span> <br/>
-<div>
-<span style="color:black;float:left;
-		font-size:10px;clear:both;">
-<?php echo $row['uname']; ?>,
-	<?php echo $row['dt']; ?>
-</span>
-</div>
-</div>
-<br/><br/>
-<?php
-}
-}
-endwhile;
-?>
 </div>
 	<footer>
 		<table>
 		<tr>
 		<th>
-			<input class="input1" type="text"
+			<input style="display:none" class="input1" type="text"
 					id="uname" name="uname"
-					placeholder="From">
+					placeholder="From" value="<?php if(isset($moviename1)){
+                    echo  $moviename1;
+    
+                    }
+                    ?>">
 		</th>
 		<th>
 			<textarea id="msg" name="msg"
@@ -378,17 +387,89 @@ endwhile;
 			</textarea></th>
 		<th>
 			<input class="input2" type="submit"
-			id="submit" name="submit" value="send">
+			id="submit" name="submit" value="send" onclick="upComment()" >
 		</th>			
 		</tr>
 		</table>			
 	</footer>
-</form>
+
 </main>
 </div>
 
-
 </div>
+
+
+<script>
+	const upComment = () =>{
+
+		// console.log("inside ajax");
+		const msg = document.getElementById("msg").value;
+		const moviename = document.getElementById("uname").value;
+		// alert(moviename)
+
+		$.post("adding_ajax.php",
+  		{
+    		sms: msg,
+			moviename:moviename
+  		},
+  		function(data, status){
+			
+
+			var getValue= document.getElementById("msg");
+            if (getValue.value !="") {
+                   getValue.value = "";
+                 }
+
+			
+
+
+  		});
+
+	}
+
+
+	function refresh_box() 
+{
+	
+
+    $("#chathist").load('reload.php');
+    setTimeout(refresh_box, 600);
+}
+
+$(document).ready(function(){
+   refresh_box();
+});
+
+   
+  
+
+</script>
+
+
+<script>
+    
+    const moviename = "<?php echo $moviename1; ?>";
+    const curmin = "<?php echo $curmin; ?>";
+    const cursec = "<?php echo $cursec; ?>";
+    const smin = "<?php echo $startmin; ?>";
+    const ssec = "<?php echo $startsec; ?>";
+
+    var curTotalsec=(curmin*60)
+	curTotalsec=Number(curTotalsec)+Number(cursec);
+	var sTotalsec=(smin*60);
+	sTotalsec=Number(sTotalsec)+Number(ssec);
+
+	var dif=Number(curTotalsec)-Number(sTotalsec);
+	var tt=20;
+	// alert(curmin+" "+cursec+" "+smin+" "+ssec+" "+dif);
+
+	
+
+document.getElementById("video1").addEventListener("loadedmetadata", function() {
+     this.currentTime = dif;
+}, false);
+
+</script>
 
 </body>
 </html>

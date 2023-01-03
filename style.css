@@ -221,6 +221,8 @@
   .featured-content {
     height: 50vh;
     padding: 10px;
+    margin-left: 14px;
+    margin-right: 14px;
   }
   
   .featured-title {
@@ -279,7 +281,9 @@
     height: 300px;
     transform: translateX(0);
     transition: all 1s ease-in-out;
-  }
+    padding-left: 80px;
+
+    }
   
   .movie-list-item {
     margin-right: 30px;
@@ -294,7 +298,9 @@
   
   .movie-list-item:hover .movie-list-item-title,
   .movie-list-item:hover .movie-list-item-desc,
-  .movie-list-item:hover .movie-list-item-button {
+  .movie-list-item:hover .movie-list-item-button,
+  .movie-list-item:hover .movie-list-item-button1,
+  .movie-list-item:hover .movie-list-item-button2{
     opacity: 1;
   }
   
@@ -330,6 +336,7 @@
     transition: 1s all ease-in-out;
   }
   
+  
   .movie-list-item-button {
     padding: 10px;
     background-color: #4dbf00;
@@ -340,12 +347,48 @@
     cursor: pointer;
     position: absolute;
     bottom: 20px;
-    left: 50px;
+    left: 20px;
+    opacity: 0;
+    transition: 1s all ease-in-out;
+  }
+
+  .movie-list-item-button1{
+    padding: 10px;
+    padding-left:15px;
+    padding-right:15px;
+    margin-left: 50px;
+    background-color: #4dbf00;
+    color: white;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    bottom: 20px;
+    left: 60px;
     opacity: 0;
     transition: 1s all ease-in-out;
   }
 
   
+  .movie-list-item-button2{
+    padding: 10px;
+    padding-left:15px;
+    padding-right:15px;
+    margin-left: 75px;
+    background-color: #4dbf00;
+    color: white;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    bottom: 20px;
+    left: 135px;
+    opacity: 0;
+    transition: 1s all ease-in-out;
+  }
+
 
   .arrow {
     font-size: 120px;
